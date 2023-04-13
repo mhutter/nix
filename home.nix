@@ -19,7 +19,8 @@ in
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
   imports = [
-    ./programs/git.nix
+    ./modules/git.nix
+    ./modules/shell.nix
   ];
 
   # The home.packages option allows you to install Nix packages into your
@@ -27,7 +28,6 @@ in
   home.packages = [
     pkgs.fzf
     pkgs.ripgrep
-    pkgs.starship
     pkgs.tree
 
     # # Adds the 'hello' command to your environment. It prints a friendly
@@ -80,6 +80,4 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  programs.bat.enable = true;
 }
