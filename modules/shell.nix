@@ -1,24 +1,28 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.zsh = {
     enable = true;
+
     enableAutosuggestions = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
-
     autocd = true;
+
+    shellAliases = {
+      vim = "nvim"; # TODO: manage via package.nvim
+      cat = "bat";
+      catp = "bat -p";
+    };
+
     dirHashes = {
       p = "$HOME/Projects";
       da = "$HOME/Projects/vshn/pacco/data";
       dev = "$HOME/dev";
     };
-  };
 
-  programs.bat.enable = true;
-
-  programs.direnv = {
-    enable = true;
-    # check whether nix-direnv is an option?
+    initExtra = ''
+      bindkey -e
+    '';
   };
 
   programs.exa = {
@@ -35,9 +39,16 @@
     settings = {
       add_newline = true;
 
+      time.disabled = false;
+
       aws.disabled = true;
       azure.disabled = true;
       gcloud.disabled = true;
     };
   };
+
+  programs.bat.enable = true;
+  programs.direnv.enable = true;
+  programs.fzf.enable = true;
+  programs.zoxide.enable = true;
 }
