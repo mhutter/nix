@@ -23,6 +23,13 @@ in
     ./modules/shell.nix
   ];
 
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    maxCacheTtl = 43200;
+    pinentryFlavor = "tty";
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
