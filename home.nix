@@ -36,6 +36,8 @@ in
     pkgs.btop
     pkgs.fd
     pkgs.jq
+    pkgs.kubecolor
+    pkgs.kubectl
     pkgs.ripgrep
     pkgs.rustup
     pkgs.tree

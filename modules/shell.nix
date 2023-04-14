@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  home.packages = [
+    pkgs.zsh-completions
+  ];
+
   programs.zsh = {
     enable = true;
 
@@ -9,9 +13,14 @@
     autocd = true;
 
     shellAliases = {
-      vim = "nvim"; # TODO: manage via package.nvim
       cat = "bat";
       catp = "bat -p";
+      k = "kubectl";
+      ka = "kubectl --as=cluster-admin";
+      ks = "kubeseal --format yaml --cert";
+      kubectl = "kubecolor";
+      kubens = "kubectl config set-context --current --namespace";
+      vim = "nvim"; # TODO: manage via package.nvim
     };
 
     dirHashes = {
