@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = [
     pkgs.zsh-completions
@@ -15,11 +15,10 @@
     shellAliases = {
       cat = "bat";
       catp = "bat -p";
-      k = "kubectl";
-      ka = "kubectl --as=cluster-admin";
+      k = "kubecolor";
+      ka = "k --as=cluster-admin";
       ks = "kubeseal --format yaml --cert";
-      kubectl = "kubecolor";
-      kubens = "kubectl config set-context --current --namespace";
+      kubens = "k config set-context --current --namespace";
       vim = "nvim"; # TODO: manage via package.nvim
     };
 
@@ -33,6 +32,7 @@
       bindkey -e
       autoload -U select-word-style
       select-word-style bash
+      compdef kubecolor=kubectl
 
       # SSH-Agent
       if [[ -f /etc/arch-release ]]; then
