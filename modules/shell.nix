@@ -22,6 +22,18 @@
 
     initExtra = ''
       bindkey -e
+      autoload -U select-word-style
+      select-word-style bash
+
+      # SSH-Agent
+      if [[ -f /etc/arch-release ]]; then
+        if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+          ssh-agent -t 12h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+        fi
+        if [[ ! "$SSH_AGENT_SOCK" ]]; then
+          source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+        fi
+      fi
     '';
   };
 

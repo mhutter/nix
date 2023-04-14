@@ -37,6 +37,7 @@ in
     pkgs.fd
     pkgs.jq
     pkgs.ripgrep
+    pkgs.rustup
     pkgs.tree
     pkgs.yq
 
@@ -85,7 +86,7 @@ in
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     HM_ENV_WORKS = "indeed!";
-    # EDITOR = "emacs";
+    EDITOR = "vim";
   };
 
   # Let Home Manager install and manage itself.
