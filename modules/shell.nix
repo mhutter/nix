@@ -29,10 +29,18 @@
     };
 
     initExtra = ''
+      # more bash-like keybinds (^W etc)
       bindkey -e
+
+      # more bash-like word boundaries
       autoload -U select-word-style
       select-word-style bash
+
+      # Fix completions for kubecolor aliases
       compdef kubecolor=kubectl
+
+      # Add go bin to path
+      which go &>/dev/null && export PATH="$(go env GOPATH)/bin:$PATH"
 
       # SSH-Agent
       if [[ -f /etc/arch-release ]]; then
