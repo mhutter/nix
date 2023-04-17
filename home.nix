@@ -56,6 +56,10 @@ in
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    (pkgs.writeShellScriptBin "ssh" ''
+      TERM=xterm-256color /usr/bin/ssh -t $@ "tmux -2 new-session -A -s mh || bash"
+    '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

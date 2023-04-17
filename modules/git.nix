@@ -1,5 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 {
+
   programs.git = {
     enable = true;
 
@@ -13,8 +14,9 @@
         ui = "auto";
       };
       core = {
-        editor = "vim";
         autocrlf = "input";
+        editor = "vim";
+        sshCommand = "${pkgs.openssh}/bin/ssh";
       };
       push = {
         default = "simple";
