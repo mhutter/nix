@@ -51,6 +51,17 @@
           source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
         fi
       fi
+
+      temp() {
+        local dir="$(date +%F)"
+        if [ -n "$1" ]; then
+          dir="$${dir}-$1"
+        fi
+
+        local p="$HOME/tmp/$dir"
+        mkdir -p "$p"
+        cd "$p"
+      }
     '';
   };
 
