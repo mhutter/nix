@@ -31,6 +31,7 @@
     initExtra = ''
       # more bash-like keybinds (^W etc)
       bindkey -e
+      bindkey "^[[3~" delete-char
 
       # more bash-like word boundaries
       autoload -U select-word-style
