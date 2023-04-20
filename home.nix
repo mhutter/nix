@@ -61,6 +61,27 @@ in
     (pkgs.writeShellScriptBin "ssh" ''
       TERM=xterm-256color /usr/bin/ssh -t $@ "tmux -2 new-session -A -s mh || bash"
     '')
+
+    (pkgs.writeShellScriptBin "update-nix-stuff" ''
+      set -e -u -o pipefail
+
+      pushd ~/.config/home-manager
+
+      # Update all the things
+      nix-channel --update
+      nix flake update
+      git diff --quiet flake.lock || {
+        git add flake.lock
+        git commit -m 'Update system'
+      }
+      home-manager switch
+
+      # Clean up
+      home-manager expire-generations "-30 days"
+      nix-collect-garbage --delete-older-than 30d
+
+      popd
+    '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
