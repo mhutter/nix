@@ -42,7 +42,6 @@ in
     pkgs.ripgrep
     pkgs.rustup
     pkgs.tree
-    pkgs.trunk
     pkgs.yq
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
