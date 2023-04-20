@@ -20,6 +20,7 @@ in
 
   imports = [
     ./modules/git.nix
+    ./modules/rust.nix
     ./modules/shell.nix
   ];
 
@@ -33,16 +34,16 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.btop
-    pkgs.fd
-    pkgs.jq
-    pkgs.kubecolor
-    pkgs.kubectl
-    pkgs.ripgrep
-    pkgs.rustup
-    pkgs.tree
-    pkgs.yq
+  home.packages = with pkgs; [
+    btop
+    fd
+    jq
+    kubecolor
+    kubectl
+    ripgrep
+    rnix-lsp
+    tree
+    yq
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
