@@ -65,22 +65,34 @@ in
     (pkgs.writeShellScriptBin "update-nix-stuff" ''
       set -e -u -o pipefail
 
-      pushd ~/.config/home-manager
+      cd ~/.config/home-manager
 
-      # Update all the things
-      nix-channel --update
-      nix flake update
-      git diff --quiet flake.lock || {
-        git add flake.lock
-        git commit -m 'Update system'
+      log() {
+        echo -e "\033[2m[$(date +%T)]\033[0;33m $*\033[0m"
       }
+
+      log "Updating nixpkgs"
+      nix-channel --update
+
+      log "Updating flakes"
+      nix flake update
+      
+      if git diff --quiet flake.lock; then
+        log "No changes to flake.lock"
+      else
+        log "flake.lock changed, committing"
+        git add flake.lock
+        git commit -m "Update system"
+      fi 
+
+      log "Switching to new home-manager configuration"
       home-manager switch
 
-      # Clean up
+      log "Cleaning up old home-manager generations"
       home-manager expire-generations "-30 days"
-      nix-collect-garbage --delete-older-than 30d
 
-      popd
+      log "Cleaning up nix store"
+      nix-collect-garbage --delete-older-than 30d
     '')
   ];
 
