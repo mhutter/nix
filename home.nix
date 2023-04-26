@@ -117,6 +117,7 @@ in
   ];
   home.sessionVariables = {
     EDITOR = "vim";
+    BROWSER = "brave";
   };
 
   # Let Home Manager install and manage itself.
