@@ -37,6 +37,7 @@ in
   home.packages = with pkgs; [
     btop
     fd
+    github-cli
     jq
     kubecolor
     kubectl
