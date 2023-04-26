@@ -100,6 +100,7 @@
       ".vscode/"
       "*.patch"
       ".envrc"
+      ".env"
       ".direnv/"
       ".kubeconfig"
     ];
