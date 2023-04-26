@@ -38,6 +38,7 @@ in
     btop
     fd
     github-cli
+    go-jsonnet
     jq
     kubecolor
     kubectl
