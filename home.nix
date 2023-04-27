@@ -40,6 +40,7 @@ in
     github-cli
     go-jsonnet
     jq
+    just
     kubecolor
     kubectl
     ripgrep
