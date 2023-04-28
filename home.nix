@@ -18,6 +18,7 @@ in
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
+  # TODO: SSH client
   imports = [
     ./modules/git.nix
     ./modules/rust.nix
