@@ -20,6 +20,7 @@ in
 
   # TODO: SSH client
   imports = [
+    ./modules/backup.nix
     ./modules/git.nix
     ./modules/rust.nix
     ./modules/shell.nix
