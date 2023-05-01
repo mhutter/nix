@@ -12,4 +12,8 @@
       rustc-wrapper = "${pkgs.sccache}/bin/sccache"
     '';
   };
+
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
+  ];
 }

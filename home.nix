@@ -90,7 +90,6 @@ in
 
   home.sessionPath = [
     "$HOME/bin"
-    "$HOME/.cargo/bin"
   ];
   home.sessionVariables = {
     EDITOR = "vim";
