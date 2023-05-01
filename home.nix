@@ -19,6 +19,7 @@ in
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
   # TODO: SSH client
+  # TODO: Ansible
   imports = [
     ./modules/backup.nix
     ./modules/git.nix
@@ -41,6 +42,7 @@ in
     fd
     github-cli
     go-jsonnet
+    httpie
     jq
     just
     kubecolor
