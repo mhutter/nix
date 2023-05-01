@@ -43,16 +43,6 @@
       # Add go bin to path
       which go &>/dev/null && export PATH="$(go env GOPATH)/bin:$PATH"
 
-      # SSH-Agent
-      if [[ -f /etc/arch-release ]]; then
-        if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-          ssh-agent -t 12h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-        fi
-        if [[ ! "$SSH_AGENT_SOCK" ]]; then
-          source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-        fi
-      fi
-
       temp() {
         local dir="$(date +%F)"
         if [ -n "$1" ]; then

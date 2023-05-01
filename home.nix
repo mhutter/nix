@@ -25,6 +25,7 @@ in
     ./modules/git.nix
     ./modules/rust.nix
     ./modules/shell.nix
+    ./modules/ssh.nix
   ];
 
   programs.gpg.enable = true;
@@ -64,10 +65,6 @@ in
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-
-    (pkgs.writeShellScriptBin "ssh" ''
-      TERM=xterm-256color /usr/bin/ssh -t $@ "tmux -2 new-session -A -s mh || bash"
-    '')
 
     (pkgs.writeShellScriptBin "update-nix-stuff"
       (builtins.readFile bin/update-nix-stuff.sh))
