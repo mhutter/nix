@@ -6,6 +6,7 @@ let
     .dropbox-dist
     Dropbox/
     target/
+    node_modules/
   '';
 
   cron = { name, calendar, command, randomDelay ? 60 * 60 }: {
@@ -47,6 +48,7 @@ in
         "${pkgs.restic}/bin/restic backup"
         "--compression=max"
         "--exclude-file=${excludes}"
+        "--exclude-caches"
         "--no-scan"
         "--one-file-system"
         "--verbose"
