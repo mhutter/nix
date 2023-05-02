@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   username = "mh";
@@ -22,6 +22,7 @@ in
   # TODO: Ansible
   imports = [
     ./modules/backup.nix
+    ./modules/helix.nix
     ./modules/git.nix
     ./modules/rust.nix
     ./modules/shell.nix
