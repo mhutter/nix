@@ -7,6 +7,7 @@ let
     Dropbox/
     target/
     node_modules/
+    .cache/sccache/
   '';
 
   cron = { name, calendar, command, randomDelay ? 60 * 60 }: {
