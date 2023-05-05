@@ -18,8 +18,9 @@ in
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  # TODO: SSH client
   # TODO: Ansible
+  # TODO: Languagetool
+  # TODO: Provider CLIs: aws, azure, exoscale, hcloud
   imports = [
     ./modules/backup.nix
     ./modules/helix.nix
@@ -52,6 +53,7 @@ in
     ripgrep
     rnix-lsp
     tree
+    yamllint
     yq
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
