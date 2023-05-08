@@ -25,11 +25,12 @@ in
   # TODO: golangci-lint
   imports = [
     ./modules/backup.nix
-    ./modules/helix.nix
     ./modules/git.nix
+    ./modules/helix.nix
     ./modules/rust.nix
     ./modules/shell.nix
     ./modules/ssh.nix
+    ./modules/tmux.nix
   ];
 
   programs.gpg.enable = true;
