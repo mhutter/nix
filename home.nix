@@ -21,6 +21,8 @@ in
   # TODO: Ansible
   # TODO: Languagetool
   # TODO: Provider CLIs: aws, azure, exoscale, hcloud
+  # TODO: icdiff
+  # TODO: golangci-lint
   imports = [
     ./modules/backup.nix
     ./modules/helix.nix

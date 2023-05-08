@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     bacon
+    cargo-expand
     cargo-nextest
     cargo-outdated
     cargo-watch
