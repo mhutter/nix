@@ -41,11 +41,11 @@
       setw -g mode-keys vi
       set -sg escape-time 0
 
-      # Use Meta(Alt)-vim keys without prefix key to switch panes
-      bind -n M-h select-pane -L
-      bind -n M-j select-pane -D
-      bind -n M-k select-pane -U
-      bind -n M-l select-pane -R
+      # Use Ctrl-vim keys without prefix key to switch panes
+      bind -n C-h select-pane -L
+      bind -n C-j select-pane -D
+      bind -n C-k select-pane -U
+      bind -n C-l select-pane -R
 
       # Resize panes
       bind-key J resize-pane -D 5
@@ -54,7 +54,7 @@
       bind-key L resize-pane -R 5
 
       # Reload tmux config
-      bind r source-file ~/.tmux.conf
+      bind r source-file ~/.config/tmux/tmux.conf
 
       # Open new panes in the same path
       bind '"' split-window -c "#{pane_current_path}"
