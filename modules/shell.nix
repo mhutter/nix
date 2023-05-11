@@ -43,6 +43,11 @@
       # Add go bin to path
       which go &>/dev/null && export PATH="$(go env GOPATH)/bin:$PATH"
 
+      # Add `cluster` command
+      cluster() { cp ~/.config/cattledog/kubeconfigs/"$1" ~/.kube/config }
+      _cluster() { _files -W ~/.config/cattledog/kubeconfigs -/; }
+      compdef _cluster cluster
+
       temp() {
         local dir="$(date +%F)"
         if [ -n "$1" ]; then
