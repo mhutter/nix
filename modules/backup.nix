@@ -10,12 +10,20 @@ let
     .cache/sccache/
   '';
 
+  mountPoint = "/mnt/restic";
+  mountUnit = "mount-mnt-restic";
+  resticRepo = "${mountPoint}/tera.restic";
+
   cron = { name, calendar, command, randomDelay ? 60 * 60 }: {
     services."${name}" = {
+      Unit = {
+        Requires = [ "${mountUnit}.service" ];
+        After = [ "${mountUnit}.service" ];
+      };
       Service = {
         Type = "oneshot";
         Environment = [
-          "RESTIC_REPOSITORY=/mnt/backup/tera.restic"
+          "RESTIC_REPOSITORY=${resticRepo}"
           "RESTIC_PASSWORD_FILE=${home}/.secrets/restic-password"
         ];
         ExecStart = builtins.concatStringsSep " " command;
@@ -37,11 +45,7 @@ let
     };
   };
 
-in
-{
-  home.packages = [ pkgs.restic ];
-
-  systemd.user = pkgs.lib.recursiveUpdate
+  resticJobs = pkgs.lib.recursiveUpdate
     (cron {
       name = "restic-backup";
       calendar = "hourly";
@@ -69,4 +73,15 @@ in
       ];
     });
 
+in
+{
+  home.packages = [ pkgs.restic ];
+
+  systemd.user = pkgs.lib.recursiveUpdate resticJobs {
+    services.${mountUnit}.Service = {
+      ExecStart = "/bin/sh -c 'test -d ${resticRepo} || /bin/mount ${mountPoint}'";
+      ExecStop = "/bin/umount ${mountPoint}";
+      RemainAfterExit = "yes";
+    };
+  };
 }
