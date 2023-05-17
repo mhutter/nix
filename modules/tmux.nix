@@ -4,40 +4,38 @@
   programs.tmux = {
     enable = true;
     clock24 = true;
+
     # increase scrollback lines
     historyLimit = 100000;
+
     # Improve colors
     terminal = "screen-256color";
 
-    extraConfig = ''
-      # start window numbers at 1 and make pane numbering consistent with windows
-      set -g base-index 1
-      set-window-option -g pane-base-index 1
+    # Start window numbers at 1 and make pane numbering consistent with windows
+    baseIndex = 1;
 
+    extraConfig = ''
       # renumber windows when a window is closed
       set -g renumber-windows on
 
       # Automatically set window titles
-      set-window-option -g automatic-rename on
-      set-option -g set-titles on
+      setw -g automatic-rename on
+      set -g set-titles on
 
       # Status Bar
-      set-option -g status-interval 1
-      set-option -g status-left ""
-      set-option -g status-right '%T %F'
-      set-window-option -g window-status-current-style fg=blue
-      set-option -g status-fg white
-      set-option -g status-bg black
+      set -g status-interval 1
+      set -g status-left ""
+      set -g status-right '%T %F'
+      setw -g window-status-current-style fg=blue
+      set -g status-fg white
+      set -g status-bg black
 
       # Notifications
       setw -g monitor-activity on
       set -g visual-activity on
 
       # Input & Controls
-      set-option -g mouse off
-      #set-option -g mouse-select-window on
-      #set-option -g mouse-select-pane on
-      #set-option -g mouse-resize-pane on
+      set -g mouse off
       setw -g mode-keys vi
       set -sg escape-time 0
 
