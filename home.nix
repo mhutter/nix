@@ -18,12 +18,12 @@ in
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  # TODO: Ansible
   # TODO: Languagetool
   # TODO: Provider CLIs: aws, azure, exoscale, hcloud
   # TODO: icdiff
   # TODO: golangci-lint
   imports = [
+    ./modules/ansible.nix
     ./modules/backup.nix
     ./modules/git.nix
     ./modules/helix.nix
