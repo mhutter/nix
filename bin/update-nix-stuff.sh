@@ -29,3 +29,9 @@ home-manager expire-generations "-30 days"
 
 log "Cleaning up nix store"
 nix-collect-garbage --delete-older-than 30d
+
+log "Fix Nix store permissions"
+sudo chmod -R -w /nix/store/*
+
+log "Optimize Nix store"
+nix store optimise
