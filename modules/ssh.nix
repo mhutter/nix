@@ -33,6 +33,7 @@
     ];
     matchBlocks = {
       "monitoring" = {
+        port = 7713;
         hostname = "10.42.0.2";
         forwardAgent = true;
       };
