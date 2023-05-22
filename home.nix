@@ -26,7 +26,6 @@ in
     ./modules/ansible.nix
     ./modules/backup.nix
     ./modules/git.nix
-    ./modules/helix.nix
     ./modules/rust.nix
     ./modules/shell.nix
     ./modules/ssh.nix
