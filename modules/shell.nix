@@ -1,4 +1,9 @@
 { pkgs, config, ... }:
+let
+  fortune = pkgs.fortune;
+  cookies = "~/Dropbox/Obsidian/VSHN/Fortunes.md";
+
+in
 {
   home.packages = [
     pkgs.zsh-completions
@@ -58,6 +63,9 @@
         mkdir -p "$p"
         cd "$p"
       }
+
+      ${fortune}/bin/strfile -c '%' -s ${cookies} ${cookies}.dat
+      ${fortune}/bin/fortune ${cookies}
     '';
   };
 
