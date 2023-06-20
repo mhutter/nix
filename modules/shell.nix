@@ -82,7 +82,8 @@ in
     settings = {
       add_newline = true;
 
-      time.disabled = false;
+      character.success_symbol = "[C:\\\\>](bold green)";
+      character.error_symbol = "[C:\\\\>](bold red)";
 
       aws.disabled = true;
       azure.disabled = true;
