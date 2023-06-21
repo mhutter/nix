@@ -4,13 +4,19 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mhutter = {
+      url = "github:mhutter/flakes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, mhutter, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -25,6 +31,7 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
+        extraSpecialArgs = { mhutter = mhutter.packages.${system}; };
       };
     };
 }

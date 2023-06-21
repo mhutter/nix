@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, mhutter, ... }:
 
 let
   username = "mh";
@@ -30,7 +30,6 @@ in
     ./modules/shell.nix
     ./modules/ssh.nix
     ./modules/tmux.nix
-    ./modules/cloudscale-cli.nix
   ];
 
   programs.gpg.enable = true;
@@ -43,7 +42,9 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
+  home.packages = (with mhutter; [
+    cloudscale-cli
+  ]) ++ (with pkgs; [
     btop
     fd
     github-cli
@@ -74,7 +75,7 @@ in
 
     (pkgs.writeShellScriptBin "update-nix-stuff"
       (builtins.readFile bin/update-nix-stuff.sh))
-  ];
+  ]);
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
