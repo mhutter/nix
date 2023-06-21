@@ -30,6 +30,7 @@ in
     ./modules/shell.nix
     ./modules/ssh.nix
     ./modules/tmux.nix
+    ./modules/cloudscale-cli.nix
   ];
 
   programs.gpg.enable = true;
