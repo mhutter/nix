@@ -54,6 +54,7 @@ in
     just
     kubecolor
     kubectl
+    openshift # oc
     ripgrep
     rnix-lsp
     tree
