@@ -18,7 +18,6 @@ in
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  # TODO: Languagetool
   # TODO: Provider CLIs: aws, azure, exoscale, hcloud
   # TODO: icdiff
   # TODO: golangci-lint
@@ -26,6 +25,7 @@ in
     ./modules/ansible.nix
     ./modules/backup.nix
     ./modules/git.nix
+    ./modules/languagetool.nix
     ./modules/rust.nix
     ./modules/shell.nix
     ./modules/ssh.nix
