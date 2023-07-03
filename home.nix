@@ -40,6 +40,11 @@ in
     pinentryFlavor = "tty";
   };
 
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = (_: true);
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = (with mhutter; [
@@ -54,6 +59,7 @@ in
     just
     kubecolor
     kubectl
+    obsidian
     openshift # oc
     ripgrep
     rnix-lsp
