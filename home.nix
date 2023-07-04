@@ -25,6 +25,7 @@ in
     ./modules/ansible.nix
     ./modules/backup.nix
     ./modules/git.nix
+    ./modules/go.nix
     ./modules/languagetool.nix
     ./modules/rust.nix
     ./modules/shell.nix
@@ -50,6 +51,10 @@ in
   home.packages = (with mhutter; [
     cloudscale-cli
   ]) ++ (with pkgs; [
+    # Applications
+    obsidian
+
+    # Utilities
     btop
     fd
     github-cli
@@ -57,15 +62,16 @@ in
     httpie
     jq
     just
-    kubecolor
-    kubectl
-    obsidian
-    openshift # oc
     ripgrep
     rnix-lsp
     tree
     yamllint
     yq
+
+    # Kubernetes
+    kubecolor
+    kubectl
+    openshift # oc
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
