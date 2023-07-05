@@ -112,7 +112,6 @@ in
   home.sessionVariables = {
     EDITOR = "vim";
     BROWSER = "brave";
-    XAUTHORITY = "${homeDirectory}/.Xauthority";
   };
 
   # Let Home Manager install and manage itself.
