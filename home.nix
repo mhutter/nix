@@ -3,6 +3,7 @@
 let
   username = "mh";
   homeDirectory = "/home/${username}";
+
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -89,6 +90,18 @@ in
 
     (pkgs.writeShellScriptBin "update-nix-stuff"
       (builtins.readFile bin/update-nix-stuff.sh))
+
+    # How this works:
+    # - pkgs.substituteAll creates a new _derivation_
+    # - builtins.readFile then reads the contents of that derivation
+    # (hence why substituteAll is inside)
+    (pkgs.writeShellScriptBin "hotplug_monitor"
+      (builtins.readFile (pkgs.substituteAll {
+        src = ./bin/hotplug_monitor.sh;
+        inherit username homeDirectory;
+        inherit (pkgs) coreutils feh gawk yq;
+        inherit (pkgs.xorg) xrandr;
+      })))
   ]);
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
