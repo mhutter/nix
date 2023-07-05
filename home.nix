@@ -54,9 +54,10 @@ in
     cloudscale-cli
   ]) ++ (with pkgs; [
     # Applications
+    arandr
     obsidian
 
-    # Utilities
+    # CLI Tools
     btop
     fd
     github-cli
