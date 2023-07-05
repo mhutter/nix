@@ -99,7 +99,7 @@ in
       (builtins.readFile (pkgs.substituteAll {
         src = ./bin/hotplug_monitor.sh;
         inherit username homeDirectory;
-        inherit (pkgs) coreutils feh gawk yq;
+        inherit (pkgs) feh gawk gnugrep yq;
         inherit (pkgs.xorg) xrandr;
       })))
   ]);

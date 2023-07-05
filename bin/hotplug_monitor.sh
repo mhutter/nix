@@ -1,6 +1,14 @@
 # shellcheck shell=bash
 set -e -u -o pipefail -x
 
+XRANDR="@xrandr@/bin/xrandr"
+YQ="@yq@/bin/yq"
+GREP="@gnugrep@/bin/grep"
+AWK="@gawk@/bin/awk"
+
+# Redirect all output to a logfile and prefix with timestamp
+exec &> >($AWK '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0 }' >> "${HOME}/log/hotplug_monitor.log")
+
 env | sort
 
 USER="${USER:-@username@}"
@@ -15,16 +23,7 @@ export HOME USER DISPLAY XAUTHORITY
 echo "DISPLAY: ${DISPLAY}"
 echo "XAUTHORITY: ${XAUTHORITY}"
 
-XRANDR="@xrandr@/bin/xrandr"
-YQ="@yq@/bin/yq"
-GREP="@coreutils@/bin/grep"
-AWK="@gawk@/bin/awk"
-
-# Redirect all output to a logfile and prefix with timestamp
-exec &> >($AWK '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0 }' >> "${HOME}/log/hotplug_monitor.log")
-
 INTERNAL=eDP1
-
 
 wait_for_monitor() {
   while sleep .1; do
