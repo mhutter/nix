@@ -22,7 +22,6 @@ in
 
   # TODO: Provider CLIs: aws, azure, exoscale, hcloud
   # TODO: icdiff
-  # TODO: golangci-lint
   imports = [
     ./modules/ansible.nix
     ./modules/backup.nix
@@ -33,6 +32,7 @@ in
     ./modules/shell.nix
     ./modules/ssh.nix
     ./modules/tmux.nix
+    ./modules/vscode.nix
   ];
 
   programs.gpg.enable = true;
