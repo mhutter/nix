@@ -27,8 +27,8 @@ home-manager switch
 log "Cleaning up old home-manager generations"
 home-manager expire-generations "-30 days"
 
-log "Cleaning up nix store"
-nix-collect-garbage --delete-older-than 30d
+# log "Cleaning up nix store"
+# nix-collect-garbage --delete-older-than 30d
 
 log "Fix Nix store permissions"
 sudo chmod -R -w /nix/store
