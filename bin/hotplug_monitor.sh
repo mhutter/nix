@@ -35,7 +35,8 @@ wait_for_monitor() {
   done
 }
 
-if $GREP -q '^connected$' /sys/class/drm/card0-DP-*/status; then
+# Usually it's `card0` but sometimes it's `card1`...
+if $GREP -q '^connected$' /sys/class/drm/card?-DP-*/status; then
   # SOME device connected
   echo "($$) detecting external..."
   EXTERNAL="$(wait_for_monitor)"
