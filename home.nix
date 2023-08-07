@@ -65,6 +65,7 @@ in
     httpie
     jq
     just
+    ncdu
     ripgrep
     rnix-lsp
     tree
