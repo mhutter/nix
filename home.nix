@@ -32,6 +32,7 @@ in
     ./modules/shell.nix
     ./modules/ssh.nix
     ./modules/tmux.nix
+    ./modules/vim.nix
     ./modules/vscode.nix
   ];
 
@@ -125,7 +126,6 @@ in
     "$HOME/bin"
   ];
   home.sessionVariables = {
-    EDITOR = "vim";
     BROWSER = "brave";
   };
 

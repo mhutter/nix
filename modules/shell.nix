@@ -24,7 +24,6 @@ in
       ka = "k --as=cluster-admin";
       ks = "kubeseal --format yaml --cert";
       kubens = "k config set-context --current --namespace";
-      vim = "nvim"; # TODO: manage via package.nvim
     };
 
     dirHashes = {
