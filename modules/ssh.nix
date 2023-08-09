@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  services.ssh-agent.enable = true;
+
   programs.ssh = {
     enable = true;
 
@@ -51,13 +53,5 @@
     function ssh() {
       TERM=xterm-256color ${pkgs.openssh}/bin/ssh -t $@ "tmux -2 new-session -A -s mh || bash"
     }
-
-    # SSH-Agent
-    if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-      ${pkgs.openssh}/bin/ssh-agent -t 12h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-    fi
-    if [[ ! "$SSH_AGENT_SOCK" ]]; then
-      source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-    fi
   '';
 }
