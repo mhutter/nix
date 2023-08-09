@@ -77,6 +77,7 @@ in
     # Kubernetes
     kubecolor
     kubectl
+    kubernetes-helm
     openshift # oc
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
