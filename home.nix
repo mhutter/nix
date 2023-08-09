@@ -49,6 +49,8 @@ in
     allowUnfreePredicate = (_: true);
   };
 
+  programs.ripgrep.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = (with mhutter; [
@@ -67,7 +69,6 @@ in
     jq
     just
     ncdu
-    ripgrep
     rnix-lsp
     tree
     yamllint
