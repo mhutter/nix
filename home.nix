@@ -72,7 +72,7 @@ in
     rnix-lsp
     tree
     yamllint
-    yq
+    yq-go
 
     # Kubernetes
     kubecolor
