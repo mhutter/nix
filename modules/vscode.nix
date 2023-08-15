@@ -8,6 +8,6 @@ let
 
 in
 {
-  home.packages = [ pkgs.vscode ];
+  # home.packages = [ pkgs.vscode ];
   home.file.".vscode/argv.json".text = builtins.toJSON args;
 }
