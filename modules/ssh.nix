@@ -39,9 +39,6 @@
         hostname = "10.42.0.2";
         forwardAgent = true;
       };
-      "rasputin" = {
-        user = "mhutter";
-      };
       "bastion" = {
         port = 7713;
         hostname = "bastion.tail896c4.ts.net";
