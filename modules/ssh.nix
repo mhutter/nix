@@ -9,7 +9,6 @@
     controlMaster = "auto";
     controlPath = "~/.ssh/%C";
     forwardAgent = false;
-    hashKnownHosts = true;
 
     extraConfig = ''
       AddKeysToAgent yes
