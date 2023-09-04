@@ -7,6 +7,14 @@ log() {
   echo -e "\033[2m[$(date +%T)]\033[0;33m $*\033[0m"
 }
 
+log "Cleaning up old home-manager generations"
+home-manager expire-generations "-30 days"
+
+# We do this BEFORE `home-manager switch` since it tends to remove home-manager
+# sources (which home-manager will complain about)
+log "Cleaning up nix store"
+nix-collect-garbage --delete-older-than 30d
+
 log "Updating nixpkgs"
 nix-channel --update
 
@@ -23,12 +31,6 @@ fi
 
 log "Switching to new home-manager configuration"
 home-manager switch
-
-log "Cleaning up old home-manager generations"
-home-manager expire-generations "-30 days"
-
-# log "Cleaning up nix store"
-# nix-collect-garbage --delete-older-than 30d
 
 # log "Fix Nix store permissions"
 # sudo chmod -R -w /nix/store
