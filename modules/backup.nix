@@ -27,7 +27,8 @@ let
           "RESTIC_PASSWORD_FILE=${home}/.secrets/restic-password"
         ];
         ExecStart = builtins.concatStringsSep " " command;
-        Nice = 10;
+        Nice = 19;
+        IOSchedulingPriority = 7;
       };
     };
     timers."${name}" = {
