@@ -20,11 +20,11 @@ in
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  # TODO: Provider CLIs: aws, azure, exoscale, hcloud
   # TODO: icdiff
   imports = [
     ./modules/ansible.nix
     ./modules/backup.nix
+    ./modules/browser.nix
     ./modules/git.nix
     ./modules/go.nix
     ./modules/languagetool.nix
@@ -127,9 +127,6 @@ in
   home.sessionPath = [
     "$HOME/bin"
   ];
-  home.sessionVariables = {
-    BROWSER = "brave";
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
