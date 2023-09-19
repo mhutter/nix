@@ -92,6 +92,11 @@ in
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    (pkgs.writeShellScriptBin "remove-known-host" ''
+      count=$(${pkgs.gnugrep}/bin/grep -c "$1 " ~/.ssh/known_hosts)
+      ${pkgs.gnused}/bin/sed -i "/$1 /d" ~/.ssh/known_hosts
+      echo "Removed $count entries from ~/.ssh/known_hosts"
+    '')
 
     (pkgs.writeShellScriptBin "update-nix-stuff"
       (builtins.readFile bin/update-nix-stuff.sh))
