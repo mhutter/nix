@@ -98,6 +98,9 @@ in
       echo "Removed $count entries from ~/.ssh/known_hosts"
     '')
 
+    (pkgs.writeShellScriptBin "socks-proxy"
+      (builtins.readFile bin/socks-proxy.sh))
+
     (pkgs.writeShellScriptBin "update-nix-stuff"
       (builtins.readFile bin/update-nix-stuff.sh))
 
