@@ -7,21 +7,19 @@ let
     Dropbox/
     target/
     node_modules/
-    .cache/sccache/
+    .cache/
+    .local/share/containers/
   '';
 
   mountPoint = "/mnt/restic";
   mountUnit = "mount-mnt-restic";
-  resticRepo = "${mountPoint}/tera.restic";
+  resticRepo = "s3://s3.eu-central-003.backblazeb2.com/mhu-restic/tera";
 
   cron = { name, calendar, command, randomDelay ? 60 * 60 }: {
     services."${name}" = {
-      Unit = {
-        Requires = [ "${mountUnit}.service" ];
-        After = [ "${mountUnit}.service" ];
-      };
       Service = {
         Type = "oneshot";
+        EnvironmentFile = "${home}/.secrets/restic-bucket";
         Environment = [
           "RESTIC_REPOSITORY=${resticRepo}"
           "RESTIC_PASSWORD_FILE=${home}/.secrets/restic-password"
@@ -78,11 +76,5 @@ in
 {
   home.packages = [ pkgs.restic ];
 
-  systemd.user = pkgs.lib.recursiveUpdate resticJobs {
-    services.${mountUnit}.Service = {
-      ExecStart = "/bin/sh -c 'test -d ${resticRepo} || /bin/mount ${mountPoint}'";
-      ExecStop = "/bin/umount ${mountPoint}";
-      RemainAfterExit = "yes";
-    };
-  };
+  systemd.user = resticJobs;
 }
