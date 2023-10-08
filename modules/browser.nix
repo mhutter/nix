@@ -1,10 +1,15 @@
 { pkgs, ... }:
 
 let
+  firefox = pkgs.firefox;
 
 in
 {
+  programs.firefox = {
+    enable = true;
+    package = firefox;
+  };
   home.sessionVariables = {
-    BROWSER = "chromium";
+    BROWSER = "${firefox}/bin/firefox";
   };
 }
