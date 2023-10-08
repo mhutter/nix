@@ -10,7 +10,7 @@ in
     Service = {
       PIDFile = "/run/language-tool.pid";
       Restart = "always";
-      ExecStart = "${pkgs.languagetool}/bin/languagetool-http-server";
+      ExecStart = "${pkgs.languagetool}/bin/languagetool-http-server --allow-origin '*'";
       ExecReload = "${kill} -HUP $MAINPID";
       ExecStop = "${kill} -QUIT $MAINPID";
     };
