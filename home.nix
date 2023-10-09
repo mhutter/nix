@@ -24,7 +24,6 @@ in
   imports = [
     ./modules/ansible.nix
     ./modules/backup.nix
-    ./modules/browser.nix
     ./modules/git.nix
     ./modules/go.nix
     ./modules/languagetool.nix
@@ -134,6 +133,9 @@ in
     # '';
   };
 
+  home.sessionVariables = {
+    BROWSER = "firefox";
+  };
   home.sessionPath = [
     "$HOME/bin"
   ];
