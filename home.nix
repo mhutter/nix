@@ -3,6 +3,7 @@
 let
   username = "mh";
   homeDirectory = "/home/${username}";
+  secrets = (import ./secrets.nix);
 
 in
 {
@@ -48,6 +49,13 @@ in
   };
 
   programs.ripgrep.enable = true;
+
+  programs.rbw = {
+    enable = true;
+    settings = secrets.rbw-settings // {
+      pinentry = "tty";
+    };
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
