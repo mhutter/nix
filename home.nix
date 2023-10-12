@@ -26,7 +26,6 @@ in
     ./modules/backup.nix
     ./modules/git.nix
     ./modules/go.nix
-    ./modules/languagetool.nix
     ./modules/rust.nix
     ./modules/shell.nix
     ./modules/ssh.nix
