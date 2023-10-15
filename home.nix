@@ -76,6 +76,7 @@ in
     just
     ncdu
     rnix-lsp
+    sshuttle
     tree
     yamllint
     yq-go
