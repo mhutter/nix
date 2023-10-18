@@ -141,7 +141,7 @@ in
   };
 
   home.sessionVariables = {
-    BROWSER = "firefox";
+    BROWSER = "chromium";
   };
   home.sessionPath = [
     "$HOME/bin"
