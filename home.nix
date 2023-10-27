@@ -109,6 +109,9 @@ in
     (pkgs.writeShellScriptBin "socks-proxy"
       (builtins.readFile bin/socks-proxy.sh))
 
+    (pkgs.writeShellScriptBin "update-mirrors"
+      (builtins.readFile bin/update-mirrors.sh))
+
     (pkgs.writeShellScriptBin "update-nix-stuff"
       (builtins.readFile bin/update-nix-stuff.sh))
 
