@@ -107,6 +107,9 @@ in
         sed = "${pkgs.gnused}/bin/sed";
       })))
 
+    (pkgs.writeShellScriptBin "argo-access"
+      (builtins.readFile bin/argo-access.sh))
+
     (pkgs.writeShellScriptBin "socks-proxy"
       (builtins.readFile bin/socks-proxy.sh))
 
