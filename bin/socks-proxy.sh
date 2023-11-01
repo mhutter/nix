@@ -1,3 +1,6 @@
+# shellcheck shell=bash
+set -e -u -o pipefail
+
 while (( $# )); do
   case "$1" in
     -q) quiet=1 ;;
