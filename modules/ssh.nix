@@ -33,14 +33,8 @@
       "~/.ssh/vshn_config"
     ];
     matchBlocks = {
-      "monitoring" = {
-        port = 7713;
-        hostname = "10.42.0.2";
+      "luna" = {
         forwardAgent = true;
-      };
-      "bastion" = {
-        port = 7713;
-        hostname = "bastion.tail896c4.ts.net";
       };
     };
   };
