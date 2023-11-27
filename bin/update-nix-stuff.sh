@@ -4,7 +4,7 @@ set -e -u -o pipefail
 cd ~/.config/home-manager
 
 log() {
-  echo -e "\033[2m[$(date +%T)]\033[0;33m $*\033[0m"
+  echo -e "\n\033[2m[$(date +%T)]\033[0;33m $*\033[0m"
 }
 
 log "Cleaning up old home-manager generations"
