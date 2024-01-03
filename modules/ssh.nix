@@ -19,13 +19,12 @@ in
     programs.ssh = {
       enable = true;
 
+      addKeysToAgent = "yes";
       controlMaster = "auto";
       controlPath = "~/.ssh/%C";
       forwardAgent = false;
 
       extraConfig = ''
-        AddKeysToAgent yes
-
         # Disable unused features
         ForwardX11 no
         ForwardX11Trusted no
