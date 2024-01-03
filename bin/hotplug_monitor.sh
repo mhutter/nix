@@ -1,10 +1,10 @@
 # shellcheck shell=bash
 set -e -u -o pipefail -x
 
-XRANDR="@xrandr@/bin/xrandr"
-YQ="@yq@/bin/yq"
-GREP="@gnugrep@/bin/grep"
 AWK="@gawk@/bin/awk"
+DASEL="@dasel@/bin/dasel"
+GREP="@gnugrep@/bin/grep"
+XRANDR="@xrandr@/bin/xrandr"
 
 # Redirect all output to a logfile and prefix with timestamp
 exec &> >($AWK '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0 }' >> "${HOME}/log/hotplug_monitor.log")
@@ -35,6 +35,10 @@ wait_for_monitor() {
   done
 }
 
+set_font_size() {
+  $DASEL put -f ~/.alacritty.toml -t int -v "$1" font.size
+}
+
 # Usually it's `card0` but sometimes it's `card1`...
 if $GREP -q '^connected$' /sys/class/drm/card?-DP-*/status; then
   # SOME device connected
@@ -45,12 +49,12 @@ if $GREP -q '^connected$' /sys/class/drm/card?-DP-*/status; then
   $XRANDR \
     --output "$EXTERNAL" --auto --primary \
     --output "$INTERNAL" --off
-  $YQ -y -i '.font.size = 11' "${HOME}/.alacritty.yml"
+  set_font_size 11
 
 else
   echo "($$): switching to internal"
   $XRANDR --output "$INTERNAL" --auto --primary
-  $YQ -y -i '.font.size = 8' "${HOME}/.alacritty.yml"
+  set_font_size 9
 
 fi
 
