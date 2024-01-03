@@ -35,6 +35,8 @@ in
     ./modules/vscode.nix
   ];
 
+  modules.ssh.sshHosts = secrets.sshHosts;
+
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
