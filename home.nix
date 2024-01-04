@@ -73,6 +73,7 @@ in
 
     # CLI Tools
     btop
+    dig
     fd
     github-cli
     go-jsonnet
