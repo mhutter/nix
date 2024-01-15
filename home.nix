@@ -64,9 +64,7 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = (with mhutter; [
-    cloudscale-cli
-  ]) ++ (with pkgs; [
+  home.packages = (with mhutter; [ ]) ++ (with pkgs; [
     # Applications
     arandr
     obsidian
