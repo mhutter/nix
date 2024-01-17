@@ -1,6 +1,26 @@
 { pkgs, config, ... }:
 let
+  scriptWithDeps = (name: deps:
+    let
+      # Joining paths in Nix is finnicky, so fuck around
+      # see: https://gist.github.com/CMCDragonkai/de84aece83f8521d087416fa21e34df4
+      src = ../bin + "/${name}.sh";
+      # Create a package from our script
+      script = (pkgs.writeScriptBin name (builtins.readFile src)).overrideAttrs (old: {
+        # Patch shebang in our script
+        buildCommand = "${old.buildCommand}\npatchShebangs $out";
+      });
+    in
+    # Ensure all dependencies are symlinked in place
+    pkgs.symlinkJoin {
+      inherit name;
+      paths = [ script ] ++ deps;
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
+    }
+  );
 in
+with pkgs;
 {
   home.packages = [
     (pkgs.writeShellScriptBin "remove-known-host"
@@ -23,32 +43,6 @@ in
     (pkgs.writeShellScriptBin "update-nix-stuff"
       (builtins.readFile ../bin/update-nix-stuff.sh))
 
-    (
-      let
-        name = "hotplug_monitor";
-        # Joining paths in Nix is finnicky, so fuck around
-        # see: https://gist.github.com/CMCDragonkai/de84aece83f8521d087416fa21e34df4
-        src = ../bin + "/${name}.sh";
-        # Create a package from our script
-        script = (pkgs.writeScriptBin name (builtins.readFile src)).overrideAttrs (old: {
-          # Patch shebang in our script
-          buildCommand = "${old.buildCommand}\npatchShebangs $out";
-        });
-        deps = with pkgs;[
-          dasel
-          feh
-          gawk
-          gnugrep
-          xorg.xrandr
-        ];
-      in
-      # Ensure all dependencies are symlinked in place
-      pkgs.symlinkJoin {
-        inherit name;
-        paths = [ script ] ++ deps;
-        buildInputs = [ pkgs.makeWrapper ];
-        postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
-      }
-    )
+    (scriptWithDeps "hotplug_monitor" [ dasel feh gawk gnugrep xorg.xrandr ])
   ];
 }
