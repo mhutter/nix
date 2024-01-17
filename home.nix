@@ -123,17 +123,33 @@ in
     (pkgs.writeShellScriptBin "update-nix-stuff"
       (builtins.readFile bin/update-nix-stuff.sh))
 
-    # How this works:
-    # - pkgs.substituteAll creates a new _derivation_
-    # - builtins.readFile then reads the contents of that derivation
-    # (hence why substituteAll is inside)
-    (pkgs.writeShellScriptBin "hotplug_monitor"
-      (builtins.readFile (pkgs.substituteAll {
-        src = ./bin/hotplug_monitor.sh;
-        inherit username homeDirectory;
-        inherit (pkgs) dasel feh gawk gnugrep;
-        inherit (pkgs.xorg) xrandr;
-      })))
+    (
+      let
+        name = "hotplug_monitor";
+        # Joining paths in Nix is finnicky, so fuck around
+        # see: https://gist.github.com/CMCDragonkai/de84aece83f8521d087416fa21e34df4
+        src = ./bin + "/${name}.sh";
+        # Create a package from our script
+        script = (pkgs.writeScriptBin name (builtins.readFile src)).overrideAttrs (old: {
+          # Patch shebang in our script
+          buildCommand = "${old.buildCommand}\npatchShebangs $out";
+        });
+        deps = with pkgs;[
+          dasel
+          feh
+          gawk
+          gnugrep
+          xorg.xrandr
+        ];
+      in
+      # Ensure all dependencies are symlinked in place
+      pkgs.symlinkJoin {
+        inherit name;
+        paths = [ script ] ++ deps;
+        buildInputs = [ pkgs.makeWrapper ];
+        postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
+      }
+    )
   ]);
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

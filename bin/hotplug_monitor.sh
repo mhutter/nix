@@ -1,61 +1,56 @@
-# shellcheck shell=bash
-set -e -u -o pipefail -x
+#!/usr/bin/env bash
+set -u -x
 
-AWK="@gawk@/bin/awk"
-DASEL="@dasel@/bin/dasel"
-GREP="@gnugrep@/bin/grep"
-XRANDR="@xrandr@/bin/xrandr"
+### Configuration
+INTERNAL="eDP1"
 
-# Redirect all output to a logfile and prefix with timestamp
-exec &> >($AWK '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0 }' >> "${HOME}/log/hotplug_monitor.log")
+# Redirect output to journalctl
+exec &> >(logger -t hotplug_monitor)
 
-env | sort
-
-USER="${USER:-@username@}"
-HOME="${HOME:-@homeDirectory@}"
+# Detect some required stuff. Expects $USER to be set
+HOME="${HOME:-"/home/${USER}"}"
 DISPLAY="${DISPLAY:-:0}"
 if [ -z "${XAUTHORITY:-}" ]; then
   XAUTHORITY="$(find /tmp -maxdepth 1 -name 'xauth_*' -type f -user "$USER" | head -1)"
 fi
 
-export HOME USER DISPLAY XAUTHORITY
-
-echo "DISPLAY: ${DISPLAY}"
-echo "XAUTHORITY: ${XAUTHORITY}"
-
-INTERNAL=eDP1
-
-wait_for_monitor() {
-  while sleep .1; do
-    dev="$(xrandr | $GREP -v '^eDP1' | awk '/^DP.+ connected /{print $1}' | head -n1)"
-    if [ -n "$dev" ]; then
-      echo "$dev"
-      return
-    fi
-  done
+# Set the terminal font size to the specified value
+function set_font_size() {
+  dasel put -f "${HOME}/.alacritty.toml" -t int -v "$1" font.size
 }
 
-set_font_size() {
-  $DASEL put -f ~/.alacritty.toml -t int -v "$1" font.size
-}
+# Ensure variables are available
+export HOME DISPLAY XAUTHORITY
 
-# Usually it's `card0` but sometimes it's `card1`...
-if $GREP -q '^connected$' /sys/class/drm/card?-DP-*/status; then
-  # SOME device connected
-  echo "($$) detecting external..."
-  EXTERNAL="$(wait_for_monitor)"
+# Output some useful information
+env | sort
 
-  echo "($$) switching to $EXTERNAL"
-  $XRANDR \
-    --output "$EXTERNAL" --auto --primary \
+# Get the first monitor that is NOT the built-in screen
+# Sometimes it's card0, sometimes card1
+MONITOR="$(grep '^connected$' /sys/class/drm/card?/*/status -l | \
+  xargs -n1 dirname | \
+  xargs -n1 basename | \
+  cut -d- -f2- | \
+  tr -d '-' |\
+  grep -v "^${INTERNAL}$" |\
+  head -n1)"
+
+if [ -n "$MONITOR" ]; then
+  echo -n "Waiting for $MONITOR"
+  # Wait until monitor is visible in xrandr. May take some time after it is plugged in.
+  while ! xrandr | grep -q "^${MONITOR} connected"; do echo -n .; sleep .1; done
+  echo
+  echo "Switching to external monitor $MONITOR"
+  xrandr \
+    --output "$MONITOR" --auto --primary \
     --output "$INTERNAL" --off
   set_font_size 11
 
 else
-  echo "($$): switching to internal"
-  $XRANDR --output "$INTERNAL" --auto --primary
-  set_font_size 9
+  echo "Switching to internal monitor $INTERNAL"
+  xrandr --output "$INTERNAL" --auto --primary
+  set_font_size 8
 
 fi
 
-@feh@/bin/feh --bg-fill "${HOME}/Pictures/wallpaper.png"
+feh --bg-fill "${HOME}/Pictures/wallpaper.png"
