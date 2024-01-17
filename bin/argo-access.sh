@@ -1,10 +1,10 @@
-# shellcheck shell=bash
+#!/usr/bin/env bash
 set -e -u -o pipefail
 
 KUBECTL=kubectl
 if [ "$1" = "-o" ]; then
   shift
-  KUBECTL='oc --as=cluster-admin'
+  KUBECTL='kubectl --as=cluster-admin'
 fi
 
 $KUBECTL -n syn get secret/steward -o json "$@" | \

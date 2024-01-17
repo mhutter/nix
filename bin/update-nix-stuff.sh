@@ -1,4 +1,4 @@
-# shellcheck shell=bash
+#!/usr/bin/env bash
 set -e -u -o pipefail
 
 cd ~/.config/home-manager
@@ -6,6 +6,9 @@ cd ~/.config/home-manager
 log() {
   echo -e "\n\033[2m[$(date +%T)]\033[0;33m $*\033[0m"
 }
+
+log "Update Nix"
+sudo -i nix upgrade-nix
 
 log "Cleaning up old home-manager generations"
 home-manager expire-generations "-30 days"
