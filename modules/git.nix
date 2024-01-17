@@ -4,6 +4,7 @@
 
   programs.git = {
     enable = true;
+    difftastic.enable = true;
 
     userName = "Manuel Hutter";
     userEmail = "manuel@hutter.io";
