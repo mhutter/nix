@@ -24,10 +24,15 @@ with pkgs;
 {
   home.packages = [
     (scriptWithDeps "argo-access" [ kubectl xclip xdg-utils ])
-    (scriptWithDeps "hotplug_monitor" [ dasel feh gawk gnugrep xorg.xrandr ])
     (scriptWithDeps "remove-known-host" [ gnugrep gnused ])
     (scriptWithDeps "socks-proxy" [ openssh ])
     (scriptWithDeps "update-mirrors" [ ]) # technically needs update-mirrors but that is specific to Arch
     (scriptWithDeps "update-nix-stuff" [ ]) # nix and home-manager are already present
+
+    (writeShellApplication {
+      name = "hotplug_monitor";
+      runtimeInputs = [ dasel feh gawk gnugrep xorg.xrandr ];
+      text = builtins.readFile ../bin/hotplug_monitor.sh;
+    })
   ];
 }

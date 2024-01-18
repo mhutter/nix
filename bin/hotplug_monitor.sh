@@ -1,5 +1,9 @@
-#!/usr/bin/env bash
-set -u -x
+set -x
+
+# For some reason, when Nix' Shebang is used, the PATH variable is not populated properly
+if [[ "$PATH" != *"/usr/bin"* ]]; then
+  export PATH="${PATH}:/usr/local/sbin:/usr/local/bin:/usr/bin"
+fi
 
 ### Configuration
 INTERNAL="eDP1"
