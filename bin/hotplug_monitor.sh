@@ -11,6 +11,10 @@ INTERNAL="eDP1"
 # Redirect output to journalctl
 exec &> >(logger -t hotplug_monitor)
 
+#
+# Environment Detection
+#
+ 
 # Detect some required stuff. Expects $USER to be set
 HOME="${HOME:-"/home/${USER}"}"
 DISPLAY="${DISPLAY:-:0}"
@@ -18,13 +22,21 @@ if [ -z "${XAUTHORITY:-}" ]; then
   XAUTHORITY="$(find /tmp -maxdepth 1 -name 'xauth_*' -type f -user "$USER" | head -1)"
 fi
 
+if [ -z "$XAUTHORITY" ]; then
+  # Assuming X server was not started yet, exiting
+  exit
+fi
+
+export HOME DISPLAY XAUTHORITY
+
+#
+# Helper functions
+#
+
 # Set the terminal font size to the specified value
 function set_font_size() {
   dasel put -f "${HOME}/.alacritty.toml" -t int -v "$1" font.size
 }
-
-# Ensure variables are available
-export HOME DISPLAY XAUTHORITY
 
 # Output some useful information
 env | sort
@@ -36,8 +48,8 @@ MONITOR="$(grep '^connected$' /sys/class/drm/card?/*/status -l | \
   xargs -n1 basename | \
   cut -d- -f2- | \
   tr -d '-' |\
-  grep -v "^${INTERNAL}$" |\
-  head -n1)"
+  grep -Ev "^(${INTERNAL}|Unknown)$" |\
+  head -n1 || :)"
 
 if [ -n "$MONITOR" ]; then
   echo -n "Waiting for $MONITOR"
