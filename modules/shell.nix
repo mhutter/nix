@@ -71,6 +71,33 @@ in
     '';
   };
 
+  programs.atuin = {
+    enable = true;
+    settings = {
+      # style
+      style = "compact";
+      inline_height = 10;
+
+      # features
+      # enter_accept = false;
+      keymap_mode = "vim-normal";
+
+      # stats
+      stats.common_subcommands = [
+        "k"
+        "z"
+        # upstream defaults
+        "cargo"
+        "go"
+        "git"
+        "npm"
+        "yarn"
+        "pnpm"
+        "kubectl"
+      ];
+    };
+  };
+
   programs.eza = {
     enable = true;
     enableAliases = true;
