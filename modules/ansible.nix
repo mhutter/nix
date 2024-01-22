@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.ansible ];
   home.file.".ansible.cfg".text = ''
     [defaults]
     forks = 20
