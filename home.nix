@@ -21,7 +21,6 @@ in
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  # TODO: icdiff
   imports = [
     ./modules/ansible.nix
     ./modules/backup.nix
@@ -37,6 +36,10 @@ in
   ];
 
   modules.ssh.sshHosts = secrets.sshHosts;
+  modules.git = {
+    userName = secrets.user.name;
+    userEmail = secrets.user.email;
+  };
 
   programs.gpg.enable = true;
   services.gpg-agent = {
