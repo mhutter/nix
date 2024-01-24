@@ -79,7 +79,7 @@ in
       inline_height = 10;
 
       # features
-      # enter_accept = false;
+      enter_accept = true;
       keymap_mode = "vim-normal";
 
       # stats
