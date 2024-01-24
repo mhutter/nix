@@ -1,5 +1,3 @@
-set -x
-
 # For some reason, when Nix' Shebang is used, the PATH variable is not populated properly
 if [[ "$PATH" != *"/usr/bin"* ]]; then
   export PATH="${PATH}:/usr/local/sbin:/usr/local/bin:/usr/bin"
@@ -10,6 +8,7 @@ INTERNAL="eDP1"
 
 # Redirect output to journalctl
 exec &> >(logger -t hotplug_monitor)
+set -x
 
 #
 # Environment Detection
