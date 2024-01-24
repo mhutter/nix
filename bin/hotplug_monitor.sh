@@ -35,7 +35,7 @@ export HOME DISPLAY XAUTHORITY
 
 # Set the terminal font size to the specified value
 function set_font_size() {
-  dasel put -f "${HOME}/.alacritty.toml" -t int -v "$1" font.size
+  dasel put -f "${HOME}/.config/alacritty/alacritty.toml" -t int -v "$1" font.size
 }
 
 # Output some useful information
@@ -65,7 +65,7 @@ if [ -n "$MONITOR" ]; then
 else
   echo "Switching to internal monitor $INTERNAL"
   xrandr --output "$INTERNAL" --auto --primary
-  set_font_size 8
+  set_font_size 9
 
 fi
 
