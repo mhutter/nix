@@ -26,6 +26,7 @@ in
     ./modules/backup.nix
     ./modules/git.nix
     ./modules/go.nix
+    ./modules/i3.nix
     ./modules/rust.nix
     ./modules/scripts.nix
     ./modules/shell.nix
