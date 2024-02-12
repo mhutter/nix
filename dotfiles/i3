@@ -21,6 +21,8 @@ font pango:DejaVuSansM Nerd Font Mono 10
 exec --no-startup-id wired
 # (mh) Set background image
 exec --no-startup-id @feh@/bin/feh --bg-fill "$wallpaper"
+# (mh) Fix screen layout on login
+exec --no-startup-id hotplug_monitor
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
