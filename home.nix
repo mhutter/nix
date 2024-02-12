@@ -72,6 +72,7 @@ in
   home.packages = (with mhutter; [ ]) ++ (with pkgs; [
     # Applications
     arandr
+    morgen
     obsidian
 
     # CLI Tools
