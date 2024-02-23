@@ -34,9 +34,3 @@ fi
 
 log "Switching to new home-manager configuration"
 home-manager switch
-
-# log "Fix Nix store permissions"
-# sudo chmod -R -w /nix/store
-
-log "Optimize Nix store"
-nix store optimise
