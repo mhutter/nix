@@ -80,7 +80,6 @@ in
 
       # features
       enter_accept = true;
-      keymap_mode = "vim-normal";
 
       # stats
       stats.common_subcommands = [
