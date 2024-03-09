@@ -87,6 +87,7 @@ in
     just
     ncdu
     rnix-lsp
+    shellcheck
     sshuttle
     tree
     yamllint
