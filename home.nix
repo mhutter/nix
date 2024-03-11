@@ -86,7 +86,7 @@ in
     jq
     just
     ncdu
-    rnix-lsp
+    nixd
     shellcheck
     tree
     yamllint
