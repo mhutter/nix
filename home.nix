@@ -54,7 +54,8 @@ in
     allowUnfree = true;
     allowUnfreePredicate = (_: true);
     permittedInsecurePackages = [
-      "electron-25.9.0"
+      "electron-25.9.0" # obsidian
+      "nix-2.16.2" # nixd
     ];
   };
 
