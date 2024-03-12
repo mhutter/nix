@@ -53,18 +53,14 @@ in
   nixpkgs.config = {
     allowUnfree = true;
     allowUnfreePredicate = (_: true);
-    permittedInsecurePackages = [
-      "nix-2.16.2" # nixd
-    ];
+    permittedInsecurePackages = [ ];
   };
 
   programs.ripgrep.enable = true;
 
   programs.rbw = {
     enable = true;
-    settings = secrets.rbw-settings // {
-      pinentry = "tty";
-    };
+    settings = secrets.rbw-settings // { pinentry = "tty"; };
   };
 
   # The home.packages option allows you to install Nix packages into your
@@ -86,7 +82,6 @@ in
     jq
     just
     ncdu
-    nixd
     shellcheck
     tree
     yamllint
@@ -127,12 +122,8 @@ in
     # '';
   };
 
-  home.sessionVariables = {
-    BROWSER = "chromium";
-  };
-  home.sessionPath = [
-    "$HOME/bin"
-  ];
+  home.sessionVariables = { BROWSER = "chromium"; };
+  home.sessionPath = [ "$HOME/bin" ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
