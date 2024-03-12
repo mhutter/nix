@@ -12,12 +12,13 @@ let
   '';
 
   resticRepo = "s3://s3.eu-central-003.backblazeb2.com/mhu-restic/tera";
+  credentialsFile = "${home}/.secrets/restic-bucket";
 
   cron = { name, calendar, command, randomDelay ? 60 * 60 }: {
     services."${name}" = {
       Service = {
         Type = "oneshot";
-        EnvironmentFile = "${home}/.secrets/restic-bucket";
+        EnvironmentFile = credentialsFile;
         Environment = [
           "RESTIC_REPOSITORY=${resticRepo}"
           "RESTIC_PASSWORD_FILE=${home}/.secrets/restic-password"
@@ -72,7 +73,15 @@ let
 
 in
 {
-  home.packages = [ pkgs.restic ];
+  home.packages = [
+    pkgs.restic
+    (pkgs.writeShellScriptBin "restic-tera" ''
+      export RESTIC_REPOSITORY=${resticRepo}
+      export RESTIC_PASSWORD_FILE=${home}/.secrets/restic-password
+      eval "$(sed 's/^/export /' ${credentialsFile})"
+      exec restic $@
+    '')
+  ];
 
   systemd.user = resticJobs;
 }
