@@ -11,8 +11,6 @@ let
     .local/share/containers/
   '';
 
-  mountPoint = "/mnt/restic";
-  mountUnit = "mount-mnt-restic";
   resticRepo = "s3://s3.eu-central-003.backblazeb2.com/mhu-restic/tera";
 
   cron = { name, calendar, command, randomDelay ? 60 * 60 }: {
