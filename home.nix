@@ -47,7 +47,7 @@ in
     enable = true;
     defaultCacheTtl = 43200;
     maxCacheTtl = 43200;
-    pinentryFlavor = "tty";
+    pinentryFlavor = "curses";
   };
 
   nixpkgs.config = {
@@ -60,7 +60,7 @@ in
 
   programs.rbw = {
     enable = true;
-    settings = secrets.rbw-settings // { pinentry = "tty"; };
+    settings = secrets.rbw-settings // { pinentry = "curses"; };
   };
 
   # The home.packages option allows you to install Nix packages into your
