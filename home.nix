@@ -47,7 +47,7 @@ in
     enable = true;
     defaultCacheTtl = 43200;
     maxCacheTtl = 43200;
-    pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   nixpkgs.config = {
@@ -60,7 +60,7 @@ in
 
   programs.rbw = {
     enable = true;
-    settings = secrets.rbw-settings // { pinentry = "curses"; };
+    settings = secrets.rbw-settings // { pinentry = pkgs.pinentry-curses; };
   };
 
   # The home.packages option allows you to install Nix packages into your
