@@ -3,7 +3,7 @@
 let
   args = {
     enable-crash-reporter = false;
-    password-store = "gnome";
+    password-store = "gnome-libsecret";
   };
 
 in
