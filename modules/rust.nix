@@ -7,6 +7,7 @@
     cargo-nextest
     cargo-outdated
     cargo-watch
+    cargo-wizard
     rustup
   ];
 
