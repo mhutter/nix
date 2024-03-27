@@ -122,7 +122,7 @@ in
     # '';
   };
 
-  home.sessionVariables = { BROWSER = "chromium"; };
+  home.sessionVariables = { BROWSER = "firefox"; };
   home.sessionPath = [ "$HOME/bin" ];
 
   # Let Home Manager install and manage itself.
