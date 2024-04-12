@@ -63,6 +63,10 @@ in
         cd "$p"
       }
 
+      display-secret() {
+        kubectl get secret "$1" -o json | jq '.data | map_values(@base64d)'
+      }
+
       alias dark="sed -i 's/gtk-application-prefer-dark-theme=./gtk-application-prefer-dark-theme=1/' ~/.config/gtk-3.0/settings.ini"
       alias light="sed -i 's/gtk-application-prefer-dark-theme=./gtk-application-prefer-dark-theme=0/' ~/.config/gtk-3.0/settings.ini"
 
