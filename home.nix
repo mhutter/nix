@@ -74,11 +74,13 @@ in
     # CLI Tools
     btop
     dig
+    dive
     entr
     fd
     github-cli
     go-jsonnet
     httpie
+    hyperfine
     jq
     just
     ncdu
@@ -90,6 +92,7 @@ in
     # Kubernetes
     kubecolor
     kubectl
+    kubelogin-oidc # kubectl oidc-login
     kubernetes-helm
     openshift # oc
 
