@@ -2,7 +2,7 @@
 set -e -u -o pipefail
 
 KUBECTL=kubectl
-if [ "$1" = "-o" ]; then
+if [ "${1:-}" = "-o" ]; then
   shift
   KUBECTL='kubectl --as=cluster-admin'
 fi
