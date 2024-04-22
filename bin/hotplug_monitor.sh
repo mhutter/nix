@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # For some reason, when Nix' Shebang is used, the PATH variable is not populated properly
 if [[ "$PATH" != *"/usr/bin"* ]]; then
   export PATH="${PATH}:/usr/local/sbin:/usr/local/bin:/usr/bin"
@@ -34,7 +36,9 @@ export HOME DISPLAY XAUTHORITY
 
 # Set the terminal font size to the specified value
 function set_font_size() {
-  dasel put -f "${HOME}/.config/alacritty/alacritty.toml" -t int -v "$1" font.size
+  local file="${HOME}/.config/alacritty/alacritty.toml"
+  # exclusively lock config file to prevent race conditions
+  flock --exclusive "$file" dasel put -f "$file" -t int -v "$1" font.size
 }
 
 # Output some useful information
