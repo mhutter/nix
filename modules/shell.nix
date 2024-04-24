@@ -24,6 +24,10 @@ in
       ka = "k --as=cluster-admin";
       ks = "kubeseal --format yaml --cert";
       kubens = "k config set-context --current --namespace";
+      t = "tmux new-session -A -s";
+
+      dark = "sed -i 's/gtk-application-prefer-dark-theme=./gtk-application-prefer-dark-theme=1/' ~/.config/gtk-3.0/settings.ini";
+      light = "sed -i 's/gtk-application-prefer-dark-theme=./gtk-application-prefer-dark-theme=0/' ~/.config/gtk-3.0/settings.ini";
     };
 
     dirHashes = {
@@ -66,9 +70,6 @@ in
       display-secret() {
         kubectl get secret "$1" -o json | jq '.data | map_values(@base64d)'
       }
-
-      alias dark="sed -i 's/gtk-application-prefer-dark-theme=./gtk-application-prefer-dark-theme=1/' ~/.config/gtk-3.0/settings.ini"
-      alias light="sed -i 's/gtk-application-prefer-dark-theme=./gtk-application-prefer-dark-theme=0/' ~/.config/gtk-3.0/settings.ini"
 
       ${fortune}/bin/strfile -c '%' -s ${cookies} ${cookies}.dat
       ${fortune}/bin/fortune ${cookies}
