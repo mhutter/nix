@@ -90,6 +90,7 @@ in
     yq-go
 
     # Kubernetes
+    kind
     kubecolor
     kubectl
     kubelogin-oidc # kubectl oidc-login
