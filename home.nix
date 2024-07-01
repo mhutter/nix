@@ -83,6 +83,7 @@ in
     hyperfine
     jq
     just
+    mprocs
     ncdu
     shellcheck
     tree
