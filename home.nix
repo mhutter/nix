@@ -85,6 +85,7 @@ in
     just
     mprocs
     ncdu
+    nnn
     shellcheck
     tree
     yamllint
@@ -127,7 +128,12 @@ in
     # '';
   };
 
-  home.sessionVariables = { BROWSER = "firefox"; };
+  home.sessionVariables = {
+    BROWSER = "firefox";
+    NNN_FIFO = /tmp/nnn.fifo;
+    NNN_OPTS = "deH";
+    NNN_PLUG = "p:preview-tui";
+  };
   home.sessionPath = [ "$HOME/bin" ];
 
   # Let Home Manager install and manage itself.
