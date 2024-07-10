@@ -30,7 +30,6 @@ in
         ForwardX11Trusted no
 
         # Disable unused authentication methods
-        GSSAPIAuthentication no
         HostbasedAuthentication no
 
         # Harden cryptography
