@@ -231,8 +231,8 @@ for_window [title="Gnuplot"] floating enable
 # Zoom - there are a lot of small popup windows, so we set _everything_ to
 # float, and only disable it for the main and meeting window
 for_window [class="zoom"] floating enable
-for_window [class="zoom" title="Zoom - Free account"] floating disable
-for_window [class="zoom" title="Zoom - Licensed account"] floating disable
-for_window [class="zoom" title="Zoom Meeting"] floating disable
+for_window [class="zoom" title="Zoom Workplace - Free account"] floating disable
+for_window [class="zoom" title="Zoom Workplace - Licensed account"] floating disable
+for_window [class="zoom" title="Meeting"] floating disable
 
 # vim: ft=i3config
