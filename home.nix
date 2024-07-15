@@ -86,6 +86,7 @@ in
     mprocs
     ncdu
     nnn
+    pwgen
     shellcheck
     tree
     yamllint
