@@ -25,6 +25,26 @@ in
       blocks = [
         {
           block = "custom";
+          command = "echo '\\uf135' $(cat /sys/firmware/acpi/platform_profile)";
+          click = [{
+            button = "left";
+            sync = true;
+            update = true;
+            cmd = ''
+              P=/sys/firmware/acpi/platform_profile
+              case "$(cat "$P")" in
+                balanced)
+                  echo performance | sudo tee "$P"
+                ;;
+                *)
+                  echo balanced | sudo tee "$P"
+                ;;
+              esac
+            '';
+          }];
+        }
+        {
+          block = "custom";
           command = "echo '\\uf0ac' $(curl -sS https://ipecho.net/plain)";
           interval = 3600;
         }
