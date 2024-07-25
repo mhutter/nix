@@ -26,22 +26,40 @@ in
         {
           block = "custom";
           command = "echo '\\uf135' $(cat /sys/firmware/acpi/platform_profile)";
-          click = [{
-            button = "left";
-            sync = true;
-            update = true;
-            cmd = ''
-              P=/sys/firmware/acpi/platform_profile
-              case "$(cat "$P")" in
-                balanced)
-                  echo performance | sudo tee "$P"
-                ;;
-                *)
-                  echo balanced | sudo tee "$P"
-                ;;
-              esac
-            '';
-          }];
+          click = [
+            {
+              button = "left";
+              sync = true;
+              update = true;
+              cmd = ''
+                P=/sys/firmware/acpi/platform_profile
+                case "$(cat "$P")" in
+                  balanced)
+                    echo performance | sudo tee "$P"
+                  ;;
+                  *)
+                    echo balanced | sudo tee "$P"
+                  ;;
+                esac
+              '';
+            }
+            {
+              button = "right";
+              sync = true;
+              update = true;
+              cmd = ''
+                P=/sys/firmware/acpi/platform_profile
+                case "$(cat "$P")" in
+                  balanced)
+                    echo low-power | sudo tee "$P"
+                  ;;
+                  *)
+                    echo balanced | sudo tee "$P"
+                  ;;
+                esac
+              '';
+            }
+          ];
         }
         {
           block = "custom";
