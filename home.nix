@@ -85,7 +85,6 @@ in
     just
     mprocs
     ncdu
-    nnn
     pwgen
     shellcheck
     tree
@@ -131,9 +130,6 @@ in
 
   home.sessionVariables = {
     BROWSER = "vivaldi";
-    NNN_FIFO = /tmp/nnn.fifo;
-    NNN_OPTS = "deH";
-    NNN_PLUG = "p:preview-tui";
   };
   home.sessionPath = [ "$HOME/bin" ];
 
