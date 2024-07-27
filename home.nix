@@ -130,7 +130,7 @@ in
   };
 
   home.sessionVariables = {
-    BROWSER = "firefox";
+    BROWSER = "vivaldi";
     NNN_FIFO = /tmp/nnn.fifo;
     NNN_OPTS = "deH";
     NNN_PLUG = "p:preview-tui";
