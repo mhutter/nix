@@ -129,7 +129,7 @@ in
   };
 
   home.sessionVariables = {
-    BROWSER = "vivaldi";
+    BROWSER = "firefox";
   };
   home.sessionPath = [ "$HOME/bin" ];
 
