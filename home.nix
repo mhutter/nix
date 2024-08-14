@@ -137,6 +137,7 @@ in
   programs.home-manager.enable = true;
 
   home.activation.diff = ''
-    run ${pkgs.nix}/bin/nix $VERBOSE_ARG profile diff-closures --profile ~/.local/state/nix/profiles/home-manager
+    echo === Profile changes ===
+    ${pkgs.home-manager}/bin/home-manager generations | head -n2 | ${pkgs.gawk}/bin/awk '{print $7}' | xargs nix store diff-closures
   '';
 }
