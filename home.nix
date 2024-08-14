@@ -135,4 +135,8 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  home.activation.diff = ''
+    run ${pkgs.nix}/bin/nix $VERBOSE_ARG profile diff-closures --profile ~/.local/state/nix/profiles/home-manager
+  '';
 }
