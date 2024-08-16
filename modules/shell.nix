@@ -125,7 +125,14 @@ in
     };
   };
 
-  programs.bat.enable = true;
+  programs.bat = {
+    enable = true;
+    config.map-syntax = [
+      "*.bu:YAML"
+      "*.ign:JSON"
+    ];
+  };
+
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
   programs.fzf.enable = true;
