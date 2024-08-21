@@ -5,7 +5,8 @@
     bacon
     cargo-expand
     cargo-nextest
-    cargo-outdated
+    # TODO: Reenable once building again
+    # cargo-outdated
     cargo-watch
     cargo-wizard
     rustup
