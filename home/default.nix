@@ -52,7 +52,6 @@ in
   # environment.
   home.packages = with pkgs; [
     # Applications
-    arandr
     morgen
     obsidian
 
@@ -65,14 +64,11 @@ in
     github-cli
     go-jsonnet
     httpie
-    hyperfine
     jq
     just
-    mprocs
     ncdu
     pwgen
     shellcheck
-    tree
     yamllint
     yq-go
 
