@@ -23,7 +23,6 @@ in
 
   imports = [
     ./modules/ansible.nix
-    ./modules/backup.nix
     ./modules/git.nix
     ./modules/go.nix
     ./modules/i3.nix

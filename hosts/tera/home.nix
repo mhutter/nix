@@ -2,6 +2,7 @@
 {
   imports = [
     ../../home.nix
+    ../../modules/backup.nix
   ];
 
   # Let Home Manager install and manage itself.
