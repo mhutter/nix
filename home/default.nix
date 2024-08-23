@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ config, pkgs, username, ... }:
 
 let
   homeDirectory = "/home/${username}";
@@ -130,4 +130,8 @@ in
     BROWSER = "firefox";
   };
   home.sessionPath = [ "$HOME/bin" ];
+
+  home.activation.reportChanges = config.lib.dag.entryAnywhere ''
+    run nix store diff-closures $oldGenPath $newGenPath
+  '';
 }
