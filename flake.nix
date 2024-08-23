@@ -45,7 +45,7 @@
               inherit extraSpecialArgs;
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.${username} = import./hosts/nxzt/home.nix;
+              users.${username} = import ./hosts/nxzt/home.nix;
             };
           }
         ];

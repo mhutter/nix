@@ -9,6 +9,7 @@ Config files for both NixOS and Home-Manager.
 - [ ] Activation Script for nixOS
 - [ ] Ensure `/etc/nixos` is a symlink here, so we can use `nixos-rebuild` withouth having to specify the path
 - [ ] Same for `~/.config/home-manager`
+- [ ] `ssh-agent` on NixOS
 
 ## DONE
 
