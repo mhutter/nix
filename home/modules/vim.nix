@@ -1,6 +1,13 @@
 { pkgs, ... }:
 
 {
+  # Dependencies
+  home.packages = with pkgs; [
+    clang
+    go
+    nodejs-slim
+  ];
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
