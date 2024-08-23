@@ -1,4 +1,12 @@
-# HomeManager configs
+# Nix Configurations
+
+Config files for both NixOS and Home-Manager.
+
+## TODO
+
+- [ ] Migrate to agenix
+- [ ] Clean up the repository after adding NixOS configurations
+- [ ] Activation Script for nixOS
 
 ## DONE
 
@@ -32,3 +40,4 @@ The `kubectl` package for example contains `share/zsh/site-functions/_kubectl`, 
 
 * https://github.com/maxbrunet/dotfiles
 * https://github.com/sherubthakur/dotfiles
+* https://github.com/LorenzBischof/dotfiles

@@ -11,10 +11,17 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        # config.permittedInsecurePackages = [ "..." ];
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          "morgen"
+          "obsidian"
+        ];
+      };
     in
     {
       homeConfigurations.mh = home-manager.lib.homeManagerConfiguration {
@@ -22,7 +29,19 @@
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [ ./home.nix ];
+        modules = [ ./hosts/tera/home.nix ];
+      };
+
+      nixosConfigurations.nxzt = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+        modules = [
+          ./hosts/nxzt/configuration.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.mh = import ./hosts/nxzt/home.nix;
+          }
+        ];
       };
     };
 }
