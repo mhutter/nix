@@ -13,26 +13,34 @@
 
   outputs = inputs @ { self, nixpkgs, home-manager }:
     let
+      # Commonly used variables
       system = "x86_64-linux";
       username = "mh";
+      extraSpecialArgs = inputs // { inherit username; };
 
+      # Overwrite some settings for nixpkgs
       pkgs = import nixpkgs {
         inherit system;
+
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
           "morgen"
           "obsidian"
         ];
       };
 
-      extraSpecialArgs = inputs // { inherit username; };
     in
     {
+      # homeConfigurations for systems that use home-manager directly and are
+      # no NixOS systems (e.g. my Arch notebook)
       homeConfigurations.mh = home-manager.lib.homeManagerConfiguration {
+        # Use extraSpecialArgs and customized pkgs
         inherit extraSpecialArgs pkgs;
 
         modules = [ ./hosts/tera/home.nix ];
       };
 
+      # nixosConfigurations for ... NixOS systems!
+      # They also use home-manager, so those configs can be reused.
       nixosConfigurations.nxzt = nixpkgs.lib.nixosSystem {
         inherit pkgs system;
 
