@@ -1,7 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 let
-  username = "mh";
   homeDirectory = "/home/${username}";
   secrets = (import ./secrets.nix);
 
