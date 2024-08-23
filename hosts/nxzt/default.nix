@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, username, ... }:
 
 let
   secrets = (import ../../secrets.nix);
@@ -32,7 +32,7 @@ in
   # };
 
   users.mutableUsers = false;
-  users.users.mh = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
@@ -69,6 +69,9 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+
+  # Make nixos-rebuild find its config automatically
+  environment.etc."nixos".source = "/home/${username}/.config/nix";
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

@@ -16,7 +16,9 @@
       # Commonly used variables
       system = "x86_64-linux";
       username = "mh";
-      extraSpecialArgs = inputs // { inherit username; };
+
+      # extraArgs for home-manager
+      extraSpecialArgs = { inherit username; };
 
       # Overwrite some settings for nixpkgs
       pkgs = import nixpkgs {
@@ -45,8 +47,13 @@
         inherit pkgs system;
 
         modules = [
+          # Pass username to modules
+          ({ ... }: { config._module.args = { inherit username; }; })
+
+          # host-specific configuration
           ./hosts/nxzt
 
+          # Include home-manager
           home-manager.nixosModules.home-manager
           {
             home-manager = {
