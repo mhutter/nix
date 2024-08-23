@@ -7,6 +7,8 @@ Config files for both NixOS and Home-Manager.
 - [ ] Migrate to agenix
 - [ ] Clean up the repository after adding NixOS configurations
 - [ ] Activation Script for nixOS
+- [ ] Ensure `/etc/nixos` is a symlink here, so we can use `nixos-rebuild` withouth having to specify the path
+- [ ] Same for `~/.config/home-manager`
 
 ## DONE
 
