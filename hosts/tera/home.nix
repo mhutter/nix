@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../home.nix
-    ../../modules/backup.nix
+    ../../home
+    ../../home/modules/backup.nix
   ];
 
   # Let Home Manager install and manage itself.
