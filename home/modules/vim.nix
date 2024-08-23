@@ -5,7 +5,8 @@
   home.packages = with pkgs; [
     clang
     go
-    nodejs-slim
+    nodejs
+    unzip
   ];
 
   programs.neovim = {
