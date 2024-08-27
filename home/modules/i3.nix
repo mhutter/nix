@@ -4,24 +4,181 @@
 # os-native package manager.
 { lib, pkgs, config, ... }:
 
-let
-  home = config.home.homeDirectory;
-in
 {
-  # TODO: find a better solution that substituteAll
-  home.file.".config/i3/config".source = pkgs.substituteAll {
-    src = ../dotfiles/i3;
-    inherit home;
-    inherit (pkgs) dmenu feh;
-    # variables containing dashes break substituteAll :facepalm:
-    i3status = pkgs.i3status-rust;
-  };
+  # TODO: test this on NixOS
+  home.packages = with pkgs; [
+    font-awesome
+    dejavu_fonts
+  ];
+
+  xsession.enable = true;
+  xsession.windowManager.i3 =
+    let
+      i3status = "${pkgs.i3status-rust}/bin/i3status-rs";
+      fonts = {
+        names = [ "DejaVuSansM Nerd Font" "FontAwesome 11" ];
+        style = "Mono";
+        size = 10.0;
+      };
+      mod = "Mod4";
+      # used below. Should be PNG to be used with i3lock
+      # TODO: Add to this repo
+      wallpaper = "${config.home.homeDirectory}/Pictures/wallpaper.png";
+
+      # Colors
+      bg-color = "#2f343f";
+      inactive-bg-color = "#2f343f";
+      text-color = "#f3f4f5";
+      inactive-text-color = "#676e7d";
+      urgent-bg-color = "#e53935";
+      indicator = "#00ff00";
+
+    in
+    {
+      enable = true;
+      config = {
+        inherit fonts;
+        modifier = mod;
+        floating.modifier = mod;
+
+        startup = [
+          # Start `wired` notification daemon
+          # FIXME: Replace with something that is in nixpkgs OR create flake
+          { command = "wired"; notification = false; }
+          # Set background image
+          { command = "${pkgs.feh}/bin/feh --bg-fill ${wallpaper}"; notification = false; }
+          # Fix screen layout on login
+          # TODO: This script is already in this repo; maybe we can make a nixpkg out of it?
+          { command = "hotplug_monitor"; notification = false; }
+          # Start XDG autostart .desktop files using dex. See also
+          # https://wiki.archlinux.org/index.php/XDG_Autostart
+          { command = "${pkgs.dex}/bin/dex --autostart --environment i3"; notification = false; }
+        ];
+
+        bars = [{
+          inherit (config.xsession.windowManager.i3.config) fonts;
+          statusCommand = "${i3status} config-default.toml";
+          colors = {
+            # background $bg-color
+            # separator #757575
+            #                    border             background         text
+            # focused_workspace  $bg-color          $bg-color          $text-color
+            # inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+            # urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+            background = bg-color;
+            separator = "#757575";
+            focusedWorkspace = {
+              border = bg-color;
+              background = bg-color;
+              text = text-color;
+            };
+            inactiveWorkspace = {
+              border = inactive-bg-color;
+              background = inactive-bg-color;
+              text = inactive-text-color;
+            };
+            urgentWorkspace = {
+              border = urgent-bg-color;
+              background = urgent-bg-color;
+              text = text-color;
+            };
+          };
+        }];
+
+        keybindings = lib.mkOptionDefault {
+          # Make media keys work
+          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%";
+          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%";
+          "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+
+          # use VIM keybindings for focus
+          "${mod}+h" = "focus left";
+          "${mod}+j" = "focus down";
+          "${mod}+k" = "focus up";
+          "${mod}+l" = "focus right";
+
+          # use VIM keybindings for movement
+          "${mod}+Shift+h" = "move left";
+          "${mod}+Shift+j" = "move down";
+          "${mod}+Shift+k" = "move up";
+          "${mod}+Shift+l" = "move right";
+
+          # Split in horizontal direction (default is mod+h, which is already taken by focus commands)
+          "${mod}+Shift+v" = "split h";
+
+          # Lock the screen
+          "${mod}+Shift+x" = "exec ${pkgs.i3lock}/bin/i3lock -i ${wallpaper}";
+        };
+
+        modes.resize = lib.mkOptionDefault {
+          "h" = "resize shrink width 10 px or 10 ppt";
+          "j" = "resize grow height 10 px or 10 ppt";
+          "k" = "resize shrink height 10 px or 10 ppt";
+          "l" = "resize grow width 10 px or 10 ppt";
+        };
+
+        colors = {
+          # window colors
+          #                         border              background         text                 indicator
+          # client.focused          $bg-color           $bg-color          $text-color          #00ff00
+          # client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+          # client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+          # client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+          focused = {
+            border = bg-color;
+            background = bg-color;
+            text = text-color;
+            inherit indicator;
+            childBorder = "";
+          };
+          unfocused = {
+            border = inactive-bg-color;
+            background = inactive-bg-color;
+            text = inactive-text-color;
+            inherit indicator;
+            childBorder = "";
+          };
+          focusedInactive = {
+            border = inactive-bg-color;
+            background = inactive-bg-color;
+            text = inactive-text-color;
+            inherit indicator;
+            childBorder = "";
+          };
+          urgent = {
+            border = urgent-bg-color;
+            background = urgent-bg-color;
+            text = text-color;
+            inherit indicator;
+            childBorder = "";
+          };
+
+        };
+
+        window.commands = [
+          # Custom window configs - use `xprop` to find the properties
+          { criteria = { class = "(?i)nm-connection-editor"; }; command = "floating enable"; }
+          { criteria = { class = "Imager"; }; command = "floating enable"; }
+          { criteria = { class = "Qemu-system-x86_64"; }; command = "floating enable"; }
+          { criteria = { class = "XCalc"; }; command = "floating enable"; }
+          { criteria = { class = "Gnuplot"; }; command = "floating enable"; }
+
+          # Zoom - there are a lot of small popup windows, so we set
+          # EVERYTHING to float, and only disable it for the main- and meeting
+          # window
+          { criteria = { class = "zoom"; }; command = "floating enable"; }
+          { criteria = { class = "zoom"; title = "Zoom Workplace - .*"; }; command = "floating disable"; }
+          { criteria = { class = "zoom"; title = "Meeting"; }; command = "floating disable"; }
+        ];
+      };
+    };
 
   programs.i3status-rust = {
     enable = true;
     bars.default = {
       theme = "nord-dark";
-      icons = "awesome4";
+      icons = "awesome6";
       blocks = [
         {
           block = "custom";
