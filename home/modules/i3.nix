@@ -30,7 +30,8 @@
       text-color = "#f3f4f5";
       inactive-text-color = "#676e7d";
       urgent-bg-color = "#e53935";
-      indicator = "#00ff00";
+      indicator = "";
+      childBorder = "";
 
     in
     {
@@ -129,29 +130,25 @@
             border = bg-color;
             background = bg-color;
             text = text-color;
-            inherit indicator;
-            childBorder = "";
+            inherit indicator childBorder;
           };
           unfocused = {
             border = inactive-bg-color;
             background = inactive-bg-color;
             text = inactive-text-color;
-            inherit indicator;
-            childBorder = "";
+            inherit indicator childBorder;
           };
           focusedInactive = {
             border = inactive-bg-color;
             background = inactive-bg-color;
             text = inactive-text-color;
-            inherit indicator;
-            childBorder = "";
+            inherit indicator childBorder;
           };
           urgent = {
             border = urgent-bg-color;
             background = urgent-bg-color;
             text = text-color;
-            inherit indicator;
-            childBorder = "";
+            inherit indicator childBorder;
           };
 
         };
