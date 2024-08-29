@@ -21,9 +21,8 @@
         size = 10.0;
       };
       mod = "Mod4";
-      # used below. Should be PNG to be used with i3lock
-      # TODO: Add to this repo
-      wallpaper = "${config.home.homeDirectory}/Pictures/wallpaper.png";
+      # Used below. Should be PNG to be used with i3lock
+      wallpaper = ../wallpaper.png;
 
       # Colors
       bg-color = "#2f343f";
