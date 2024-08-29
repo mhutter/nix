@@ -108,7 +108,8 @@
           "${mod}+Shift+v" = "split h";
 
           # Lock the screen
-          "${mod}+Shift+x" = "exec ${pkgs.i3lock}/bin/i3lock -i ${wallpaper}";
+          # IMPORTANT: Unlocking does not work on Arch when using the nixpkgs i3lock.
+          "${mod}+Shift+x" = "exec i3lock -i ${wallpaper}";
         };
 
         modes.resize = lib.mkOptionDefault {
