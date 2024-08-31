@@ -15,8 +15,16 @@ in
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = false;
-  services.xserver.xkb.layout = "us";
+  services.xserver = {
+    enable = true;
+    desktopManager.xterm.enable = false;
+    windowManager.i3.enable = true;
+    excludePackages = with pkgs; [
+      xterm
+    ];
+    xkb.layout = "us";
+  };
+  services.displayManager.defaultSession = "none+i3";
 
   # Enable sound.
   # hardware.pulseaudio.enable = true;

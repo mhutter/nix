@@ -52,6 +52,7 @@ in
   # environment.
   home.packages = with pkgs; [
     # Applications
+    alacritty
     morgen
     obsidian
 
