@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     # Fonts must be available to alacritty so they must be enabled globally
-    nerdfonts
+    fira-code-nerdfont
   ];
 
   programs.neovim = {
