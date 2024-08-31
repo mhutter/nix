@@ -11,10 +11,7 @@ is_nixos() {
   test -f /etc/NIXOS
 }
 
-if is_nixos; then
-  echo TODO: expire old generations
-
-else
+if !is_nixos; then
   log "Update Nix"
   sudo -i nix upgrade-nix
 
