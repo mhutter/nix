@@ -80,6 +80,11 @@ in
     kubernetes-helm
     openshift # oc
 
+    # Fonts
+    dejavu_fonts
+    fira-code
+    font-awesome
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -93,6 +98,9 @@ in
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  # Ensure NixOS can pick up fonts installed by HM
+  fonts.fontconfig.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

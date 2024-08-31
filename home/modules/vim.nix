@@ -1,12 +1,9 @@
 { pkgs, ... }:
 
 {
-  # Dependencies
   home.packages = with pkgs; [
-    clang
-    go
-    nodejs
-    unzip
+    # Fonts must be available to alacritty so they must be enabled globally
+    nerdfonts
   ];
 
   programs.neovim = {
@@ -14,6 +11,12 @@
     defaultEditor = true;
     vimAlias = true;
     vimdiffAlias = true;
+    extraPackages = with pkgs; [
+      clang
+      go
+      nodejs
+      unzip
+    ];
   };
 
   # TODO: Install AstroNvim

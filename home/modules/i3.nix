@@ -5,13 +5,6 @@
 { lib, pkgs, config, ... }:
 
 {
-  fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
-    dejavu_fonts
-    fira-code
-    font-awesome
-  ];
-
   xsession.enable = true;
   xsession.windowManager.i3 =
     let
