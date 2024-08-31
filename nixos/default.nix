@@ -49,6 +49,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Applications
+    alacritty
     firefox
 
     # CLI tools

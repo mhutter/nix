@@ -47,9 +47,6 @@
           { command = "wired"; notification = false; }
           # Set background image
           { command = "${pkgs.feh}/bin/feh --bg-fill ${wallpaper}"; notification = false; }
-          # Fix screen layout on login
-          # TODO: This script is already in this repo; maybe we can make a nixpkg out of it?
-          { command = "hotplug_monitor"; notification = false; }
           # Start XDG autostart .desktop files using dex. See also
           # https://wiki.archlinux.org/index.php/XDG_Autostart
           { command = "${pkgs.dex}/bin/dex --autostart --environment i3"; notification = false; }
