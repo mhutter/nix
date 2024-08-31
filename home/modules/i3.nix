@@ -5,10 +5,11 @@
 { lib, pkgs, config, ... }:
 
 {
-  # TODO: test this on NixOS
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    font-awesome
     dejavu_fonts
+    fira-code
+    font-awesome
   ];
 
   xsession.enable = true;
