@@ -108,6 +108,7 @@
           "j" = "resize grow height 10 px or 10 ppt";
           "k" = "resize shrink height 10 px or 10 ppt";
           "l" = "resize grow width 10 px or 10 ppt";
+          "Escape" = "mode default";
         };
 
         colors = {
