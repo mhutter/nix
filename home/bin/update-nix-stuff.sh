@@ -40,13 +40,13 @@ if is_nixos; then
   log "Switching to new nixos configuration"
   nixos-rebuild build --flake .
 
+  nix store diff-closures /run/current-system ./result
   read -p "Apply changes? " -n 1 -r
   echo
   if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then
     exit
   fi
 
-  nix store diff-closures /run/current-system ./result
   sudo nixos-rebuild switch --flake .
 
 else
