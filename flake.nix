@@ -25,8 +25,13 @@
         inherit system;
 
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          # Applications
           "morgen"
           "obsidian"
+
+          # Nvidia drivers
+          "nvidia-settings"
+          "nvidia-x11"
         ];
       };
 
