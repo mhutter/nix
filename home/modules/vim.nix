@@ -1,11 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    # Fonts must be available to alacritty so they must be enabled globally
-    fira-code-nerdfont
-  ];
-
   programs.neovim = {
     enable = true;
     defaultEditor = true;
