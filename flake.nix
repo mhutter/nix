@@ -28,6 +28,9 @@
           # Applications
           "morgen"
           "obsidian"
+          "steam"
+          "steam-original"
+          "steam-run"
 
           # Nvidia drivers
           "nvidia-settings"
