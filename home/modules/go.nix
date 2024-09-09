@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # go  # installed via pacman for now
+    go
     golangci-lint
   ];
 }
