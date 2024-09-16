@@ -6,8 +6,7 @@
     cargo-expand
     cargo-generate
     cargo-nextest
-    # TODO: Reenable once building again
-    # cargo-outdated
+    cargo-outdated
     cargo-watch
     cargo-wizard
     rustup
