@@ -27,6 +27,7 @@ in
       signing.signByDefault = true;
 
       extraConfig = {
+        advice.forceDeleteBranch = true;
         color = {
           ui = "auto";
         };
@@ -35,15 +36,15 @@ in
           editor = "vim";
           sshCommand = "${pkgs.openssh}/bin/ssh";
         };
+        diff.sopsdiffer.textconv = "sops -d";
+        init.defaultBranch = "main";
+        pull.rebase = true;
         push = {
           default = "simple";
           autoSetupRemote = true;
         };
-        pull.rebase = true;
         rebase.autoStash = true;
         rerere.enabled = 1;
-        init.defaultBranch = "main";
-        diff.sopsdiffer.textconv = "sops -d";
       };
 
       aliases = {
