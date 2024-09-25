@@ -122,6 +122,7 @@ in
         ".env"
         ".direnv/"
         ".kubeconfig"
+        "id_rsa"
       ];
     };
   };
