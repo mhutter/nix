@@ -31,6 +31,7 @@
           "steam"
           "steam-original"
           "steam-run"
+          "vscode"
 
           # Nvidia drivers
           "nvidia-settings"
