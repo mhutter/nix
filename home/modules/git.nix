@@ -33,7 +33,7 @@ in
         };
         core = {
           autocrlf = "input";
-          editor = "vim";
+          # editor = "vim";
           sshCommand = "${pkgs.openssh}/bin/ssh";
         };
         diff.sopsdiffer.textconv = "sops -d";

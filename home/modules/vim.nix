@@ -3,8 +3,8 @@
 {
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
-    vimAlias = true;
+    # defaultEditor = true;
+    # vimAlias = true;
     vimdiffAlias = true;
     extraPackages = with pkgs; [
       clang
