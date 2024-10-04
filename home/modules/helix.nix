@@ -20,7 +20,7 @@ in
 
   config.programs.helix = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
 
     # Some packages that are required for the language servers
     extraPackages = with pkgs; [
