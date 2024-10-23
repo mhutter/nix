@@ -36,9 +36,8 @@
         floating.modifier = mod;
 
         startup = [
-          # Start `wired` notification daemon
-          # FIXME: Replace with something that is in nixpkgs OR create flake
-          { command = "wired"; notification = false; }
+          # Start `dunst` notification daemon
+          { command = "${pkgs.dunst}/bin/dunst"; notification = false; }
           # Set background image
           { command = "${pkgs.feh}/bin/feh --bg-fill ${wallpaper}"; notification = false; }
           # Start XDG autostart .desktop files using dex. See also
