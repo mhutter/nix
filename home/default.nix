@@ -70,6 +70,7 @@ in
     ncdu
     pwgen
     shellcheck
+    uv
     yamllint
     yq-go
 
@@ -121,7 +122,10 @@ in
   home.sessionVariables = {
     BROWSER = "firefox";
   };
-  home.sessionPath = [ "$HOME/bin" ];
+  home.sessionPath = [
+    "$HOME/bin"
+    "$HOME/.local/bin"
+  ];
 
   # After activation, report changes to the profile.
   home.activation.reportChanges = config.lib.dag.entryAnywhere ''
