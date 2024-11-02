@@ -68,6 +68,7 @@ in
     jq
     just
     ncdu
+    nodePackages.prettier
     pwgen
     shellcheck
     uv
