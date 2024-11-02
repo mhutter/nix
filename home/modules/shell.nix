@@ -73,6 +73,11 @@ in
         kubectl get secret "$1" -o json | jq '.data | map_values(@base64d)'
       }
 
+      x() {
+        z $@
+        tmux new-session -A -s "$1"
+      }
+
       ${fortune}/bin/strfile -c '%' -s ${cookies} ${cookies}.dat
       ${fortune}/bin/fortune ${cookies}
     '';
