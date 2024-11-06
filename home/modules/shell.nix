@@ -38,6 +38,8 @@ in
       dev = "$HOME/dev";
     };
 
+    # Note: In multiline strings, the $ sign can be escaped by prefixing
+    # it with `''`
     initExtra = ''
       # more bash-like keybinds (^W etc)
       bindkey -e
@@ -61,7 +63,7 @@ in
       temp() {
         local dir="$(date +%F)"
         if [ -n "$1" ]; then
-          dir="$${dir}-$1"
+          dir="''${dir}-$1"
         fi
 
         local p="$HOME/tmp/$dir"
