@@ -9,6 +9,7 @@
     cargo-outdated
     cargo-watch
     cargo-wizard
+    mold
     rustup
   ];
 
@@ -19,6 +20,7 @@
 
       [build]
       rustc-wrapper = "${pkgs.sccache}/bin/sccache"
+      rustflags = ["-Clink-arg=-fuse-ld=mold"]
     '';
   };
 
