@@ -11,7 +11,7 @@ is_nixos() {
   test -f /etc/NIXOS
 }
 
-if !is_nixos; then
+if ! is_nixos; then
   log "Update Nix"
   sudo -i nix upgrade-nix
 
