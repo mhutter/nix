@@ -30,6 +30,7 @@
           "obsidian"
           "steam"
           "steam-original"
+          "steam-unwrapped"
           "steam-run"
           "vscode"
 
