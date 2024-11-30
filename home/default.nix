@@ -85,14 +85,8 @@ in
 
     # Fonts
     font-awesome
-
-    # See https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "DejaVuSansMono"
-        "FiraCode"
-      ];
-    })
+    nerd-fonts.fira-code
+    nerd-fonts.dejavu-sans-mono
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
