@@ -19,6 +19,7 @@ in
     ./modules/go.nix
     ./modules/helix.nix
     ./modules/i3.nix
+    ./modules/kubectl.nix
     ./modules/rust.nix
     ./modules/scripts.nix
     ./modules/shell.nix
@@ -74,14 +75,6 @@ in
     uv
     yamllint
     yq-go
-
-    # Kubernetes
-    kind
-    kubecolor
-    kubectl
-    kubelogin-oidc # kubectl oidc-login
-    kubernetes-helm
-    openshift # oc
 
     # Fonts
     font-awesome
