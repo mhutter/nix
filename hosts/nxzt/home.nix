@@ -4,6 +4,10 @@
     ../../home
   ];
 
+  home.packages = with pkgs; [
+    blender
+  ];
+
   programs.alacritty = {
     enable = true;
     settings = {
