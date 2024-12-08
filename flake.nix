@@ -35,7 +35,6 @@
           "vscode"
 
           # Nvidia drivers
-          "nvidia-settings"
           "nvidia-x11"
         ];
       };

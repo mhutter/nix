@@ -12,8 +12,8 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
-    nvidiaSettings = true;
-    open = false;
+    nvidiaSettings = false;
+    open = true;
   };
 
   # Gaming
