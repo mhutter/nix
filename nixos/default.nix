@@ -53,6 +53,7 @@ in
   environment.systemPackages = with pkgs; [
     # Applications
     alacritty
+    brave
     firefox
 
     # CLI tools
