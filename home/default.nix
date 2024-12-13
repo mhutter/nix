@@ -63,7 +63,6 @@ in
     dive
     entr
     fd
-    gcc
     github-cli
     go-jsonnet
     httpie

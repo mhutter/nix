@@ -58,6 +58,7 @@ in
     # CLI tools
     alsa-utils
     curl
+    gcc
     git
     vim
   ];
