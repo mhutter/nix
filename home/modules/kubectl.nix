@@ -26,8 +26,8 @@
     _cluster() { _files -W ~/.config/cattledog/kubeconfigs -/; }
     compdef _cluster cluster
 
-    display-secret() {
-      kubectl get secret "$1" -o json | jq '.data | map_values(@base64d)'
+    function k-decode-secret() {
+      kubectl get secret $@ -o json | jq '.data | map_values(@base64d)'
     }
   '';
 }
