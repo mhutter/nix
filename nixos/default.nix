@@ -55,6 +55,7 @@ in
     alacritty
     brave
     firefox
+    telegram-desktop
 
     # CLI tools
     alsa-utils
