@@ -17,7 +17,6 @@ in
     ./modules/ansible.nix
     ./modules/git.nix
     ./modules/go.nix
-    ./modules/helix.nix
     ./modules/i3.nix
     ./modules/kubectl.nix
     ./modules/rust.nix
