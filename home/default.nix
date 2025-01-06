@@ -71,6 +71,7 @@ in
     nodePackages.prettier
     pwgen
     shellcheck
+    unzip
     uv
     yamllint
     yq-go

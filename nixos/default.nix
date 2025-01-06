@@ -40,7 +40,10 @@ in
   users.mutableUsers = false;
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "docker"
+      "wheel" # Enable ‘sudo’ for the user.
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPhRxDZsJ7zFb7Zz7vrRMmIvptWCfA2HgnxYnlmhu24 tera2024" ];
     initialHashedPassword = secrets.user.hashedPassword;
@@ -84,6 +87,13 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      registry-mirrors = [ "https://dockerhub.vshn.net" ];
+    };
+  };
 
   # Make nixos-rebuild find its config automatically
   environment.etc."nixos".source = "/home/${username}/.config/nix";
