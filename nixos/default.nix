@@ -26,6 +26,9 @@ in
   };
   services.displayManager.defaultSession = "none+i3";
 
+  # Disable middle mouse button emulation when pressing left+right buttons simultaneously.
+  services.libinput.mouse.middleEmulation = false;
+
   # Enable sound.
   # hardware.pulseaudio.enable = true;
   # OR
