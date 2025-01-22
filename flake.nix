@@ -74,5 +74,13 @@
           }
         ];
       };
+
+      # Templatess to use with `nix flake init --template ...`
+      templates = {
+        default = {
+          description = "A plain Nix Flake";
+          path = ./templates/default;
+        };
+      };
     };
 }
