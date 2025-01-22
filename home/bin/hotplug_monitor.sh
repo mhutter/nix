@@ -30,17 +30,6 @@ fi
 
 export HOME DISPLAY XAUTHORITY
 
-#
-# Helper functions
-#
-
-# Set the terminal font size to the specified value
-function set_font_size() {
-  local file="${HOME}/.config/alacritty/alacritty.toml"
-  # exclusively lock config file to prevent race conditions
-  flock --exclusive "$file" dasel put -f "$file" -t int -v "$1" font.size
-}
-
 # Output some useful information
 env | sort
 
@@ -63,12 +52,10 @@ if [ -n "$MONITOR" ]; then
   xrandr \
     --output "$MONITOR" --auto --primary \
     --output "$INTERNAL" --off
-  set_font_size 11
 
 else
   echo "Switching to internal monitor $INTERNAL"
   xrandr --output "$INTERNAL" --auto --primary
-  set_font_size 9
 
 fi
 

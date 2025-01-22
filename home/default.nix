@@ -14,6 +14,7 @@ in
   home.homeDirectory = homeDirectory;
 
   imports = [
+    ./modules/alacritty.nix
     ./modules/ansible.nix
     ./modules/git.nix
     ./modules/go.nix
