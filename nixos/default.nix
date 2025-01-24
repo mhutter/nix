@@ -61,6 +61,7 @@ in
     alacritty
     brave
     firefox
+    openmw
     telegram-desktop
 
     # CLI tools
