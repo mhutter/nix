@@ -50,6 +50,13 @@ in
     settings = secrets.rbw-settings // { pinentry = pkgs.pinentry-curses; };
   };
 
+  services.syncthing = {
+    enable = true;
+    overrideDevices = false;
+    overrideFolders = false;
+    settings.options.urAccepted = -1;
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
