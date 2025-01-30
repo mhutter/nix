@@ -2,6 +2,14 @@
 
 Config files for both NixOS and Home-Manager.
 
+## Usage
+
+Create `~/.config/nix/nix.conf` with the following content:
+
+```
+access-tokens = github.com=github_pat_XXX
+```
+
 ## TODO
 
 - [ ] Migrate to agenix
@@ -34,14 +42,12 @@ The `kubectl` package for example contains `share/zsh/site-functions/_kubectl`, 
 
 [The documentation](https://nix-community.github.io/home-manager/options.html#opt-programs.zsh.enableCompletion) says to add `environment.pathsToLink = [ "/share/zsh" ];` to "your system configuration", but since I don't use NixOS, how can I achieve this?
 
-
 `fd`ing through `/nix`, I found out that the `_kubectl` (and other) file is indeed copied into the current `home-manager-path` module (`/nix/store/wrnxc15nj5snc6cjq5rl49d332b1hl61-home-manager-path/share`), which is linked as `~/.nix-profile/share`, which in turn is in `$fpath` (but it still doesn't work)
 
 </details>
 
-
 ## Further reading
 
-* https://github.com/maxbrunet/dotfiles
-* https://github.com/sherubthakur/dotfiles
-* https://github.com/LorenzBischof/dotfiles
+- https://github.com/maxbrunet/dotfiles
+- https://github.com/sherubthakur/dotfiles
+- https://github.com/LorenzBischof/dotfiles
