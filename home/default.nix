@@ -66,6 +66,7 @@ in
 
     # CLI Tools
     btop
+    d2
     dig
     dive
     entr
