@@ -20,23 +20,34 @@
       # extraArgs for home-manager
       extraSpecialArgs = { inherit username; };
 
+      commonUnfreePackages = [
+        # Applications
+        "morgen"
+        "obsidian"
+        "steam"
+        "steam-original"
+        "steam-unwrapped"
+        "steam-run"
+        "vscode"
+      ];
+
       # Overwrite some settings for nixpkgs
       pkgs = import nixpkgs {
         inherit system;
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) commonUnfreePackages;
+      };
 
-        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-          # Applications
-          "morgen"
-          "obsidian"
-          "steam"
-          "steam-original"
-          "steam-unwrapped"
-          "steam-run"
-          "vscode"
-
-          # Nvidia drivers
+      cudaPkgs = import nixpkgs {
+        inherit system;
+        config.cudaSupport = true;
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) (commonUnfreePackages ++ [
+          "blender"
+          "cuda_cudart"
+          "cuda_nvcc"
+          "cuda_cccl"
+          "libcublas"
           "nvidia-x11"
-        ];
+        ]);
       };
 
     in
@@ -53,7 +64,8 @@
       # nixosConfigurations for ... NixOS systems!
       # They also use home-manager, so those configs can be reused.
       nixosConfigurations.nxzt = nixpkgs.lib.nixosSystem {
-        inherit pkgs system;
+        inherit system;
+        pkgs = cudaPkgs;
 
         modules = [
           # Pass username to modules
