@@ -32,7 +32,10 @@
   environment.systemPackages = with pkgs; [
     (lutris.override {
       extraLibraries = pkgs: [ ];
-      extraPkgs = pkgs: [ ];
+      extraPkgs = pkgs: [
+        libnghttp2
+        winetricks
+      ];
     })
   ];
 }
