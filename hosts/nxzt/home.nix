@@ -5,6 +5,9 @@
   ];
 
   home.packages = with pkgs; [
-    blender
+    # blender
+    (pkgs.writeShellScriptBin "battle.net" ''
+      lutris lutris:rungame/battlenet
+    '')
   ];
 }
