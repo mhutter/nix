@@ -23,10 +23,11 @@
       commonUnfreePackages = [
         # Applications
         "obsidian"
+        "spotify"
         "steam"
         "steam-original"
-        "steam-unwrapped"
         "steam-run"
+        "steam-unwrapped"
         "vscode"
       ];
 

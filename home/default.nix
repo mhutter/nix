@@ -62,6 +62,7 @@ in
   home.packages = with pkgs; [
     # Applications
     obsidian
+    spotify
 
     # CLI Tools
     btop
