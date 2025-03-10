@@ -22,7 +22,6 @@
 
       commonUnfreePackages = [
         # Applications
-        "morgen"
         "obsidian"
         "steam"
         "steam-original"

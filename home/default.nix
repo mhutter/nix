@@ -61,7 +61,6 @@ in
   # environment.
   home.packages = with pkgs; [
     # Applications
-    morgen
     obsidian
 
     # CLI Tools
