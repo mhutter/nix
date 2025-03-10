@@ -4,7 +4,6 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-mh.url = "github:mhutter/nixpkgs/i3status-notmuch";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,11 +11,14 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-mh, home-manager }:
+  outputs = inputs @ { self, nixpkgs, home-manager }:
     let
       # Commonly used variables
       system = "x86_64-linux";
       username = "mh";
+
+      # extraArgs for home-manager
+      extraSpecialArgs = { inherit username; };
 
       commonUnfreePackages = [
         # Applications
@@ -34,7 +36,6 @@
         inherit system;
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) commonUnfreePackages;
       };
-      pkgs-mh = import nixpkgs-mh { inherit system; };
 
       cudaPkgs = import nixpkgs {
         inherit system;
@@ -48,9 +49,6 @@
           "nvidia-x11"
         ]);
       };
-
-      # extraArgs for home-manager
-      extraSpecialArgs = { inherit username pkgs-mh; };
 
     in
     {

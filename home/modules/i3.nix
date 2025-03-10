@@ -2,17 +2,13 @@
 #
 # Note that this module does NOT manage i3 itself, this is installed via the
 # os-native package manager.
-{ lib, pkgs, pkgs-mh, config, ... }:
+{ lib, pkgs, config, ... }:
 
-let
-  i3status-rust = (pkgs-mh.i3status-rust.override { withNotmuch = false; });
-
-in
 {
   xsession.enable = true;
   xsession.windowManager.i3 =
     let
-      i3status = "${i3status-rust}/bin/i3status-rs";
+      i3status = "${pkgs.i3status-rust}/bin/i3status-rs";
       fonts = {
         names = [ "DejaVuSansM Nerd Font" "FontAwesome 11" ];
         style = "Mono";
@@ -168,7 +164,6 @@ in
 
   programs.i3status-rust = {
     enable = true;
-    package = i3status-rust;
     bars.default = {
       theme = "nord-dark";
       icons = "awesome6";
