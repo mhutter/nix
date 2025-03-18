@@ -18,7 +18,7 @@
       lua-language-server
       nil
       nixpkgs-fmt
-      rust-analyzer
+      # rust-analyzer is installed via rustup
       # prettier is in default.nix
     ];
   };
