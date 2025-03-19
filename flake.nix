@@ -9,9 +9,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    impermanence.url = "github:nix-community/impermanence";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, home-manager, impermanence }:
     let
       # Commonly used variables
       system = "x86_64-linux";
@@ -54,7 +56,7 @@
     {
       # homeConfigurations for systems that use home-manager directly and are
       # no NixOS systems (e.g. my Arch notebook)
-      homeConfigurations.mh = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."mh@tera" = home-manager.lib.homeManagerConfiguration {
         # Use extraSpecialArgs and customized pkgs
         inherit extraSpecialArgs pkgs;
 
@@ -63,28 +65,55 @@
 
       # nixosConfigurations for ... NixOS systems!
       # They also use home-manager, so those configs can be reused.
-      nixosConfigurations.nxzt = nixpkgs.lib.nixosSystem {
-        inherit system;
-        pkgs = cudaPkgs;
+      nixosConfigurations = {
+        nxzt = nixpkgs.lib.nixosSystem {
+          inherit system;
+          pkgs = cudaPkgs;
 
-        modules = [
-          # Pass username to modules
-          ({ ... }: { config._module.args = { inherit username; }; })
+          modules = [
+            # Pass username to modules
+            ({ ... }: { config._module.args = { inherit username; }; })
 
-          # host-specific configuration
-          ./hosts/nxzt
+            # host-specific configuration
+            ./hosts/nxzt
 
-          # Include home-manager
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              inherit extraSpecialArgs;
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${username} = import ./hosts/nxzt/home.nix;
-            };
-          }
-        ];
+            # Include home-manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                inherit extraSpecialArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${username} = import ./hosts/nxzt/home.nix;
+              };
+            }
+          ];
+        };
+        tera = nixpkgs.lib.nixosSystem {
+          inherit pkgs system;
+
+          modules = [
+            # Pass username to modules
+            ({ ... }: { config._module.args = { inherit username; }; })
+
+            # Impermanence
+            impermanence.nixosModules.impermanence
+
+            # host-specific configuration
+            ./hosts/tera
+
+            # Include home-manager
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                inherit extraSpecialArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${username} = import ./hosts/tera/home.nix;
+              };
+            }
+          ];
+        };
       };
 
       # Templatess to use with `nix flake init --template ...`
