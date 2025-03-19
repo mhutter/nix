@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   scriptWithDeps = name: deps:
     let
@@ -23,10 +23,7 @@ in
 with pkgs;
 {
   home.packages = [
-    (scriptWithDeps "argo-access" [ kubectl xclip xdg-utils ])
     (scriptWithDeps "remove-known-host" [ gnugrep gnused ])
-    (scriptWithDeps "socks-proxy" [ openssh ])
-    (scriptWithDeps "update-mirrors" [ ]) # technically needs update-mirrors but that is specific to Arch
     (scriptWithDeps "update-nix-stuff" [ ]) # nix and home-manager are already present
   ];
 }

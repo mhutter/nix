@@ -3,9 +3,7 @@
   home.packages = with pkgs; [
     kind
     kubectl
-    kubelogin-oidc # kubectl oidc-login
     kubernetes-helm
-    openshift # oc
   ];
 
   programs.kubecolor = {
@@ -22,6 +20,7 @@
     compdef kubecolor=kubectl
 
     # Add `cluster` command
+    # FIXME: get rid of "cattledog" term
     cluster() { cp ~/.config/cattledog/kubeconfigs/"$1" ~/.kube/config }
     _cluster() { _files -W ~/.config/cattledog/kubeconfigs -/; }
     compdef _cluster cluster

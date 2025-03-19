@@ -45,11 +45,6 @@ in
 
   programs.ripgrep.enable = true;
 
-  programs.rbw = {
-    enable = true;
-    settings = secrets.rbw-settings // { pinentry = pkgs.pinentry-curses; };
-  };
-
   services.syncthing = {
     enable = true;
     overrideDevices = false;
@@ -66,7 +61,6 @@ in
 
     # CLI Tools
     btop
-    d2
     dig
     dive
     entr

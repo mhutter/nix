@@ -1,4 +1,4 @@
-{ lib, pkgs, username, ... }:
+{ pkgs, username, ... }:
 
 let
   secrets = (import ../secrets.nix);
