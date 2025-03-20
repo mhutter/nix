@@ -1,4 +1,11 @@
-{ lib, username, ... }:
+{ config, lib, username, ... }:
+
+let
+  homeDir = config.users.users.${username}.home;
+  configDir = ".config/nix";
+  configPath = "${homeDir}/${configDir}";
+
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -6,37 +13,52 @@
   ];
 
   networking.hostName = "tera";
-  networking.hostId = "c989bdcb";
 
+  # Configure Impermanence
   fileSystems."/nix".neededForBoot = true;
   environment.persistence."/nix/persist" = {
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections"
       "/var/lib/bluetooth"
+      "/var/lib/docker"
       "/var/lib/nixos"
       "/var/log"
-      { mode = "0600"; directory = "/var/lib/tailscale"; }
+      { mode = "0700"; directory = "/var/db/sudo/lectured"; }
+      { mode = "0700"; directory = "/var/lib/tailscale"; }
     ];
     files = [
       "/etc/machine-id"
-      { parentDirectory = { mode = "0700"; }; file = "/etc/ssh/ssh_host_ed25519_key"; }
-      { parentDirectory = { mode = "0700"; }; file = "/etc/ssh/ssh_host_rsa_key"; }
+      # Some of the config must be readable by others so the parent dir cannot be 0700
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_rsa_key"
     ];
 
     users."${username}" = {
       directories = [
+	"code"
+	"go"
+	"safe"
+        ".cache/BraveSoftware"
+        ".config/BraveSoftware"
+        ".local/share/atuin"
+        ".local/share/zoxide"
+        ".local/state/syncthing"
         "Downloads"
         "Sync"
-        { mode = "0700"; directory = ".cache/BraveSoftware"; }
-        { mode = "0700"; directory = ".config/BraveSoftware"; }
-        { mode = "0700"; directory = ".config/nix"; }
+        configDir
         { mode = "0700"; directory = ".gnupg"; }
         { mode = "0700"; directory = ".ssh"; }
+      ];
+      files = [
+        ".zsh_history"
       ];
     };
   };
 
   # Graphics
   hardware.graphics.enable = true;
+
+  # Link NixOS configuration
+  environment.etc."nixos".source = configPath;
 }

@@ -118,11 +118,6 @@ in
     "$HOME/.local/bin"
   ];
 
-  # After activation, report changes to the profile.
-  home.activation.reportChanges = config.lib.dag.entryAnywhere ''
-    run nix store diff-closures $oldGenPath $newGenPath
-  '';
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
