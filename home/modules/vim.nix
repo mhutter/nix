@@ -11,13 +11,20 @@
     withNodeJs = true;
     # For whatever reason, the above does not make NodeJS available to LSP servers
     extraPackages = with pkgs; [
+      # Plugin runtimes
       nodejs
+
+      # Plugin dependencies
+      fzf
+      ripgrep
+
       # Language Server
       gopls
       jsonnet-language-server
       lua-language-server
       nil
       nixpkgs-fmt
+
       # rust-analyzer is installed via rustup
       # prettier is in default.nix
     ];
