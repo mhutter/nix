@@ -36,16 +36,23 @@ in
 
     users."${username}" = {
       directories = [
-	"code"
-	"go"
-	"safe"
         ".cache/BraveSoftware"
+        ".cache/nvim"
+        ".cache/sccache"
+        ".cargo"
         ".config/BraveSoftware"
+        ".config/nvim"
         ".local/share/atuin"
+        ".local/share/nvim"
         ".local/share/zoxide"
+        ".local/state/nvim"
         ".local/state/syncthing"
+        ".rustup"
         "Downloads"
         "Sync"
+        "code"
+        "go"
+        "safe"
         configDir
         { mode = "0700"; directory = ".gnupg"; }
         { mode = "0700"; directory = ".ssh"; }
