@@ -43,6 +43,7 @@ in
         ".cargo"
         ".config/BraveSoftware"
         ".config/nvim"
+        ".config/autorandr"
         ".local/share/atuin"
         ".local/share/nvim"
         ".local/share/zoxide"
