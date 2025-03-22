@@ -1,4 +1,4 @@
-{ config, lib, username, ... }:
+{ config, username, ... }:
 
 let
   homeDir = config.users.users.${username}.home;
@@ -10,6 +10,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ../../nixos
+    ../../nixos/notebook.nix
   ];
 
   networking.hostName = "tera";
