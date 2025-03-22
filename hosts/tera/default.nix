@@ -48,15 +48,18 @@ in
     users."${username}" = {
       directories = [
         ".cache/BraveSoftware"
+        ".cache/nix"
         ".cache/nvim"
         ".cache/sccache"
         ".cache/spotify"
         ".cargo"
         ".config/BraveSoftware"
         ".config/autorandr"
+        ".config/gh"
         ".config/nvim"
         ".config/spotify"
         ".local/share/atuin"
+        ".local/share/direnv"
         ".local/share/nvim"
         ".local/share/zoxide"
         ".local/state/nvim"
@@ -69,7 +72,9 @@ in
         "go"
         "safe"
         configDir
+        { mode = "0700"; directory = ".config/obsidian"; }
         { mode = "0700"; directory = ".gnupg"; }
+        { mode = "0700"; directory = ".local/share/TelegramDesktop"; }
         { mode = "0700"; directory = ".ssh"; }
       ];
       files = [
