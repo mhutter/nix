@@ -5,6 +5,10 @@ let
 
 in
 {
+  imports = [
+    ./modules/docker.nix
+  ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.consoleMode = "max";
@@ -12,6 +16,7 @@ in
 
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
+
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -45,7 +50,6 @@ in
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [
-      "docker"
       "wheel" # Enable ‘sudo’ for the user.
     ];
     shell = pkgs.zsh;
@@ -54,6 +58,13 @@ in
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERnSasc2L5AHp+uPCc+gCwF5HoPP5i2bnwwYycYfbpn mh@nxzt"
     ];
     initialHashedPassword = secrets.user.hashedPassword;
+  };
+  home-manager = {
+    extraSpecialArgs = {
+      inherit username;
+    };
+    useGlobalPkgs = true;
+    useUserPackages = true;
   };
 
   programs.zsh.enable = true;
@@ -88,8 +99,10 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
+  # FIXME: Should not be enabled by default
   services.openssh.enable = true;
 
+  # Enable Tailscale
   services.tailscale.enable = true;
 
   # Open ports in the firewall.
@@ -97,13 +110,6 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
-
-  virtualisation.docker = {
-    enable = true;
-    daemon.settings = {
-      registry-mirrors = [ "https://dockerhub.vshn.net" ];
-    };
-  };
 
   # Make nixos-rebuild find its config automatically
   environment.etc."nixos".source = "/home/${username}/.config/nix";

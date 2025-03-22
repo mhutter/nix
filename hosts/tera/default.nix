@@ -12,8 +12,14 @@ in
     ../../nixos
     ../../nixos/notebook.nix
   ];
+  home-manager.users.${username} = import ./home.nix;
 
   networking.hostName = "tera";
+
+  # TODO: Configure WirePlumber rules
+  # - Disable internal devices
+  # - Set priorities
+  # See https://wiki.archlinux.org/title/WirePlumber and `services.pipewire.wireplumber.extraConfig`
 
   # Configure Impermanence
   fileSystems."/nix".neededForBoot = true;
@@ -35,20 +41,27 @@ in
       "/etc/ssh/ssh_host_rsa_key"
     ];
 
+    # While this may be better off in the home-manager config with their
+    # respective modules; the NixOS module implementation seems much more
+    # powerful and straight-forward to use. So I'll bite the bullet and manage
+    # it all here.
     users."${username}" = {
       directories = [
         ".cache/BraveSoftware"
         ".cache/nvim"
         ".cache/sccache"
+        ".cache/spotify"
         ".cargo"
         ".config/BraveSoftware"
-        ".config/nvim"
         ".config/autorandr"
+        ".config/nvim"
+        ".config/spotify"
         ".local/share/atuin"
         ".local/share/nvim"
         ".local/share/zoxide"
         ".local/state/nvim"
         ".local/state/syncthing"
+        ".local/state/wireplumber"
         ".rustup"
         "Downloads"
         "Sync"

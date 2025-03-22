@@ -1,9 +1,10 @@
-{ lib, pkgs, ... }:
+{ username, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ../../nixos
   ];
+  home-manager.users.${username} = import ./home.nix;
 
   networking.hostName = "nxzt";
 
