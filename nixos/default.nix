@@ -46,6 +46,9 @@ in
   };
   security.rtkit.enable = true;
 
+  security.sudo.enable = false;
+  security.sudo-rs.enable = true;
+
   users.mutableUsers = false;
   users.users.${username} = {
     isNormalUser = true;
