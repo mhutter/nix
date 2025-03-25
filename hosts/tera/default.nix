@@ -55,6 +55,7 @@ in
         ".cargo"
         ".config/BraveSoftware"
         ".config/autorandr"
+        ".config/cachix"
         ".config/gh"
         ".config/nvim"
         ".config/spotify"

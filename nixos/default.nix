@@ -84,12 +84,18 @@ in
 
     # CLI tools
     alsa-utils
+    cachix
     curl
     gcc
     git
     vim
   ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-substituters = [ "https://mhu.cachix.org" ];
+    trusted-public-keys = [ "mhu.cachix.org-1:GFzDWQDpycEzXVNVk/ROC/vMu2Wl6AYTzDuiUq85OB0=" ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
