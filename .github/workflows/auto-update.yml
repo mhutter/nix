@@ -1,0 +1,43 @@
+---
+name: Auto Update
+
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch: {}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Populate secrets
+        run: |-
+          find . -type f -name '*.fake.nix' | \
+          while read -r fake; do
+            target="${fake/%.fake.nix/.nix}"
+            cp -v "$fake" "$target"
+          done
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: '${{ secrets.GITHUB_TOKEN }}'
+      - name: Set up Cachix
+        uses: cachix/cachix-action@v16
+        with:
+          name: mhu
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          skipPush: true
+
+      - name: Update dependencies
+        run: nix flake update
+
+      - name: Build  & push 'tera' system
+        run: |-
+          nix build \
+            --no-link --print-out-paths \
+            '.#nixosConfigurations.tera.config.system.build.toplevel' | \
+          cachix push mhu
+
+      # TODO: Add more systems here
