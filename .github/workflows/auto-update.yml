@@ -1,0 +1,70 @@
+---
+name: Auto Update
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "5 4 * * 2" # At 04:05 on Tuesday
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate a random run ID
+        uses: filipstefansson/uuid-action@v1
+        id: run-id
+      - name: Send start ping
+        run: >-
+          curl -fsS -m 10 --retry 5 "${{ secrets.PING_URL }}/start?rid=${{ steps.run-id.outputs.uuid }}"
+
+      # This is a workaround to provide enough space for the rather large builds for some of the systems (cuda, ollama, etc.)
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: "${{ github.head_ref }}"
+
+      - name: Populate secrets
+        run: |-
+          find . -type f -name '*.fake.nix' | \
+          while read -r fake; do
+            target="${fake/%.fake.nix/.nix}"
+            cp -v "$fake" "$target"
+          done
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Set up Cachix
+        uses: cachix/cachix-action@v16
+        with:
+          name: mhu
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          skipPush: true
+
+      - name: Update dependencies
+        run: nix flake update
+
+      - name: Build 'tera' system
+        run: nix build '.#nixosConfigurations.tera.config.system.build.toplevel'
+      - name: Push result to cachix
+        run: realpath ./result | cachix push mhu
+
+      - name: Build 'nxzt' system
+        run: nix build '.#nixosConfigurations.nxzt.config.system.build.toplevel'
+      - name: Push result to cachix
+        run: realpath ./result | cachix push mhu
+
+      - name: Git Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "cron: Update Systems"
+          file_pattern: "flake.lock"
+
+      - name: Send success ping
+        run: >-
+          curl -fsS -m 10 --retry 5 "${{ secrets.PING_URL }}?rid=${{ steps.run-id.outputs.uuid }}"
