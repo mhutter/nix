@@ -68,6 +68,7 @@ in
         ".local/state/syncthing"
         ".local/state/wireplumber"
         ".rustup"
+        "Brain"
         "Downloads"
         "Sync"
         "code"
