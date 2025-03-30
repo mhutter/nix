@@ -1,4 +1,4 @@
-{ config, username, ... }:
+{ config, pkgs, username, ... }:
 
 let
   homeDir = config.users.users.${username}.home;
@@ -28,6 +28,7 @@ in
     directories = [
       "/etc/NetworkManager/system-connections"
       "/var/lib/bluetooth"
+      "/var/lib/cups"
       "/var/lib/docker"
       "/var/lib/nixos"
       "/var/log"
@@ -86,6 +87,12 @@ in
 
   # Graphics
   hardware.graphics.enable = true;
+
+  # Printing
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [ epson-escpr ];
+  };
 
   # Link NixOS configuration
   environment.etc."nixos".source = configPath;
