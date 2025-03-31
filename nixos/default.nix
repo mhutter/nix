@@ -93,8 +93,14 @@ in
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-substituters = [ "https://mhu.cachix.org" ];
-    trusted-public-keys = [ "mhu.cachix.org-1:GFzDWQDpycEzXVNVk/ROC/vMu2Wl6AYTzDuiUq85OB0=" ];
+    substituters = [
+      "https://mhu.cachix.org/"
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+      "mhu.cachix.org-1:GFzDWQDpycEzXVNVk/ROC/vMu2Wl6AYTzDuiUq85OB0="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
