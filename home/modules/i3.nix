@@ -225,12 +225,22 @@ in
         {
           block = "disk_space";
           path = "/";
-          format = "$icon $available.eng(w:2) ";
+          format = "$icon /: $available.eng(w:1) ";
           info_type = "available";
           alert_unit = "GB";
           interval = 20;
-          warning = 20.0;
-          alert = 10.0;
+          warning = 2.0;
+          alert = 1.0;
+        }
+        {
+          block = "disk_space";
+          path = "/nix";
+          format = "$icon /nix: $available.eng(w:2) ";
+          info_type = "available";
+          alert_unit = "GB";
+          interval = 20;
+          warning = 200.0;
+          alert = 100.0;
         }
         {
           block = "memory";
