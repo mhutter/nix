@@ -47,7 +47,12 @@ in
   security.rtkit.enable = true;
 
   security.sudo.enable = false;
-  security.sudo-rs.enable = true;
+  security.sudo-rs = {
+    enable = true;
+    # Some helpers (like switching power modes) require `sudo` but cannot
+    # prompt for a password.
+    wheelNeedsPassword = false;
+  };
 
   users.mutableUsers = false;
   users.users.${username} = {
