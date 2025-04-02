@@ -11,6 +11,7 @@
       "/var/lib/cups"
       "/var/lib/docker"
       "/var/lib/nixos"
+      "/var/lib/systemd/timers"
       "/var/log"
       { mode = "0700"; directory = "/var/db/sudo/lectured"; }
       { mode = "0700"; directory = "/var/lib/tailscale"; }
@@ -35,11 +36,13 @@
         ".cache/spotify"
         ".cargo"
         ".config/BraveSoftware"
+        ".config/helm"
         ".config/autorandr"
         ".config/cachix"
         ".config/gh"
         ".config/nvim"
         ".config/spotify"
+        ".kube"
         ".local/share/atuin"
         ".local/share/direnv"
         ".local/share/nvim"
