@@ -54,6 +54,16 @@
         ]);
       };
 
+      notebookSystem = hostModule: nixpkgs.lib.nixosSystem {
+        inherit pkgs specialArgs system;
+
+        modules = [
+          impermanence.nixosModules.impermanence
+          home-manager.nixosModules.home-manager
+          hostModule
+        ];
+      };
+
     in
     {
       # homeConfigurations for systems that use home-manager directly and are
@@ -76,15 +86,8 @@
             ./hosts/nxzt
           ];
         };
-        tera = nixpkgs.lib.nixosSystem {
-          inherit pkgs specialArgs system;
-
-          modules = [
-            impermanence.nixosModules.impermanence
-            home-manager.nixosModules.home-manager
-            ./hosts/tera
-          ];
-        };
+        tera = notebookSystem ./hosts/tera;
+        rotz = notebookSystem ./hosts/rotz;
       };
 
       # Templatess to use with `nix flake init --template ...`

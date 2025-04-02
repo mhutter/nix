@@ -1,7 +1,11 @@
-{ pkgs, username, ... }:
+{ config, pkgs, username, ... }:
 
 let
   secrets = (import ../secrets.nix);
+
+  homeDir = config.users.users.${username}.home;
+  configDir = ".config/nix";
+  configPath = "${homeDir}/${configDir}";
 
 in
 {
@@ -45,6 +49,9 @@ in
     pulse.enable = true;
   };
   security.rtkit.enable = true;
+
+  # Graphics
+  hardware.graphics.enable = true;
 
   security.sudo.enable = false;
   security.sudo-rs = {
@@ -93,7 +100,7 @@ in
     curl
     gcc
     git
-    vim
+    xclip
   ];
 
   nix.settings = {
@@ -132,8 +139,8 @@ in
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  # Make nixos-rebuild find its config automatically
-  environment.etc."nixos".source = "/home/${username}/.config/nix";
+  # Link NixOS configuration
+  environment.etc."nixos".source = configPath;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

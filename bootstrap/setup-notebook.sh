@@ -3,7 +3,7 @@ set -e -u -o pipefail -x
 
 # Disk to use.
 # NOTE: THIS DISK WILL BE WIPED
-DISK="/dev/disk/by-id/nvme-SAMSUNG_MZVL21T0HCLR-00BL7_S64PNX0R805055"
+DISK="/dev/disk/by-id/nvme-SAMSUNG_MZVL22T0HDLB-00BLL_S75ZNF0XC04454"
 BOOT="${DISK}-part1"
 LUKS="${DISK}-part2"
 CRYPTROOT="/dev/mapper/cryptroot"
