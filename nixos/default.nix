@@ -68,10 +68,6 @@ in
       "wheel" # Enable ‘sudo’ for the user.
     ];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICl66G6py7JXAIqvcw0VW/Iqv1qmqWGRjjxTIzHOTUAg tera2025"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERnSasc2L5AHp+uPCc+gCwF5HoPP5i2bnwwYycYfbpn mh@nxzt"
-    ];
     initialHashedPassword = secrets.user.hashedPassword;
   };
   home-manager = {
@@ -125,10 +121,6 @@ in
   # };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # FIXME: Should not be enabled by default
-  services.openssh.enable = true;
 
   # Enable Tailscale
   services.tailscale.enable = true;
