@@ -55,13 +55,18 @@ in
 
     # CLI Tools
     btop
+    cachix
+    curl
     dig
     dive
     entr
     fd
+    gcc
     github-cli
     go-jsonnet
     httpie
+    icdiff
+    imagemagick_light
     jq
     just
     ncdu

@@ -87,6 +87,10 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Bare minimum
+    git
+    vim
+
     # Applications
     alacritty
     brave
@@ -96,10 +100,6 @@ in
 
     # CLI tools
     alsa-utils
-    cachix
-    curl
-    gcc
-    git
     xclip
   ];
 
