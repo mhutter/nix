@@ -76,7 +76,7 @@ in
   };
   home-manager = {
     extraSpecialArgs = {
-      inherit username;
+      inherit username secrets;
     };
     useGlobalPkgs = true;
     useUserPackages = true;

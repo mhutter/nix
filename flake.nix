@@ -22,7 +22,10 @@
       # extraArgs for home-manager
       extraSpecialArgs = { inherit username; };
       # specialArgs for NixOS
-      specialArgs = { inherit username; };
+      specialArgs = {
+        inherit username;
+        secrets = import ./secrets.nix { };
+      };
 
       commonUnfreePackages = [
         # Applications

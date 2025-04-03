@@ -1,10 +1,9 @@
 # Common Home-Manager configuration that is valid for all systems/user
 
-{ config, pkgs, username, ... }:
+{ pkgs, username, ... }:
 
 let
   homeDirectory = "/home/${username}";
-  secrets = (import ../secrets.nix);
 
 in
 {
@@ -29,11 +28,6 @@ in
     ./modules/vscode.nix
   ];
 
-  modules.ssh.sshHosts = secrets.sshHosts;
-  modules.git = {
-    userName = secrets.user.name;
-    userEmail = secrets.user.email;
-  };
 
   programs.gpg.enable = true;
   services.gpg-agent = {
