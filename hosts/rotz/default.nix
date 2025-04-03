@@ -8,7 +8,7 @@
     ../../nixos/persistence.nix
   ];
   home-manager.users.${username} = import ./home.nix;
-  networking.hostName = "tera";
+  networking.hostName = "rotz";
 
   # TODO: Configure WirePlumber rules
   # - Disable internal devices
@@ -19,5 +19,11 @@
   services.printing = {
     enable = true;
     drivers = with pkgs; [ epson-escpr ];
+  };
+
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ username ];
   };
 }

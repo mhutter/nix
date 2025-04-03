@@ -16,4 +16,6 @@
       "set-background" = "${pkgs.feh}/bin/feh --bg-fill ${../home/wallpaper.png}";
     };
   };
+
+  hardware.bluetooth.enable = true;
 }

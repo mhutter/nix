@@ -29,6 +29,8 @@
 
       commonUnfreePackages = [
         # Applications
+        "1password"
+        "1password-cli"
         "obsidian"
         "spotify"
         "steam"
