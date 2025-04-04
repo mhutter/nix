@@ -19,8 +19,6 @@
       system = "x86_64-linux";
       username = "mh";
 
-      # extraArgs for home-manager
-      extraSpecialArgs = { inherit username; };
       # specialArgs for NixOS
       specialArgs = {
         inherit username;
@@ -44,7 +42,15 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) commonUnfreePackages;
+        overlays = [
+          (import ./packages)
+        ];
       };
+
+      packages = {
+        cti = pkgs.callPackage ./packages/cti.nix { };
+      };
+
 
       cudaPkgs = import nixpkgs {
         inherit system;
@@ -94,6 +100,8 @@
         tera = notebookSystem ./hosts/tera;
         rotz = notebookSystem ./hosts/rotz;
       };
+
+      packages."${system}" = packages;
 
       # Templatess to use with `nix flake init --template ...`
       templates = {

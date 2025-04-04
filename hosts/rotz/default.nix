@@ -10,6 +10,10 @@
   home-manager.users.${username} = import ./home.nix;
   networking.hostName = "rotz";
 
+  environment.systemPackages = with pkgs; [
+    cti
+  ];
+
   # TODO: Configure WirePlumber rules
   # - Disable internal devices
   # - Set priorities
