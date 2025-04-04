@@ -125,6 +125,9 @@ in
   # Enable Tailscale
   services.tailscale.enable = true;
 
+  # Gnome keyring
+  services.gnome.gnome-keyring.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
