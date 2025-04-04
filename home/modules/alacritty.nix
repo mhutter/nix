@@ -37,7 +37,7 @@
     cursor.style.blinking = "Always";
 
     font = {
-      size = 11;
+      size = 9;
       normal.family = "DejaVuSansM Nerd Font";
     };
 
