@@ -125,8 +125,9 @@ in
   # Enable Tailscale
   services.tailscale.enable = true;
 
-  # Gnome keyring
+  # Some stuff required for desktop environments
   services.gnome.gnome-keyring.enable = true;
+  programs.dconf.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
