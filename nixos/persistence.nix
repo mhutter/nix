@@ -34,15 +34,19 @@
         ".cache/helm"
         ".cache/nix"
         ".cache/nvim"
+        ".cache/restic"
         ".cache/sccache"
         ".cache/spotify"
         ".cargo"
         ".config/1Password"
         ".config/BraveSoftware"
+        ".config/CTI"
         ".config/autorandr"
+        ".config/backrest"
         ".config/cachix"
         ".config/gh"
         ".config/helm"
+        ".config/nix"
         ".config/nvim"
         ".config/spotify"
         ".kube"
@@ -61,7 +65,6 @@
         "code"
         "go"
         "safe"
-        ".config/nix"
         { mode = "0700"; directory = ".config/obsidian"; }
         { mode = "0700"; directory = ".gnupg"; }
         { mode = "0700"; directory = ".local/share/TelegramDesktop"; }
