@@ -10,8 +10,10 @@
   home-manager.users.${username} = import ./home.nix;
   networking.hostName = "rotz";
 
+  networking.wireguard.enable = true;
   environment.systemPackages = with pkgs; [
     cti
+    wireguard-tools
   ];
   services.udev.packages = with pkgs; [ cti ];
 
