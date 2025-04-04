@@ -13,6 +13,7 @@
   environment.systemPackages = with pkgs; [
     cti
   ];
+  services.udev.packages = with pkgs; [ cti ];
 
   # TODO: Configure WirePlumber rules
   # - Disable internal devices
