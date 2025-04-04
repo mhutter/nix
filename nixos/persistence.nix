@@ -51,6 +51,7 @@
         ".config/spotify"
         ".kube"
         ".local/share/atuin"
+        ".local/share/backrest"
         ".local/share/direnv"
         ".local/share/helm"
         ".local/share/nvim"
@@ -68,6 +69,7 @@
         { mode = "0700"; directory = ".config/obsidian"; }
         { mode = "0700"; directory = ".gnupg"; }
         { mode = "0700"; directory = ".local/share/TelegramDesktop"; }
+        { mode = "0700"; directory = ".local/share/keyrings"; }
         { mode = "0700"; directory = ".ssh"; }
       ];
       files = [
