@@ -2,7 +2,12 @@
 #
 # Note that this module does NOT manage i3 itself, this is installed via the
 # os-native package manager.
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 
 let
   i3status-rust = (pkgs.i3status-rust.override { withNotmuch = false; });
@@ -14,7 +19,10 @@ in
     let
       i3status = "${i3status-rust}/bin/i3status-rs";
       fonts = {
-        names = [ "DejaVuSansM Nerd Font" "FontAwesome 11" ];
+        names = [
+          "DejaVuSansM Nerd Font"
+          "FontAwesome 11"
+        ];
         style = "Mono";
         size = 10.0;
       };
@@ -41,43 +49,54 @@ in
 
         startup = [
           # Start `dunst` notification daemon
-          { command = "${pkgs.dunst}/bin/dunst"; notification = false; }
+          {
+            command = "${pkgs.dunst}/bin/dunst";
+            notification = false;
+          }
           # Set background image
-          { command = "${pkgs.feh}/bin/feh --bg-fill ${wallpaper}"; notification = false; }
+          {
+            command = "${pkgs.feh}/bin/feh --bg-fill ${wallpaper}";
+            notification = false;
+          }
           # Start XDG autostart .desktop files using dex. See also
           # https://wiki.archlinux.org/index.php/XDG_Autostart
-          { command = "${pkgs.dex}/bin/dex --autostart --environment i3"; notification = false; }
+          {
+            command = "${pkgs.dex}/bin/dex --autostart --environment i3";
+            notification = false;
+          }
         ];
 
-        bars = [{
-          inherit (config.xsession.windowManager.i3.config) fonts;
-          statusCommand = "${i3status} config-default.toml";
-          colors = {
-            # background $bg-color
-            # separator #757575
-            #                    border             background         text
-            # focused_workspace  $bg-color          $bg-color          $text-color
-            # inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-            # urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-            background = bg-color;
-            separator = "#757575";
-            focusedWorkspace = {
-              border = bg-color;
+        bars = [
+          {
+            inherit (config.xsession.windowManager.i3.config) fonts;
+            statusCommand = "${i3status} config-default.toml";
+            colors = {
+              # background $bg-color
+              # separator #757575
+              #                    border             background         text
+              # focused_workspace  $bg-color          $bg-color          $text-color
+              # inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+              # urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
               background = bg-color;
-              text = text-color;
+              separator = "#757575";
+              focusedWorkspace = {
+                border = bg-color;
+                background = bg-color;
+                text = text-color;
+              };
+              inactiveWorkspace = {
+                border = inactive-bg-color;
+                background = inactive-bg-color;
+                text = inactive-text-color;
+              };
+              urgentWorkspace = {
+                border = urgent-bg-color;
+                background = urgent-bg-color;
+                text = text-color;
+              };
             };
-            inactiveWorkspace = {
-              border = inactive-bg-color;
-              background = inactive-bg-color;
-              text = inactive-text-color;
-            };
-            urgentWorkspace = {
-              border = urgent-bg-color;
-              background = urgent-bg-color;
-              text = text-color;
-            };
-          };
-        }];
+          }
+        ];
 
         keybindings = lib.mkOptionDefault {
           # Make media keys work
@@ -150,18 +169,60 @@ in
 
         window.commands = [
           # Custom window configs - use `xprop` to find the properties
-          { criteria = { class = "(?i)nm-connection-editor"; }; command = "floating enable"; }
-          { criteria = { class = "Imager"; }; command = "floating enable"; }
-          { criteria = { class = "Qemu-system-x86_64"; }; command = "floating enable"; }
-          { criteria = { class = "XCalc"; }; command = "floating enable"; }
-          { criteria = { class = "Gnuplot"; }; command = "floating enable"; }
+          {
+            criteria = {
+              class = "(?i)nm-connection-editor";
+            };
+            command = "floating enable";
+          }
+          {
+            criteria = {
+              class = "Imager";
+            };
+            command = "floating enable";
+          }
+          {
+            criteria = {
+              class = "Qemu-system-x86_64";
+            };
+            command = "floating enable";
+          }
+          {
+            criteria = {
+              class = "XCalc";
+            };
+            command = "floating enable";
+          }
+          {
+            criteria = {
+              class = "Gnuplot";
+            };
+            command = "floating enable";
+          }
 
           # Zoom - there are a lot of small popup windows, so we set
           # EVERYTHING to float, and only disable it for the main- and meeting
           # window
-          { criteria = { class = "zoom"; }; command = "floating enable"; }
-          { criteria = { class = "zoom"; title = "Zoom Workplace - .*"; }; command = "floating disable"; }
-          { criteria = { class = "zoom"; title = "Meeting"; }; command = "floating disable"; }
+          {
+            criteria = {
+              class = "zoom";
+            };
+            command = "floating enable";
+          }
+          {
+            criteria = {
+              class = "zoom";
+              title = "Zoom Workplace - .*";
+            };
+            command = "floating disable";
+          }
+          {
+            criteria = {
+              class = "zoom";
+              title = "Meeting";
+            };
+            command = "floating disable";
+          }
         ];
       };
     };

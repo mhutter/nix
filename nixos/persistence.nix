@@ -13,8 +13,14 @@
       "/var/lib/nixos"
       "/var/lib/systemd/timers"
       "/var/log"
-      { mode = "0700"; directory = "/var/db/sudo/lectured"; }
-      { mode = "0700"; directory = "/var/lib/tailscale"; }
+      {
+        mode = "0700";
+        directory = "/var/db/sudo/lectured";
+      }
+      {
+        mode = "0700";
+        directory = "/var/lib/tailscale";
+      }
     ];
     files = [
       "/etc/machine-id"
@@ -66,11 +72,26 @@
         "code"
         "go"
         "safe"
-        { mode = "0700"; directory = ".config/obsidian"; }
-        { mode = "0700"; directory = ".gnupg"; }
-        { mode = "0700"; directory = ".local/share/TelegramDesktop"; }
-        { mode = "0700"; directory = ".local/share/keyrings"; }
-        { mode = "0700"; directory = ".ssh"; }
+        {
+          mode = "0700";
+          directory = ".config/obsidian";
+        }
+        {
+          mode = "0700";
+          directory = ".gnupg";
+        }
+        {
+          mode = "0700";
+          directory = ".local/share/TelegramDesktop";
+        }
+        {
+          mode = "0700";
+          directory = ".local/share/keyrings";
+        }
+        {
+          mode = "0700";
+          directory = ".ssh";
+        }
       ];
       files = [
         ".zsh_history"

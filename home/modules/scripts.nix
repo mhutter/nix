@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
-  scriptWithDeps = name: deps:
+  scriptWithDeps =
+    name: deps:
     let
       # Joining paths in Nix is finnicky, so fuck around
       # see: https://gist.github.com/CMCDragonkai/de84aece83f8521d087416fa21e34df4
@@ -23,7 +24,10 @@ in
 with pkgs;
 {
   home.packages = [
-    (scriptWithDeps "remove-known-host" [ gnugrep gnused ])
+    (scriptWithDeps "remove-known-host" [
+      gnugrep
+      gnused
+    ])
     (scriptWithDeps "update-nix-stuff" [ ]) # nix and home-manager are already present
   ];
 }

@@ -1,25 +1,26 @@
-{ fetchurl
-, stdenv
-, autoPatchelfHook
-, makeWrapper
-, lib
+{
+  fetchurl,
+  stdenv,
+  autoPatchelfHook,
+  makeWrapper,
+  lib,
 
   # Packages
-, alsa-lib
-, curl
-, dpkg
-, gdk-pixbuf
-, glib
-, gtk3
-, hidapi
-, libGL
-, libX11
-, libXScrnSaver
-, libpulseaudio
-, libresample
-, libuuid
-, openssl
-, systemdLibs
+  alsa-lib,
+  curl,
+  dpkg,
+  gdk-pixbuf,
+  glib,
+  gtk3,
+  hidapi,
+  libGL,
+  libX11,
+  libXScrnSaver,
+  libpulseaudio,
+  libresample,
+  libuuid,
+  openssl,
+  systemdLibs,
 }:
 let
   buildInputs = [
@@ -77,4 +78,3 @@ stdenv.mkDerivation {
     mainProgram = "pbxcti";
   };
 }
-

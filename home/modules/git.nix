@@ -1,4 +1,9 @@
-{ pkgs, lib, secrets, ... }:
+{
+  pkgs,
+  lib,
+  secrets,
+  ...
+}:
 
 {
   home.packages = with pkgs; [ git-crypt ];

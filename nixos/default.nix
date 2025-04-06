@@ -1,4 +1,9 @@
-{ config, pkgs, username, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 
 let
   secrets = (import ../secrets.nix);
@@ -101,7 +106,10 @@ in
 
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     substituters = [
       "https://mhu.cachix.org/"
       "https://nix-community.cachix.org"

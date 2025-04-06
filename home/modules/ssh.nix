@@ -1,4 +1,9 @@
-{ secrets, lib, pkgs, ... }:
+{
+  secrets,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   services.ssh-agent.enable = true;
@@ -32,7 +37,9 @@
       "~/.ssh/vshn_config"
     ];
     matchBlocks = secrets.sshHosts // {
-      "luna" = { forwardAgent = true; };
+      "luna" = {
+        forwardAgent = true;
+      };
     };
   };
 

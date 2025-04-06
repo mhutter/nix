@@ -23,7 +23,7 @@
       jsonnet-language-server
       lua-language-server
       nil
-      nixpkgs-fmt
+      nixfmt-rfc-style
 
       # rust-analyzer is installed via rustup
       # prettier is in default.nix

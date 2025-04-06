@@ -13,7 +13,13 @@
     impermanence.url = "github:nix-community/impermanence";
   };
 
-  outputs = { self, nixpkgs, home-manager, impermanence }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      impermanence,
+    }:
     let
       # Commonly used variables
       system = "x86_64-linux";
@@ -51,29 +57,35 @@
         cti = pkgs.callPackage ./packages/cti.nix { };
       };
 
-
       cudaPkgs = import nixpkgs {
         inherit system;
         config.cudaSupport = true;
-        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) (commonUnfreePackages ++ [
-          "blender"
-          "cuda_cudart"
-          "cuda_nvcc"
-          "cuda_cccl"
-          "libcublas"
-          "nvidia-x11"
-        ]);
+        config.allowUnfreePredicate =
+          pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) (
+            commonUnfreePackages
+            ++ [
+              "blender"
+              "cuda_cudart"
+              "cuda_nvcc"
+              "cuda_cccl"
+              "libcublas"
+              "nvidia-x11"
+            ]
+          );
       };
 
-      notebookSystem = hostModule: nixpkgs.lib.nixosSystem {
-        inherit pkgs specialArgs system;
+      notebookSystem =
+        hostModule:
+        nixpkgs.lib.nixosSystem {
+          inherit pkgs specialArgs system;
 
-        modules = [
-          impermanence.nixosModules.impermanence
-          home-manager.nixosModules.home-manager
-          hostModule
-        ];
-      };
+          modules = [
+            impermanence.nixosModules.impermanence
+            home-manager.nixosModules.home-manager
+            hostModule
+          ];
+        };
 
     in
     {
@@ -110,5 +122,7 @@
           path = ./templates/default;
         };
       };
+
+      formatter."${system}" = pkgs.nixfmt-rfc-style;
     };
 }
