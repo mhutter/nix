@@ -110,6 +110,7 @@ in
       "nix-command"
       "flakes"
     ];
+    trusted-users = [ username ];
     substituters = [
       "https://mhu.cachix.org/"
       "https://nix-community.cachix.org"
