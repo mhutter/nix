@@ -8,6 +8,7 @@
     directories = [
       "/etc/NetworkManager/system-connections"
       "/var/lib/bluetooth"
+      "/var/lib/boltd"
       "/var/lib/cups"
       "/var/lib/docker"
       "/var/lib/nixos"

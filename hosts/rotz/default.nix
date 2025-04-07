@@ -22,6 +22,9 @@
   # - Set priorities
   # See https://wiki.archlinux.org/title/WirePlumber and `services.pipewire.wireplumber.extraConfig`
 
+  services.fwupd.enable = true;
+  services.hardware.bolt.enable = true;
+
   # Printing
   services.printing = {
     enable = true;
