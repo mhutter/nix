@@ -60,12 +60,12 @@ in
     dive
     entr
     fd
+    flameshot
     gcc
     github-cli
     go-jsonnet
     httpie
     icdiff
-    imagemagick_light
     jq
     just
     ncdu
