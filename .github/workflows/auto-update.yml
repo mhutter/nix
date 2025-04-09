@@ -51,8 +51,8 @@ jobs:
       - name: Update dependencies
         run: nix flake update
 
-      - name: Build 'tera' system
-        run: nix build '.#nixosConfigurations.tera.config.system.build.toplevel'
+      - name: Build 'rotz' system
+        run: nix build '.#nixosConfigurations.rotz.config.system.build.toplevel'
       - name: Push result to cachix
         run: realpath ./result | cachix push mhu
 
