@@ -37,6 +37,7 @@
     users."${username}" = {
       directories = [
         ".cache/BraveSoftware"
+        ".cache/deno"
         ".cache/go-build"
         ".cache/helm"
         ".cache/nix"
@@ -44,6 +45,7 @@
         ".cache/restic"
         ".cache/sccache"
         ".cache/spotify"
+        ".cache/wasm-pack"
         ".cargo"
         ".config/1Password"
         ".config/BraveSoftware"
