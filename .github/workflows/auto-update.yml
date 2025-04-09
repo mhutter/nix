@@ -41,12 +41,14 @@ jobs:
         uses: cachix/install-nix-action@v31
         with:
           github_access_token: "${{ secrets.GITHUB_TOKEN }}"
+
       - name: Set up Cachix
         uses: cachix/cachix-action@v16
         with:
           name: mhu
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           skipPush: true
+          extraPullNames: nix-community
 
       - name: Update dependencies
         run: nix flake update
