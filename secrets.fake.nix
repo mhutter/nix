@@ -2,6 +2,7 @@ rec {
   user = {
     name = "";
     email = "";
+    workEmail = "";
     hashedPassword = "";
   };
 
