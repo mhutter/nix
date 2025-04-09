@@ -50,7 +50,6 @@
         ".config/CTI"
         ".config/autorandr"
         ".config/backrest"
-        ".config/cachix"
         ".config/gh"
         ".config/helm"
         ".config/nix"

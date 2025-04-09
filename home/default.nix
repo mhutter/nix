@@ -54,7 +54,6 @@ in
 
     # CLI Tools
     btop
-    cachix
     curl
     dig
     dive
