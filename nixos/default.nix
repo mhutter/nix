@@ -67,6 +67,8 @@ in
     wheelNeedsPassword = false;
   };
 
+  security.pki.certificates = secrets.customCACertificates;
+
   users.mutableUsers = false;
   users.users.${username} = {
     isNormalUser = true;

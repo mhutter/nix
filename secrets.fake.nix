@@ -12,4 +12,5 @@ rec {
   };
 
   sshHosts = { };
+  customCACertificates = [ ];
 }
