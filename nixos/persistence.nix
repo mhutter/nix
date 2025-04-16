@@ -96,6 +96,7 @@
         }
       ];
       files = [
+        ".config/gtk-3.0/bookmarks"
         ".zsh_history"
       ];
     };

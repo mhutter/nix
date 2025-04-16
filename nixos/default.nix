@@ -101,6 +101,7 @@ in
     firefox
     openmw
     telegram-desktop
+    xfce.thunar
 
     # CLI tools
     alsa-utils
