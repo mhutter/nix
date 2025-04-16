@@ -12,7 +12,9 @@
 
   networking.wireguard.enable = true;
   environment.systemPackages = with pkgs; [
+    citrix_workspace_24_08_0
     cti
+    remmina
     wireguard-tools
   ];
   services.udev.packages = with pkgs; [ cti ];

@@ -35,6 +35,7 @@
         # Applications
         "1password"
         "1password-cli"
+        "citrix-workspace"
         "obsidian"
         "spotify"
         "steam"
