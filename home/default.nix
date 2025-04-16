@@ -70,6 +70,7 @@ in
     just
     ncdu
     nodePackages.prettier
+    openssl
     pwgen
     shellcheck
     unzip
