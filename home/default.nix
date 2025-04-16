@@ -55,6 +55,7 @@ in
     # CLI Tools
     btop
     curl
+    d2
     dig
     dive
     entr
