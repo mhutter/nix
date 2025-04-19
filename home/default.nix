@@ -60,8 +60,8 @@ in
     dive
     entr
     fd
+    file
     flameshot
-    gcc
     github-cli
     go-jsonnet
     httpie

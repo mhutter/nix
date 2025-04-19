@@ -8,7 +8,7 @@
     cargo-nextest
     cargo-outdated
     cargo-watch
-    cargo-wizard
+    gcc
     rustup
   ];
 
