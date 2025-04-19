@@ -52,6 +52,7 @@
         ".config/CTI"
         ".config/autorandr"
         ".config/backrest"
+        ".config/gcloud"
         ".config/gh"
         ".config/helm"
         ".config/nix"
@@ -67,6 +68,7 @@
         ".local/state/nvim"
         ".local/state/syncthing"
         ".local/state/wireplumber"
+        ".nx/config"
         ".rustup"
         "Brain"
         "Downloads"
@@ -77,6 +79,14 @@
         {
           mode = "0700";
           directory = ".config/obsidian";
+        }
+        {
+          mode = "0700";
+          directory = ".config/op";
+        }
+        {
+          mode = "0700";
+          directory = ".config/remmina";
         }
         {
           mode = "0700";

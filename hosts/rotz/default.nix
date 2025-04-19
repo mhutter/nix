@@ -12,9 +12,14 @@
 
   networking.wireguard.enable = true;
   environment.systemPackages = with pkgs; [
+    cifs-utils
     citrix_workspace_24_08_0
     cti
+    google-cloud-sdk
+    nomachine-client
+    openconnect
     remmina
+    samba
     wireguard-tools
   ];
   services.udev.packages = with pkgs; [ cti ];
