@@ -57,6 +57,7 @@
 
       packages = {
         cti = pkgs.callPackage ./packages/cti.nix { };
+        omnissa-horizon = pkgs.callPackage ./packages/omnissa-horizon.nix { };
       };
 
       cudaPkgs = import nixpkgs {

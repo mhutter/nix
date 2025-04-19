@@ -14,13 +14,16 @@
   environment.systemPackages = with pkgs; [
     cifs-utils
     citrix_workspace_24_08_0
-    cti
     google-cloud-sdk
     nomachine-client
     openconnect
     remmina
     samba
     wireguard-tools
+
+    # Custom packages
+    cti
+    omnissa-horizon
   ];
   services.udev.packages = with pkgs; [ cti ];
 
