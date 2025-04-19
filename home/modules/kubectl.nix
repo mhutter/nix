@@ -21,8 +21,8 @@
 
     # Add `cluster` command
     # FIXME: get rid of "cattledog" term
-    cluster() { cp ~/.config/cattledog/kubeconfigs/"$1" ~/.kube/config }
-    _cluster() { _files -W ~/.config/cattledog/kubeconfigs -/; }
+    cluster() { cp ~/.config/kubeconfigs/"$1" ~/.kube/config }
+    _cluster() { _files -W ~/.config/kubeconfigs -/; }
     compdef _cluster cluster
 
     function k-decode-secret() {

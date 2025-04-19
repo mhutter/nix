@@ -55,6 +55,7 @@
         ".config/gcloud"
         ".config/gh"
         ".config/helm"
+        ".config/kubeconfigs"
         ".config/nix"
         ".config/nvim"
         ".config/spotify"
