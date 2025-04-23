@@ -43,7 +43,7 @@
     };
   };
 
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     function ssh() {
       TERM=xterm-256color ${pkgs.openssh}/bin/ssh -t $@ "tmux -2 new-session -A -s mh || bash"
     }

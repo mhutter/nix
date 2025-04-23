@@ -15,7 +15,7 @@
     ka = "k --as=cluster-admin";
     kubens = "k config set-context --current --namespace";
   };
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     # Fix completions for kubecolor aliases
     compdef kubecolor=kubectl
 

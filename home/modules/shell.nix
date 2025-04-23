@@ -31,7 +31,7 @@ in
 
     # Note: In multiline strings, the $ sign can be escaped by prefixing
     # it with `''`
-    initExtra = ''
+    initContent = ''
       # more bash-like keybinds (^W etc)
       bindkey -e
       bindkey "^[[3~" delete-char
