@@ -35,6 +35,12 @@
   services.fwupd.enable = true;
   services.hardware.bolt.enable = true;
 
+  hardware.graphics.extraPackages = with pkgs; [
+    intel-media-driver
+    vpl-gpu-rt
+  ];
+  environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
+
   # Printing
   services.printing = {
     enable = true;
