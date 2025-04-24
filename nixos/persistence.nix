@@ -11,6 +11,7 @@
       "/var/lib/boltd"
       "/var/lib/cups"
       "/var/lib/docker"
+      "/var/lib/libvirt/"
       "/var/lib/nixos"
       "/var/lib/systemd/timers"
       "/var/log"

@@ -8,16 +8,24 @@
     ../../nixos/persistence.nix
   ];
   home-manager.users.${username} = import ./home.nix;
-  networking.hostName = "rotz";
 
-  networking.wireguard.enable = true;
+  networking = {
+    hostName = "rotz";
+    wireguard.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
-    cifs-utils
+    # Applications
     citrix_workspace_24_08_0
-    google-cloud-sdk
     nomachine-client
     openconnect
     remmina
+
+    # CLI apps
+    google-cloud-sdk
+
+    # Utilities
+    cifs-utils
     samba
     wireguard-tools
 
@@ -40,6 +48,14 @@
     vpl-gpu-rt
   ];
   environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
+
+  # Virtualisation
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ username ];
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [ username ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # Printing
   services.printing = {
