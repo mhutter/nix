@@ -71,6 +71,7 @@
         ".local/state/syncthing"
         ".local/state/wireplumber"
         ".nx/config"
+        ".omnissa"
         ".rustup"
         "Brain"
         "Downloads"

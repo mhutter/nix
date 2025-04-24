@@ -43,6 +43,7 @@
         "steam-original"
         "steam-run"
         "steam-unwrapped"
+        "omnissa-horizon-client"
         "vscode"
       ];
 
@@ -57,7 +58,7 @@
 
       packages = {
         cti = pkgs.callPackage ./packages/cti.nix { };
-        omnissa-horizon = pkgs.callPackage ./packages/omnissa-horizon.nix { };
+        omnissa-horizon-client = pkgs.callPackage ./packages/omnissa-horizon-client.nix { };
       };
 
       cudaPkgs = import nixpkgs {

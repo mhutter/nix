@@ -20,6 +20,7 @@
     nomachine-client
     openconnect
     remmina
+    omnissa-horizon-client
 
     # CLI apps
     google-cloud-sdk
@@ -31,7 +32,6 @@
 
     # Custom packages
     cti
-    omnissa-horizon
   ];
   services.udev.packages = with pkgs; [ cti ];
 
