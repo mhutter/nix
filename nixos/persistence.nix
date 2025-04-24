@@ -7,6 +7,7 @@
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections"
+      "/var/lib/AccountsService"
       "/var/lib/bluetooth"
       "/var/lib/boltd"
       "/var/lib/cups"
