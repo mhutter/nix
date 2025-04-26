@@ -56,6 +56,7 @@
         ".config/backrest"
         ".config/gcloud"
         ".config/gh"
+        ".config/gtk-3.0"
         ".config/helm"
         ".config/kubeconfigs"
         ".config/nix"
@@ -110,7 +111,7 @@
         }
       ];
       files = [
-        ".config/gtk-3.0/bookmarks"
+        ".docker/config.json"
         ".zsh_history"
       ];
     };
