@@ -68,6 +68,9 @@ in
   };
 
   security.pki.certificates = secrets.customCACertificates;
+  # Ensure i3lock can unlock the system again
+  # c.f. https://github.com/NixOS/nixpkgs/issues/401891
+  security.pam.services.i3lock.enable = true;
 
   users.mutableUsers = false;
   users.users.${username} = {
