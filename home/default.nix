@@ -53,7 +53,6 @@ in
     spotify
 
     # CLI Tools
-    btop
     curl
     d2
     dig
@@ -90,6 +89,8 @@ in
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  programs.btop.enable = true;
 
   # Ensure NixOS can pick up fonts installed by HM
   fonts.fontconfig.enable = true;

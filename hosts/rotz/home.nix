@@ -12,4 +12,6 @@
       uris = [ "qemu:///system" ];
     };
   };
+
+  programs.btop.settings.disks_filter = "/ /nix /boot";
 }
