@@ -167,63 +167,21 @@ in
 
         };
 
-        window.commands = [
-          # Custom window configs - use `xprop` to find the properties
-          {
-            criteria = {
-              class = "(?i)nm-connection-editor";
-            };
-            command = "floating enable";
-          }
-          {
-            criteria = {
-              class = "Imager";
-            };
-            command = "floating enable";
-          }
-          {
-            criteria = {
-              class = "Qemu-system-x86_64";
-            };
-            command = "floating enable";
-          }
-          {
-            criteria = {
-              class = "XCalc";
-            };
-            command = "floating enable";
-          }
-          {
-            criteria = {
-              class = "Gnuplot";
-            };
-            command = "floating enable";
-          }
-
-          # Zoom - there are a lot of small popup windows, so we set
-          # EVERYTHING to float, and only disable it for the main- and meeting
-          # window
-          {
-            criteria = {
-              class = "zoom";
-            };
-            command = "floating enable";
-          }
-          {
-            criteria = {
-              class = "zoom";
-              title = "Zoom Workplace - .*";
-            };
-            command = "floating disable";
-          }
-          {
-            criteria = {
-              class = "zoom";
-              title = "Meeting";
-            };
-            command = "floating disable";
-          }
-        ];
+        # Custom window configs - use `xprop` to find the properties
+        window.commands =
+          map
+            (criteria: {
+              inherit criteria;
+              command = "floating enable";
+            })
+            [
+              { class = "(?i)horizon-client"; }
+              { class = "(?i)nm-connection-editor"; }
+              { class = "Gnuplot"; }
+              { class = "Imager"; }
+              { class = "Qemu-system-x86_64"; }
+              { class = "XCalc"; }
+            ];
       };
     };
 
