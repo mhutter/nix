@@ -55,6 +55,7 @@
       ci = "commit -v -s";
       co = "checkout";
       dc = "diff --check";
+      done = "!f() { git checkout \${1:-main} && git pull --prune && git branch -D @{-1}; }; f";
       fix = "commit --fixup";
       hist = "log --graph --full-history --all --color --pretty=format:'%x1b[33m%h%x09%C(blue)(%ar)%C(reset)%x09%x1b[32m%d%x1b[0m%x20%s%x20%C(dim white)-%x20%an%C(reset)'";
       lg = "log --oneline --decorate --all --graph";
