@@ -51,24 +51,24 @@
     };
 
     aliases = {
+      brnach = "branch";
       ci = "commit -v -s";
       co = "checkout";
-      st = "status";
-      s = "status -s";
-      ol = "log --oneline --graph";
-      lg = "log --oneline --decorate --all --graph";
-      hist = "log --graph --full-history --all --color --pretty=format:'%x1b[33m%h%x09%C(blue)(%ar)%C(reset)%x09%x1b[32m%d%x1b[0m%x20%s%x20%C(dim white)-%x20%an%C(reset)'";
       dc = "diff --check";
-      tag-dates = "log --tags --simplify-by-decoration --pretty=\"format:%ai %d\"";
-      log-sig = "log --pretty=\"format:%h %G? %aN %s\"";
-      unstage = "reset HEAD";
-      staged = "diff --staged";
-      yolopush = "push --force-with-lease";
       fix = "commit --fixup";
-      squ = "commit --squash";
-      ri = "rebase -i --autosquash";
+      hist = "log --graph --full-history --all --color --pretty=format:'%x1b[33m%h%x09%C(blue)(%ar)%C(reset)%x09%x1b[32m%d%x1b[0m%x20%s%x20%C(dim white)-%x20%an%C(reset)'";
+      lg = "log --oneline --decorate --all --graph";
+      log-sig = "log --pretty=\"format:%h %G? %aN %s\"";
+      ol = "log --oneline --graph";
       pp = "pull --prune";
-      brnach = "branch";
+      ri = "rebase -i --autosquash";
+      s = "status -s";
+      squ = "commit --squash";
+      st = "status";
+      staged = "diff --staged";
+      tag-dates = "log --tags --simplify-by-decoration --pretty=\"format:%ai %d\"";
+      unstage = "reset HEAD";
+      yolopush = "push --force-with-lease";
     };
 
     ignores = [
