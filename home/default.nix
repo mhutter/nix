@@ -33,7 +33,7 @@ in
     enable = true;
     defaultCacheTtl = 43200;
     maxCacheTtl = 43200;
-    pinentryPackage = pkgs.pinentry-curses;
+    pinentry.package = pkgs.pinentry-curses;
   };
 
   programs.ripgrep.enable = true;
