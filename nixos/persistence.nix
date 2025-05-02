@@ -112,7 +112,6 @@
       ];
       files = [
         ".docker/config.json"
-        ".zsh_history"
       ];
     };
   };
