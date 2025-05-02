@@ -23,7 +23,11 @@
     omnissa-horizon-client
 
     # CLI apps
-    google-cloud-sdk
+    (google-cloud-sdk.withExtraComponents (
+      with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
+    ))
+    kubeconform
+    mgitstatus
 
     # Utilities
     cifs-utils
@@ -62,6 +66,9 @@
     enable = true;
     drivers = with pkgs; [ epson-escpr ];
   };
+
+  # Samba share browsing
+  services.gvfs.enable = true;
 
   programs._1password.enable = true;
   programs._1password-gui = {
