@@ -18,13 +18,13 @@
   };
 
   # AI
-  services.ollama = {
-    enable = true;
-    host = "100.112.141.2";
-  };
-  environment.variables = {
-    OLLAMA_HOST = "100.112.141.2";
-  };
+  # services.ollama = {
+  #   enable = true;
+  #   host = "100.112.141.2";
+  # };
+  # environment.variables = {
+  #   OLLAMA_HOST = "100.112.141.2";
+  # };
 
   # Gaming
   programs.steam = {

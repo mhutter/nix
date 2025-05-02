@@ -64,6 +64,7 @@
       cudaPkgs = import nixpkgs {
         inherit system;
         config.cudaSupport = true;
+        cudaCapabilities = [ "8.9" ];
         config.allowUnfreePredicate =
           pkg:
           builtins.elem (nixpkgs.lib.getName pkg) (
