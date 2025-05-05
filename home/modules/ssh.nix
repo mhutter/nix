@@ -33,8 +33,6 @@
 
     includes = [
       "~/.ssh/local_config"
-      "~/.ssh/sshop_config"
-      "~/.ssh/vshn_config"
     ];
     matchBlocks = secrets.sshHosts // {
       "luna" = {
