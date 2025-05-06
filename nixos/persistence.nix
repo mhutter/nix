@@ -110,9 +110,6 @@
           directory = ".ssh";
         }
       ];
-      files = [
-        ".docker/config.json"
-      ];
     };
   };
 }
