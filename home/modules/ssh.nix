@@ -38,6 +38,11 @@
       "luna" = {
         forwardAgent = true;
       };
+      "source.developers.google.com" = {
+        extraOptions = {
+          "HostKeyAlgorithms" = "ecdsa-sha2-nistp256";
+        };
+      };
     };
   };
 
