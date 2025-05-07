@@ -71,6 +71,7 @@ in
     nodePackages.prettier
     openssl
     pwgen
+    python3
     shellcheck
     unzip
     uv
