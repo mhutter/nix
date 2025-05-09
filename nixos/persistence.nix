@@ -47,6 +47,7 @@
         ".cache/restic"
         ".cache/sccache"
         ".cache/spotify"
+        ".cache/uv"
         ".cache/wasm-pack"
         ".cargo"
         ".config/1Password"
