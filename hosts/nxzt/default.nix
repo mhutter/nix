@@ -8,6 +8,13 @@
 
   networking.hostName = "nxzt";
 
+  # Remote Desktop
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "${pkgs.i3}/bin/i3";
+    openFirewall = true;
+  };
+
   # Graphics
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
