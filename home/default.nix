@@ -63,7 +63,6 @@ in
     flameshot
     github-cli
     go-jsonnet
-    httpie
     icdiff
     jq
     just
@@ -75,6 +74,7 @@ in
     shellcheck
     unzip
     uv
+    xh
     yamllint
     yq-go
 
