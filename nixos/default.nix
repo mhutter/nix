@@ -77,6 +77,7 @@ in
     isNormalUser = true;
     extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
+      "networkmanager" # Allow management of network settings
     ];
     shell = pkgs.zsh;
     initialHashedPassword = secrets.user.hashedPassword;
