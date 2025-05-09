@@ -75,4 +75,6 @@
     enable = true;
     polkitPolicyOwners = [ username ];
   };
+
+  programs.steam.enable = true;
 }
