@@ -122,6 +122,7 @@ in
 
   home.sessionVariables = {
     BROWSER = "brave";
+    DFT_OVERRIDE = "*.snap:YAML";
   };
   home.sessionPath = [
     "$HOME/bin"
