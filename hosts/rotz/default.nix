@@ -55,12 +55,16 @@
   environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
 
   # Virtualisation
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ username ];
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = [ pkgs.virtiofsd ];
+    };
+    spiceUSBRedirection.enable = true;
+  };
   programs.virt-manager.enable = true;
+  users.extraGroups.vboxusers.members = [ username ];
   users.groups.libvirtd.members = [ username ];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
 
   # Printing
   services.printing = {
