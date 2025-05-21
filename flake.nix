@@ -56,10 +56,7 @@
         ];
       };
 
-      packages = {
-        cti = pkgs.callPackage ./packages/cti.nix { };
-        omnissa-horizon-client = pkgs.callPackage ./packages/omnissa-horizon-client.nix { };
-      };
+      packages = pkgs.local;
 
       cudaPkgs = import nixpkgs {
         inherit system;

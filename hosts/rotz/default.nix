@@ -20,7 +20,6 @@
     nomachine-client
     openconnect
     remmina
-    omnissa-horizon-client
 
     # CLI apps
     (google-cloud-sdk.withExtraComponents (
@@ -36,9 +35,10 @@
     wireguard-tools
 
     # Custom packages
-    cti
+    local.cti
+    local.omnissa-horizon-client
   ];
-  services.udev.packages = with pkgs; [ cti ];
+  services.udev.packages = [ pkgs.local.cti ];
 
   # TODO: Configure WirePlumber rules
   # - Disable internal devices
