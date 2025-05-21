@@ -55,14 +55,17 @@
   environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
 
   # Virtualisation
-  virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu.vhostUserPackages = [ pkgs.virtiofsd ];
-    };
-    spiceUSBRedirection.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu = {
+    # TPM emulator, required for Windows guests
+    swtpm.enable = true;
+    ovmf.packages = [ pkgs.OVMFFull.fd ];
+    # virtiofsd driver to mount host directories into the guest
+    vhostUserPackages = [ pkgs.virtiofsd ];
   };
+  virtualisation.spiceUSBRedirection.enable = true;
   programs.virt-manager.enable = true;
+  # Allow user to manage VMs
   users.extraGroups.vboxusers.members = [ username ];
   users.groups.libvirtd.members = [ username ];
 
