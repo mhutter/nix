@@ -59,6 +59,32 @@ in
         tmux new-session -A -s "$1"
       }
 
+      # Pomodoro timer
+      # Source: https://gist.github.com/bashbunni/3880e4194e3f800c4c494de286ebc1d7
+      declare -A pomo_options
+      pomo_options["work"]="25"
+      pomo_options["break"]="5"
+
+      pomodoro() {
+        if [ -n "$1" -a -n "''${pomo_options["$1"]}" ]; then
+        val=$1
+
+        # Resize window to specific size
+        i3-msg resize shrink width 10000px
+        i3-msg resize grow width 160px
+        i3-msg resize shrink height 10000px
+        i3-msg resize grow height 13px
+
+        # NOTE: Workaround until https://github.com/NixOS/nixpkgs/issues/400243 is resolved
+        echo $val | ${pkgs.lolcat}/bin/lolcat 2>/dev/null
+        ${pkgs.timer}/bin/timer ''${pomo_options["$val"]}m
+        ${pkgs.speechd}/bin/spd-say "'$val' session done"
+        fi
+      }
+
+      alias wo='pomodoro work'
+      alias br='pomodoro break'
+
       ${fortune}/bin/strfile -c '%' -s ${cookies} ${cookies}.dat
       ${fortune}/bin/fortune ${cookies}
     '';
