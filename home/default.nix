@@ -62,6 +62,7 @@ in
     file
     flameshot
     github-cli
+    gnumake
     go-jsonnet
     icdiff
     jq
