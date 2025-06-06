@@ -78,6 +78,7 @@ in
         # NOTE: Workaround until https://github.com/NixOS/nixpkgs/issues/400243 is resolved
         echo $val | ${pkgs.lolcat}/bin/lolcat 2>/dev/null
         ${pkgs.timer}/bin/timer ''${pomo_options["$val"]}m
+        ${pkgs.libnotify}/bin/notify-send --app-name='Pomodoro' "$val session done"
         ${pkgs.speechd}/bin/spd-say "'$val' session done"
         fi
       }
