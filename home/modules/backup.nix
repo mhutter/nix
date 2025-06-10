@@ -1,5 +1,11 @@
-{ pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
+  cfg = config.backup;
   home = config.home.homeDirectory;
 
   excludes = builtins.toFile "restic-excludes" ''
@@ -9,9 +15,12 @@ let
     node_modules/
     .cache/
     .local/share/containers/
+    etc/NetworkManager/system-connections
+    etc/ssh/ssh_host_ed25519_key
+    etc/ssh/ssh_host_rsa_key
   '';
 
-  resticRepo = "s3://s3.eu-central-003.backblazeb2.com/mhu-restic/tera";
+  resticRepo = "s3://s3.eu-central-003.backblazeb2.com/mhu-restic-${cfg.hostname}";
   credentialsFile = "${home}/.secrets/restic-bucket";
 
   cron =
@@ -63,7 +72,7 @@ let
           "--no-scan"
           "--one-file-system"
           "--verbose"
-          "${home}"
+          "/nix/persist"
         ];
       })
       (cron {
@@ -75,21 +84,30 @@ let
           "--keep-daily=7"
           "--keep-weekly=4"
           "--keep-monthly=12"
-          "--keep-yearly=2"
+          "--keep-yearly=10"
         ];
       });
 
 in
 {
-  home.packages = [
-    pkgs.restic
-    (pkgs.writeShellScriptBin "restic-tera" ''
-      export RESTIC_REPOSITORY=${resticRepo}
-      export RESTIC_PASSWORD_FILE=${home}/.secrets/restic-password
-      eval "$(sed 's/^/export /' ${credentialsFile})"
-      exec restic $@
-    '')
-  ];
+  options.backup = {
+    hostname = lib.mkOption {
+      description = "System Hostname";
+      type = lib.types.str;
+    };
+  };
 
-  systemd.user = resticJobs;
+  config = {
+    home.packages = [
+      pkgs.restic
+      (pkgs.writeShellScriptBin "restic-${cfg.hostname}" ''
+        export RESTIC_REPOSITORY=${resticRepo}
+        export RESTIC_PASSWORD_FILE=${home}/.secrets/restic-password
+        eval "$(sed 's/^/export /' ${credentialsFile})"
+        exec restic $@
+      '')
+    ];
+
+    systemd.user = resticJobs;
+  };
 }

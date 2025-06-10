@@ -3,8 +3,10 @@
 {
   imports = [
     ../../home
-    # ../../home/modules/backup.nix
+    ../../home/modules/backup.nix
   ];
+
+  backup.hostname = "rotz";
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {

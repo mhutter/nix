@@ -111,6 +111,10 @@
         }
         {
           mode = "0700";
+          directory = ".secrets";
+        }
+        {
+          mode = "0700";
           directory = ".ssh";
         }
       ];
