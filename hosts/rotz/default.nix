@@ -14,6 +14,17 @@
     wireguard.enable = true;
   };
 
+  # Configuration required for the mobile broadband
+  networking.modemmanager = {
+    enable = true;
+    fccUnlockScripts = [
+      {
+        id = "1eac:100d";
+        path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/1eac";
+      }
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     # Applications
     citrix_workspace_24_08_0
