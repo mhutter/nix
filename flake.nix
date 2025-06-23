@@ -36,6 +36,7 @@
         "1password"
         "1password-cli"
         "citrix-workspace"
+        "code"
         "nomachine-client"
         "obsidian"
         "spotify"
