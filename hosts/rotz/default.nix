@@ -32,7 +32,7 @@
 
   environment.systemPackages = with pkgs; [
     # Applications
-    pkgs-citrix-workspace.citrix_workspace_24_08_0
+    pkgs-citrix-workspace.citrix_workspace
     nomachine-client
     openconnect
     remmina
