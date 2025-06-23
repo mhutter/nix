@@ -1,4 +1,9 @@
-{ pkgs, username, ... }:
+{
+  pkgs,
+  pkgs-citrix-workspace,
+  username,
+  ...
+}:
 
 {
   imports = [
@@ -27,7 +32,7 @@
 
   environment.systemPackages = with pkgs; [
     # Applications
-    citrix_workspace_24_08_0
+    pkgs-citrix-workspace.citrix_workspace_24_08_0
     nomachine-client
     openconnect
     remmina
