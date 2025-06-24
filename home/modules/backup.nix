@@ -18,6 +18,14 @@ let
     etc/NetworkManager/system-connections
     etc/ssh/ssh_host_ed25519_key
     etc/ssh/ssh_host_rsa_key
+    var/db/sudo
+    var/lib/AccountsService
+    var/lib/bluetooth
+    var/lib/cups
+    var/lib/docker
+    var/lib/libvirt
+    var/lib/tailscale
+    var/log
   '';
 
   resticRepo = "s3://s3.eu-central-003.backblazeb2.com/mhu-restic-${cfg.hostname}";
