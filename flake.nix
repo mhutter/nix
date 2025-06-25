@@ -41,12 +41,12 @@
         "code"
         "nomachine-client"
         "obsidian"
+        "omnissa-horizon-client"
         "spotify"
         "steam"
         "steam-original"
         "steam-run"
         "steam-unwrapped"
-        "omnissa-horizon-client"
         "vscode"
       ];
 

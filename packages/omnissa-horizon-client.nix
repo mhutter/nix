@@ -97,7 +97,6 @@ let
           libudev0-shim
           libuuid
           libv4l
-          libxml2
           pango
           pcsclite
           pixman
@@ -117,6 +116,15 @@ let
           zlib
 
           (writeTextDir "etc/omnissa/config" configText)
+
+          # c.f. https://github.com/NixOS/nixpkgs/pull/418543
+          (libxml2.overrideAttrs rec {
+            version = "2.13.8";
+            src = fetchurl {
+              url = "mirror://gnome/sources/libxml2/${lib.versions.majorMinor version}/libxml2-${version}.tar.xz";
+              hash = "sha256-J3KUyzMRmrcbK8gfL0Rem8lDW4k60VuyzSsOhZoO6Eo=";
+            };
+          })
         ];
     };
 
