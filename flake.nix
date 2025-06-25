@@ -4,7 +4,6 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-citrix-workspace.url = "github:khaneliman/nixpkgs/citrix-workspace";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -18,7 +17,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-citrix-workspace,
       home-manager,
       impermanence,
     }:
@@ -29,7 +27,7 @@
 
       # specialArgs for NixOS
       specialArgs = {
-        inherit username pkgs-citrix-workspace;
+        inherit username;
         secrets = import ./secrets.nix { };
       };
 
@@ -57,10 +55,6 @@
         overlays = [
           (import ./packages)
         ];
-      };
-      pkgs-citrix-workspace = import nixpkgs-citrix-workspace {
-        inherit system;
-        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "citrix-workspace" ];
       };
 
       packages = pkgs.local;
