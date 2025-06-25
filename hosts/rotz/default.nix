@@ -28,6 +28,7 @@
   environment.systemPackages = with pkgs; [
     # Applications
     citrix_workspace
+    drawio
     nomachine-client
     openconnect
     remmina
