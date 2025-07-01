@@ -86,6 +86,15 @@ in
       alias wo='pomodoro work'
       alias br='pomodoro break'
 
+      argo-access() {
+        kubectl -n argocd get secret/argocd-initial-admin-secret -o json | \
+          jq -r '.data.password|@base64d' | \
+          xclip
+
+        xdg-open 'https://localhost:8443'
+        kubectl -n argocd port-forward svc/argocd-server 8443:443
+      }
+
       ${fortune}/bin/strfile -c '%' -s ${cookies} ${cookies}.dat
       ${fortune}/bin/fortune ${cookies}
     '';
