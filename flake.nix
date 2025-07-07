@@ -4,6 +4,7 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-mhu-horizon.url = "github:mhutter/nixpkgs/bump/horizon-client";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -17,6 +18,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-mhu-horizon,
       home-manager,
       impermanence,
     }:
@@ -48,14 +50,25 @@
         "steam-unwrapped"
         "vscode"
       ];
+      allowUnfree = allowed: pkg: builtins.elem (nixpkgs.lib.getName pkg) allowed;
+      commonInsecurePackages = [
+        "libxml2-2.13.8"
+      ];
 
       # Overwrite some settings for nixpkgs
       pkgs = import nixpkgs {
         inherit system;
-        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) commonUnfreePackages;
-        config.permittedInsecurePackages = [ "libxml2-2.13.8" ];
+        config.allowUnfreePredicate = allowUnfree commonUnfreePackages;
+        config.permittedInsecurePackages = commonInsecurePackages;
         overlays = [
           (import ./packages)
+          (final: prev: {
+            mhu-horizon = import nixpkgs-mhu-horizon {
+              inherit system;
+              config.allowUnfreePredicate = allowUnfree [ "omnissa-horizon-client" ];
+              config.permittedInsecurePackages = commonInsecurePackages;
+            };
+          })
         ];
       };
 
@@ -65,19 +78,17 @@
         inherit system;
         config.cudaSupport = true;
         cudaCapabilities = [ "8.9" ];
-        config.allowUnfreePredicate =
-          pkg:
-          builtins.elem (nixpkgs.lib.getName pkg) (
-            commonUnfreePackages
-            ++ [
-              "blender"
-              "cuda_cudart"
-              "cuda_nvcc"
-              "cuda_cccl"
-              "libcublas"
-              "nvidia-x11"
-            ]
-          );
+        config.allowUnfreePredicate = allowUnfree (
+          commonUnfreePackages
+          ++ [
+            "blender"
+            "cuda_cudart"
+            "cuda_nvcc"
+            "cuda_cccl"
+            "libcublas"
+            "nvidia-x11"
+          ]
+        );
       };
 
       notebookSystem =

@@ -50,7 +50,7 @@
 
     # Custom packages
     local.cti
-    local.omnissa-horizon-client
+    mhu-horizon.omnissa-horizon-client
   ];
   services.udev.packages = [ pkgs.local.cti ];
 

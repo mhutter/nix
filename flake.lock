@@ -51,11 +51,28 @@
         "type": "github"
       }
     },
+    "nixpkgs-mhu-horizon": {
+      "locked": {
+        "lastModified": 1751870404,
+        "narHash": "sha256-k4sVjFw9ymczRbAlRQ5/BkiXf/ofvmbJ6Bp3TtrWGfc=",
+        "owner": "mhutter",
+        "repo": "nixpkgs",
+        "rev": "ba4508a64b81dc7aa189d90858786a87b7d6e128",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mhutter",
+        "ref": "bump/horizon-client",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-mhu-horizon": "nixpkgs-mhu-horizon"
       }
     }
   },
