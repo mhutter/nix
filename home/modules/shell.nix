@@ -75,8 +75,7 @@ in
         i3-msg resize shrink height 10000px
         i3-msg resize grow height 13px
 
-        # NOTE: Workaround until https://github.com/NixOS/nixpkgs/issues/400243 is resolved
-        echo $val | ${pkgs.lolcat}/bin/lolcat 2>/dev/null
+        echo $val | ${pkgs.lolcat}/bin/lolcat
         ${pkgs.timer}/bin/timer ''${pomo_options["$val"]}m
         ${pkgs.libnotify}/bin/notify-send --app-name='Pomodoro' "$val session done"
         ${pkgs.speechd}/bin/spd-say "'$val' session done"
