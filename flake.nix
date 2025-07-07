@@ -53,6 +53,7 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) commonUnfreePackages;
+        config.permittedInsecurePackages = [ "libxml2-2.13.8" ];
         overlays = [
           (import ./packages)
         ];
