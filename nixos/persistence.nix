@@ -71,6 +71,7 @@
         ".local/share/direnv"
         ".local/share/helm"
         ".local/share/nvim"
+        ".local/share/remmina"
         ".local/share/zoxide"
         ".local/state/nvim"
         ".local/state/syncthing"
