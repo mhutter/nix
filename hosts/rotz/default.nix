@@ -39,6 +39,7 @@
     ))
     cookiecutter
     cruft
+    glab
     gnumake
     kubeconform
     mgitstatus

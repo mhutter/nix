@@ -58,6 +58,7 @@
         ".config/backrest"
         ".config/gcloud"
         ".config/gh"
+        ".config/glab-cli"
         ".config/gtk-3.0"
         ".config/helm"
         ".config/kubeconfigs"
