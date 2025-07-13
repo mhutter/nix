@@ -12,5 +12,6 @@ rec {
   };
 
   sshHosts = { };
+  dockerRegistryMirror = "";
   customCACertificates = [ ];
 }

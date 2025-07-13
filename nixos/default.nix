@@ -2,13 +2,12 @@
   config,
   lib,
   pkgs,
+  secrets,
   username,
   ...
 }:
 
 let
-  secrets = (import ../secrets.nix);
-
   homeDir = config.users.users.${username}.home;
   configDir = ".config/nix";
   configPath = "${homeDir}/${configDir}";

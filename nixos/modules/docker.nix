@@ -1,4 +1,4 @@
-{ username, ... }:
+{ username, secrets, ... }:
 
 {
   users.users.${username}.extraGroups = [ "docker" ];
@@ -6,7 +6,9 @@
   virtualisation.docker = {
     enable = true;
     daemon.settings = {
-      registry-mirrors = [ "https://dockerhub.vshn.net" ];
+      debug = true;
+      log-level = "debug";
+      registry-mirrors = [ secrets.dockerRegistryMirror ];
     };
   };
 }
