@@ -109,7 +109,6 @@
       "._*"
       ".Spotlight-V100"
       ".Trashes"
-      "Icon?"
       "ehthumbs.db"
       "Thumbs.db"
       ".*~"
