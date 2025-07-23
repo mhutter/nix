@@ -51,9 +51,13 @@
     };
 
     aliases = {
+      # NOTE: Do not use multiline strigs ('' ... '') for aliases that use
+      # positional arguments, as there will be a newline at the end of the
+      # string.
       brnach = "branch";
       ci = "commit -v -s";
       co = "checkout";
+      datetag = "!f() { export TAG=\"$(date +'%Y.%-m.%-d')$1\"; git tag -s \"\${TAG}\" -m \"Release \${TAG}\"; }; f";
       dc = "diff --check";
       done = "!f() { git checkout \${1:-main} && git pull --prune && git branch -D @{-1}; }; f";
       fix = "commit --fixup";
