@@ -66,6 +66,7 @@
         ".config/nvim"
         ".config/spotify"
         ".factorio"
+        ".gemini"
         ".kube"
         ".local/share/Steam"
         ".local/share/atuin"

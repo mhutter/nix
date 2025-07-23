@@ -39,6 +39,7 @@
     ))
     cookiecutter
     cruft
+    gemini-cli
     glab
     gnumake
     kubeconform
