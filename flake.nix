@@ -4,7 +4,6 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-mhu-horizon.url = "github:mhutter/nixpkgs/bump/horizon-client";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -18,7 +17,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-mhu-horizon,
       home-manager,
       impermanence,
     }:
@@ -62,13 +60,6 @@
         config.permittedInsecurePackages = commonInsecurePackages;
         overlays = [
           (import ./packages)
-          (final: prev: {
-            mhu-horizon = import nixpkgs-mhu-horizon {
-              inherit system;
-              config.allowUnfreePredicate = allowUnfree [ "omnissa-horizon-client" ];
-              config.permittedInsecurePackages = commonInsecurePackages;
-            };
-          })
         ];
       };
 

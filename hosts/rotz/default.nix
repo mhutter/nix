@@ -30,6 +30,7 @@
     citrix_workspace
     drawio
     nomachine-client
+    omnissa-horizon-client
     openconnect
     remmina
 
@@ -52,7 +53,6 @@
 
     # Custom packages
     local.cti
-    mhu-horizon.omnissa-horizon-client
   ];
   services.udev.packages = [ pkgs.local.cti ];
 
