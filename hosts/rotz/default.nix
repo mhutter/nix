@@ -44,6 +44,7 @@
     glab
     gnumake
     kubeconform
+    kubeseal
     mgitstatus
 
     # Utilities
