@@ -107,6 +107,7 @@ in
     firefox
     openmw
     telegram-desktop
+    vlc
     xfce.thunar
 
     # CLI tools
