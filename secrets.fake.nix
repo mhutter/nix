@@ -12,6 +12,10 @@ rec {
   };
 
   sshHosts = { };
+  wg = {
+    endpoint = "";
+    publicKey = "";
+  };
   dockerRegistryMirror = "";
   customCACertificates = [ ];
 }
