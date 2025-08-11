@@ -115,6 +115,11 @@ in
     xclip
   ];
 
+  programs.nh = {
+    enable = true;
+    flake = "~/.config/nix";
+  };
+
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = [
