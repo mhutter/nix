@@ -11,10 +11,7 @@
   programs.ssh = {
     enable = true;
 
-    addKeysToAgent = "yes";
-    controlMaster = "auto";
-    controlPath = "~/.ssh/%C";
-    forwardAgent = false;
+    enableDefaultConfig = false; # will be deprecated in the future
 
     extraConfig = ''
       # Disable unused features
@@ -34,7 +31,16 @@
     includes = [
       "~/.ssh/local_config"
     ];
-    matchBlocks = secrets.sshHosts // {
+    matchBlocks = {
+      "*" = {
+        addKeysToAgent = "yes";
+        controlMaster = "auto";
+        controlPath = "~/.ssh/%C";
+        forwardAgent = false;
+      };
+    }
+    // secrets.sshHosts
+    // {
       "luna" = {
         forwardAgent = true;
       };

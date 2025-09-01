@@ -45,7 +45,7 @@ in
   services.libinput.mouse.middleEmulation = false;
 
   # Workaroud for Shokz sending shutdown signals
-  services.logind.powerKey = "ignore";
+  services.logind.settings.Login.HandlePowerKey = "ignore";
 
   # Enable sound.
   # hardware.pulseaudio.enable = true;
