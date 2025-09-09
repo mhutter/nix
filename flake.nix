@@ -73,10 +73,16 @@
           commonUnfreePackages
           ++ [
             "blender"
+            "cuda_cccl"
             "cuda_cudart"
             "cuda_nvcc"
-            "cuda_cccl"
+            "cuda_nvrtc"
+            "cudnn"
             "libcublas"
+            "libcufft"
+            "libcurand"
+            "libcusparse"
+            "libnvjitlink"
             "nvidia-x11"
           ]
         );
