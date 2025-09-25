@@ -21,6 +21,7 @@ in
       cat = "bat";
       catp = "bat -p";
       t = "tmux new-session -A -s";
+      sonar-scanner-cli = "docker run -it --rm -v ~/.sonar/cache:/opt/sonar-scanner/.sonar/cache -v \"\${PWD}:/usr/src\" -e SONAR_HOST_URL -e SONAR_TOKEN sonarsource/sonar-scanner-cli";
     };
 
     dirHashes = {
