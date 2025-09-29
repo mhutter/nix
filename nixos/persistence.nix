@@ -65,6 +65,7 @@
         ".config/nix"
         ".config/nvim"
         ".config/spotify"
+        ".docker"
         ".factorio"
         ".gemini"
         ".kube"
