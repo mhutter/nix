@@ -153,6 +153,9 @@ in
   services.gnome.gnome-keyring.enable = true;
   programs.dconf.enable = true;
 
+  # Disable unused features
+  services.speechd.enable = false;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

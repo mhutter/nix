@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   fortune = pkgs.fortune;
   cookies = "~/Dropbox/Obsidian/VSHN/Fortunes.md";
@@ -59,32 +59,6 @@ in
         z $@
         tmux new-session -A -s "$1"
       }
-
-      # Pomodoro timer
-      # Source: https://gist.github.com/bashbunni/3880e4194e3f800c4c494de286ebc1d7
-      declare -A pomo_options
-      pomo_options["work"]="25"
-      pomo_options["break"]="5"
-
-      pomodoro() {
-        if [ -n "$1" -a -n "''${pomo_options["$1"]}" ]; then
-        val=$1
-
-        # Resize window to specific size
-        i3-msg resize shrink width 10000px
-        i3-msg resize grow width 160px
-        i3-msg resize shrink height 10000px
-        i3-msg resize grow height 13px
-
-        echo $val | ${pkgs.lolcat}/bin/lolcat
-        ${pkgs.timer}/bin/timer ''${pomo_options["$val"]}m
-        ${pkgs.libnotify}/bin/notify-send --app-name='Pomodoro' "$val session done"
-        ${pkgs.speechd}/bin/spd-say "'$val' session done"
-        fi
-      }
-
-      alias wo='pomodoro work'
-      alias br='pomodoro break'
 
       argo-access() {
         kubectl -n argocd get secret/argocd-initial-admin-secret -o json | \

@@ -37,7 +37,6 @@
         "1password-cli"
         "citrix-workspace"
         "code"
-        "drawio"
         "nomachine-client"
         "obsidian"
         "omnissa-horizon-client"
