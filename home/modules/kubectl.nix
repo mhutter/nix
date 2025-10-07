@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    kind
     kubectl
     kubernetes-helm
   ];
@@ -20,7 +19,6 @@
     compdef kubecolor=kubectl
 
     # Add `cluster` command
-    # FIXME: get rid of "cattledog" term
     cluster() { cp ~/.config/kubeconfigs/"$1" ~/.kube/config }
     _cluster() { _files -W ~/.config/kubeconfigs -/; }
     compdef _cluster cluster
