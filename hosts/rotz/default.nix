@@ -85,7 +85,6 @@
   virtualisation.libvirtd.qemu = {
     # TPM emulator, required for Windows guests
     swtpm.enable = true;
-    ovmf.packages = [ pkgs.OVMFFull.fd ];
     # virtiofsd driver to mount host directories into the guest
     vhostUserPackages = [ pkgs.virtiofsd ];
   };
