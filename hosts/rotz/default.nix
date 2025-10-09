@@ -103,6 +103,9 @@
   # Samba share browsing
   services.gvfs.enable = true;
 
+  # Languagetool
+  services.languagetool.enable = true;
+
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
