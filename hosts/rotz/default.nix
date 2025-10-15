@@ -38,10 +38,7 @@
   environment.systemPackages = with pkgs; [
     # Applications
     citrix_workspace
-    nomachine-client
     omnissa-horizon-client
-    openconnect
-    remmina
 
     # CLI apps
     (google-cloud-sdk.withExtraComponents (
@@ -83,8 +80,6 @@
   # Virtualisation
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu = {
-    # TPM emulator, required for Windows guests
-    swtpm.enable = true;
     # virtiofsd driver to mount host directories into the guest
     vhostUserPackages = [ pkgs.virtiofsd ];
   };
@@ -111,6 +106,4 @@
     enable = true;
     polkitPolicyOwners = [ username ];
   };
-
-  programs.steam.enable = true;
 }

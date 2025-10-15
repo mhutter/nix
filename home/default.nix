@@ -54,7 +54,6 @@ in
 
     # CLI Tools
     curl
-    d2
     dig
     dive
     entr
