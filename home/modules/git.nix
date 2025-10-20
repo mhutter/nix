@@ -7,13 +7,9 @@
 
 {
   home.packages = with pkgs; [ git-crypt ];
-
   programs.git = {
     enable = true;
-    difftastic.enable = true;
 
-    userName = secrets.user.name;
-    userEmail = secrets.user.email;
     signing.key = "FC31B4E54C4CF892";
     signing.signByDefault = true;
 
@@ -29,7 +25,38 @@
       }
     ];
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = secrets.user.name;
+        email = secrets.user.email;
+      };
+
+      alias = {
+        # NOTE: Do not use multiline strigs ('' ... '') for aliases that use
+        # positional arguments, as there will be a newline at the end of the
+        # string.
+        brnach = "branch";
+        ci = "commit -v -s";
+        co = "checkout";
+        datetag = "!f() { export TAG=\"$(date +'%Y.%-m.%-d')$1\"; git tag -s \"\${TAG}\" -m \"Release \${TAG}\"; }; f";
+        dc = "diff --check";
+        done = "!f() { git checkout \${1:-main} && git pull --prune && git branch -D @{-1}; }; f";
+        fix = "commit --fixup";
+        hist = "log --graph --full-history --all --color --pretty=format:'%x1b[33m%h%x09%C(blue)(%ar)%C(reset)%x09%x1b[32m%d%x1b[0m%x20%s%x20%C(dim white)-%x20%an%C(reset)'";
+        lg = "log --oneline --decorate --all --graph";
+        log-sig = "log --pretty=\"format:%h %G? %aN %s\"";
+        ol = "log --oneline --graph";
+        pp = "pull --prune";
+        ri = "rebase -i --autosquash";
+        s = "status -s";
+        squ = "commit --squash";
+        st = "status";
+        staged = "diff --staged";
+        tag-dates = "log --tags --simplify-by-decoration --pretty=\"format:%ai %d\"";
+        unstage = "reset HEAD";
+        yolopush = "push --force-with-lease";
+      };
+
       advice.forceDeleteBranch = true;
       color = {
         ui = "auto";
@@ -48,32 +75,6 @@
       };
       rebase.autoStash = true;
       rerere.enabled = 1;
-    };
-
-    aliases = {
-      # NOTE: Do not use multiline strigs ('' ... '') for aliases that use
-      # positional arguments, as there will be a newline at the end of the
-      # string.
-      brnach = "branch";
-      ci = "commit -v -s";
-      co = "checkout";
-      datetag = "!f() { export TAG=\"$(date +'%Y.%-m.%-d')$1\"; git tag -s \"\${TAG}\" -m \"Release \${TAG}\"; }; f";
-      dc = "diff --check";
-      done = "!f() { git checkout \${1:-main} && git pull --prune && git branch -D @{-1}; }; f";
-      fix = "commit --fixup";
-      hist = "log --graph --full-history --all --color --pretty=format:'%x1b[33m%h%x09%C(blue)(%ar)%C(reset)%x09%x1b[32m%d%x1b[0m%x20%s%x20%C(dim white)-%x20%an%C(reset)'";
-      lg = "log --oneline --decorate --all --graph";
-      log-sig = "log --pretty=\"format:%h %G? %aN %s\"";
-      ol = "log --oneline --graph";
-      pp = "pull --prune";
-      ri = "rebase -i --autosquash";
-      s = "status -s";
-      squ = "commit --squash";
-      st = "status";
-      staged = "diff --staged";
-      tag-dates = "log --tags --simplify-by-decoration --pretty=\"format:%ai %d\"";
-      unstage = "reset HEAD";
-      yolopush = "push --force-with-lease";
     };
 
     ignores = [
@@ -131,5 +132,10 @@
       ".kubeconfig"
       "id_rsa"
     ];
+  };
+
+  programs.difftastic = {
+    enable = true;
+    git.enable = true;
   };
 }

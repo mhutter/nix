@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-citrix-workspace,
   username,
   secrets,
   ...
@@ -37,7 +38,7 @@
 
   environment.systemPackages = with pkgs; [
     # Applications
-    citrix_workspace
+    pkgs-citrix-workspace.citrix_workspace
     omnissa-horizon-client
 
     # CLI apps
