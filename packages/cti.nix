@@ -44,11 +44,11 @@ let
 
 in
 stdenv.mkDerivation {
-  version = "4.1.5";
+  version = "4.1.12";
   pname = "cti";
   src = fetchurl {
-    url = "https://wwcom.ch/downloads/cti_4_1_5.deb";
-    sha256 = "1v3nladgxm7mgphif7w6rn6ysm9gd3kaby5ycvp0s1bzsv3jcdny";
+    url = "https://wwcom.ch/downloads/cti_4_1_12.deb";
+    hash = "sha256-HWberwVGKdtJmygbLE4Pzha1TK2t8rQMwkd4JAkMCJU=";
   };
 
   inherit buildInputs;
