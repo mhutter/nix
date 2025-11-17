@@ -11,6 +11,7 @@ let
   homeDir = config.users.users.${username}.home;
   configDir = ".config/nix";
   configPath = "${homeDir}/${configDir}";
+  rhea = secrets.sshHosts.rhea;
 
 in
 {
@@ -127,6 +128,9 @@ in
     trusted-users = [ username ];
     substituters = [
       "https://nix-community.cachix.org"
+    ];
+    extra-substituters = [
+      "ssh://nix-ssh@${rhea.hostname}:${builtins.toString rhea.port}"
     ];
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
