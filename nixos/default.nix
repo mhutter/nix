@@ -143,10 +143,6 @@ in
 
   # List services that you want to enable:
 
-  # Enable Tailscale
-  services.tailscale.enable = true;
-  systemd.services.tailscaled.wantedBy = lib.mkForce [ ];
-
   # Some stuff required for desktop environments
   services.gnome.gnome-keyring.enable = true;
   programs.dconf.enable = true;

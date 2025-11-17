@@ -24,7 +24,6 @@ let
     var/lib/cups
     var/lib/docker
     var/lib/libvirt
-    var/lib/tailscale
     var/log
   '';
 

@@ -20,10 +20,6 @@
         mode = "0700";
         directory = "/var/db/sudo/lectured";
       }
-      {
-        mode = "0700";
-        directory = "/var/lib/tailscale";
-      }
     ];
     files = [
       "/etc/machine-id"
