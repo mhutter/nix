@@ -11,7 +11,10 @@ rec {
     email = user.email;
   };
 
-  sshHosts = { };
+  sshHosts.rhea = {
+    hostname = "rhea";
+    port = 22;
+  };
   wg = {
     endpoint = "";
     publicKey = "";
