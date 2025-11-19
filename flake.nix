@@ -107,14 +107,6 @@
 
     in
     {
-      # homeConfigurations for systems that use home-manager directly and are
-      # no NixOS systems (e.g. my Arch notebook)
-      # homeConfigurations."mh@tera" = home-manager.lib.homeManagerConfiguration {
-      #   # Use extraSpecialArgs and customized pkgs
-      #   inherit extraSpecialArgs pkgs;
-      #   modules = [ ./hosts/tera/home.nix ];
-      # };
-
       # nixosConfigurations for ... NixOS systems!
       # They also use home-manager, so those configs can be reused.
       nixosConfigurations = {
@@ -127,7 +119,6 @@
             ./hosts/nxzt
           ];
         };
-        tera = notebookSystem ./hosts/tera;
         rotz = notebookSystem ./hosts/rotz;
       };
 
