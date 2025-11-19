@@ -20,6 +20,10 @@
         mode = "0700";
         directory = "/var/db/sudo/lectured";
       }
+      {
+        mode = "0700";
+        directory = "/root/.ssh";
+      }
     ];
     files = [
       "/etc/machine-id"
