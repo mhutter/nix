@@ -104,7 +104,6 @@ in
     # Applications
     alacritty
     brave
-    firefox
     telegram-desktop
     vlc
     xfce.thunar
