@@ -57,6 +57,7 @@
     # Utilities
     cifs-utils
     samba
+    whois
     wireguard-tools
 
     # Custom packages
