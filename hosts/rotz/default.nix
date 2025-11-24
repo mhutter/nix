@@ -2,7 +2,6 @@
   pkgs,
   pkgs-citrix-workspace,
   username,
-  secrets,
   ...
 }:
 
@@ -17,23 +16,6 @@
 
   networking = {
     hostName = "rotz";
-    wireguard.enable = true;
-    wireguard.interfaces.wg0 =
-      let
-        wgdir = "/nix/persist/var/lib/wireguard";
-      in
-      {
-        privateKeyFile = "${wgdir}/private";
-        ips = [ "10.13.37.10/24" ];
-        peers = [
-          {
-            name = "bastion";
-            allowedIPs = [ "10.13.37.0/24" ];
-            presharedKeyFile = "${wgdir}/presharedkey";
-            inherit (secrets.wg) endpoint publicKey;
-          }
-        ];
-      };
   };
 
   environment.systemPackages = with pkgs; [
