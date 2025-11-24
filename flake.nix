@@ -71,7 +71,6 @@
         config.allowUnfreePredicate = allowUnfree (
           commonUnfreePackages
           ++ [
-            "blender"
             "cuda_cccl"
             "cuda_cudart"
             "cuda_nvcc"
