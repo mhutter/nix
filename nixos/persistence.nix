@@ -68,7 +68,6 @@
         ".config/KADOKAWA"
         ".docker"
         ".factorio"
-        ".gemini"
         ".kube"
         ".local/share/Steam"
         ".local/share/atuin"
