@@ -150,6 +150,8 @@ in
   services.gnome.gnome-keyring.enable = true;
   programs.dconf.enable = true;
 
+  services.fwupd.enable = true;
+
   # Disable unused features
   services.speechd.enable = false;
 
