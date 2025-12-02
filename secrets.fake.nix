@@ -21,4 +21,5 @@ rec {
   };
   dockerRegistryMirror = "";
   customCACertificates = [ ];
+  cargoRegistries = { };
 }

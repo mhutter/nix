@@ -1,9 +1,18 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  secrets,
+  ...
+}:
 
 let
+  cargoRegistries = lib.recursiveUpdate secrets.cargoRegistries {
+    crates-io.protocol = "sparse";
+  };
   cargoConfig = {
-    registries.crates-io.protocol = "sparse";
     build.rustc-wrapper = "${pkgs.sccache}/bin/sccache";
+    registry.global-credential-providers = [ "cargo:token" ];
+    registries = cargoRegistries;
   };
 in
 {
