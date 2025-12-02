@@ -1,5 +1,11 @@
 { pkgs, ... }:
 
+let
+  cargoConfig = {
+    registries.crates-io.protocol = "sparse";
+    build.rustc-wrapper = "${pkgs.sccache}/bin/sccache";
+  };
+in
 {
   home.packages = with pkgs; [
     bacon
@@ -12,15 +18,9 @@
     rustup
   ];
 
-  home.file = {
-    ".cargo/config.toml".text = ''
-      [registries.crates-io]
-      protocol = "sparse"
-
-      [build]
-      rustc-wrapper = "${pkgs.sccache}/bin/sccache"
-    '';
-  };
+  home.file.".cargo/config.toml".source =
+    (pkgs.formats.toml { }).generate "cargo-config.toml"
+      cargoConfig;
 
   home.sessionPath = [
     "$HOME/.cargo/bin"
