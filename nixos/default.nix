@@ -152,6 +152,9 @@ in
 
   services.fwupd.enable = true;
 
+  # Languagetool
+  services.languagetool.enable = true;
+
   # Disable unused features
   services.speechd.enable = false;
 
