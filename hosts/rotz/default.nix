@@ -62,8 +62,11 @@
   # Virtualisation
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu = {
+    package = pkgs.qemu_kvm;
     # virtiofsd driver to mount host directories into the guest
     vhostUserPackages = [ pkgs.virtiofsd ];
+    # Enable TPM emulation (for windows guests)
+    swtpm.enable = true;
   };
   virtualisation.spiceUSBRedirection.enable = true;
   programs.virt-manager.enable = true;
