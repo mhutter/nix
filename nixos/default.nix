@@ -105,8 +105,8 @@ in
     alacritty
     brave
     telegram-desktop
+    thunar
     vlc
-    xfce.thunar
 
     # CLI tools
     alsa-utils
