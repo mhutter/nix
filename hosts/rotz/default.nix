@@ -34,6 +34,7 @@
     kubeconform
     kubeseal
     mgitstatus
+    skopeo
 
     # Utilities
     cifs-utils
