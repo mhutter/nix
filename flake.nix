@@ -50,6 +50,12 @@
         "libsoup-2.74.3"
       ];
 
+      commonOverrides = final: prev: {
+        libinput = prev.libinput.override {
+          wacomSupport = false;
+        };
+      };
+
       # Overwrite some settings for nixpkgs
       pkgs = import nixpkgs {
         inherit system;
@@ -57,11 +63,7 @@
         config.permittedInsecurePackages = commonInsecurePackages;
         overlays = [
           (import ./packages)
-          (final: prev: {
-            libinput = prev.libinput.override {
-              wacomSupport = false;
-            };
-          })
+          commonOverrides
         ];
       };
 
@@ -87,6 +89,7 @@
             "nvidia-x11"
           ]
         );
+        overlays = [ commonOverrides ];
       };
 
       # specialArgs for NixOS
