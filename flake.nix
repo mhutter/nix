@@ -4,7 +4,6 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-citrix-workspace.url = "github:NixOS/nixpkgs/87894d3b7116a8e1c4827d66e17b89099d218c50";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -22,7 +21,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-citrix-workspace,
       home-manager,
       impermanence,
     }:
@@ -35,6 +33,7 @@
         # Applications
         "1password"
         "1password-cli"
+        "citrix-workspace"
         "code"
         "nomachine-client"
         "obsidian"
@@ -48,7 +47,7 @@
       ];
       allowUnfree = allowed: pkg: builtins.elem (nixpkgs.lib.getName pkg) allowed;
       commonInsecurePackages = [
-        "libxml2-2.13.8"
+        "libsoup-2.74.3"
       ];
 
       # Overwrite some settings for nixpkgs
@@ -64,11 +63,6 @@
             };
           })
         ];
-      };
-      pkgs-citrix-workspace = import nixpkgs-citrix-workspace {
-        inherit system;
-        config.allowUnfreePredicate = allowUnfree [ "citrix-workspace" ];
-        config.permittedInsecurePackages = [ "libsoup-2.74.3" ];
       };
 
       packages = pkgs.local;
@@ -97,7 +91,7 @@
 
       # specialArgs for NixOS
       specialArgs = {
-        inherit username pkgs-citrix-workspace;
+        inherit username;
         secrets = import ./secrets.nix;
       };
 

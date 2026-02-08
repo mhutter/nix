@@ -59,28 +59,11 @@
         "type": "github"
       }
     },
-    "nixpkgs-citrix-workspace": {
-      "locked": {
-        "lastModified": 1760818316,
-        "narHash": "sha256-6yp80enMV0NJ0CBOZ2Xvk72mQ4cQ7FTGY1lpPI4p2zA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "87894d3b7116a8e1c4827d66e17b89099d218c50",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "87894d3b7116a8e1c4827d66e17b89099d218c50",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-citrix-workspace": "nixpkgs-citrix-workspace"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

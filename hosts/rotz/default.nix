@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-citrix-workspace,
   username,
   ...
 }:
@@ -20,7 +19,7 @@
 
   environment.systemPackages = with pkgs; [
     # Applications
-    pkgs-citrix-workspace.citrix_workspace
+    citrix_workspace
     omnissa-horizon-client
 
     # CLI apps
@@ -92,4 +91,5 @@
     enable = true;
     polkitPolicyOwners = [ username ];
   };
+  programs.steam.enable = true;
 }
