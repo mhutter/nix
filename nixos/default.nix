@@ -128,7 +128,7 @@ in
     substituters = [
       "https://nix-community.cachix.org"
     ];
-    extra-substituters = [
+    trusted-substituters = [
       "ssh://nix-ssh@${rhea.hostname}:${builtins.toString rhea.port}"
     ];
     trusted-public-keys = [
