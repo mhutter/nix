@@ -58,6 +58,11 @@
         config.permittedInsecurePackages = commonInsecurePackages;
         overlays = [
           (import ./packages)
+          (final: prev: {
+            libinput = prev.libinput.override {
+              wacomSupport = false;
+            };
+          })
         ];
       };
       pkgs-citrix-workspace = import nixpkgs-citrix-workspace {
