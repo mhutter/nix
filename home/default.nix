@@ -16,7 +16,6 @@ in
     ./modules/alacritty.nix
     ./modules/ansible.nix
     ./modules/git.nix
-    ./modules/go.nix
     ./modules/i3.nix
     ./modules/kubectl.nix
     ./modules/rust.nix
@@ -62,6 +61,7 @@ in
     flameshot
     github-cli
     gnumake
+    go
     go-jsonnet
     icdiff
     jq
@@ -70,7 +70,6 @@ in
     nodePackages.prettier
     openssl
     pwgen
-    python3
     shellcheck
     unzip
     uv
