@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./wireguard.nix
     ../../nixos
     ../../nixos/notebook.nix
     ../../nixos/persistence.nix
