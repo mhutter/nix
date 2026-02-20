@@ -4,6 +4,13 @@
   ...
 }:
 
+let
+  gcloud-cli = (
+    pkgs.google-cloud-sdk.withExtraComponents (
+      with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
+    )
+  );
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -24,11 +31,10 @@
     omnissa-horizon-client
 
     # CLI apps
-    (google-cloud-sdk.withExtraComponents (
-      with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
-    ))
+    age
     cookiecutter
     cruft
+    gcloud-cli
     glab
     gnumake
     kubeconform
