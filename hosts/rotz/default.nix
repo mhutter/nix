@@ -28,7 +28,9 @@ in
   environment.systemPackages = with pkgs; [
     # Applications
     citrix_workspace
+    firefox
     omnissa-horizon-client
+    remmina
 
     # CLI apps
     age
