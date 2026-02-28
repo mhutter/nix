@@ -19,9 +19,13 @@ in
     ./modules/docker.nix
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.consoleMode = "max";
+  boot.loader.systemd-boot = {
+    # Use the systemd-boot EFI boot loader.
+    enable = true;
+    consoleMode = "max";
+    # Only keep 10 generations
+    configurationLimit = 10;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
@@ -118,22 +122,30 @@ in
     flake = "~/.config/nix";
   };
 
-  nix.settings = {
-    auto-optimise-store = true;
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    trusted-users = [ username ];
-    substituters = [
-      "https://nix-community.cachix.org"
-    ];
-    trusted-substituters = [
-      "ssh://nix-ssh@${rhea.hostname}:${builtins.toString rhea.port}"
-    ];
-    trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
+  nix = {
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+      dates = "weekly";
+    };
+    settings = {
+      auto-optimise-store = true;
+
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [ username ];
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+      trusted-substituters = [
+        "ssh://nix-ssh@${rhea.hostname}:${builtins.toString rhea.port}"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
