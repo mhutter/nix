@@ -46,45 +46,12 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    # Applications
-    obsidian
-    spotify
+  home.packages = [
+    # Packages have been moved to system packages
 
-    # CLI Tools
-    curl
-    dig
-    dive
-    entr
-    fd
-    file
-    flameshot
-    github-cli
-    gnumake
-    go
-    go-jsonnet
-    icdiff
-    jq
-    just
-    ncdu
-    nodePackages.prettier
-    openssl
-    pwgen
-    shellcheck
-    unzip
-    uv
-    xh
-    yamllint
-    yq-go
-
-    # Fonts
-    font-awesome
-    nerd-fonts.fira-code
-    nerd-fonts.dejavu-sans-mono
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
+    ## You can also create simple shell scripts directly inside your
+    ## configuration. For example, this adds a command 'my-hello' to your
+    ## environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')

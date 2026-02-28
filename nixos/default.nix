@@ -108,13 +108,46 @@ in
     # Applications
     alacritty
     brave
+    obsidian
+    spotify
     telegram-desktop
     thunar
     vlc
 
     # CLI tools
     alsa-utils
+    curl
+    dig
+    dive
+    entr
+    fd
+    file
+    flameshot
+    github-cli
+    gnumake
+    go
+    go-jsonnet
+    icdiff
+    jq
+    just
+    ncdu
+    nodePackages.prettier
+    openssl
+    pwgen
+    shellcheck
+    unzip
+    uv
     xclip
+    xh
+    yamllint
+    yq-go
+  ];
+
+  # Fonts
+  fonts.packages = with pkgs; [
+    font-awesome
+    nerd-fonts.fira-code
+    nerd-fonts.dejavu-sans-mono
   ];
 
   programs.nh = {
