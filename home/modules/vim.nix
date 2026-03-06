@@ -24,6 +24,7 @@
       lua-language-server
       nil
       nixfmt
+      # typescript-language-server
 
       # rust-analyzer is installed via rustup
       # prettier is in default.nix
