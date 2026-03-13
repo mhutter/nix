@@ -4,10 +4,7 @@
 {
   environment.systemPackages = [ pkgs.arandr ];
 
-  programs.light = {
-    enable = true;
-    brightnessKeys.enable = true;
-  };
+  # TODO: for backlight, investigate `acpilight` or `brightnessctl`.
   users.users.${username}.extraGroups = [ "video" ];
 
   services.autorandr = {
