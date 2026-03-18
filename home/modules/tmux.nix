@@ -27,8 +27,7 @@
       set -g status-left ""
       set -g status-right '%T %F'
       setw -g window-status-current-style fg=blue
-      set -g status-fg white
-      set -g status-bg black
+      set -g status-style "fg=white bg=default"
 
       # Notifications
       setw -g monitor-activity on

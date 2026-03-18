@@ -15,7 +15,7 @@
             text = "#1b2b34";
           };
           normal = {
-            black = "#1b2b34";
+            black = "#000000";
             blue = "#6699cc";
             cyan = "#5fb3b3";
             green = "#99c794";
