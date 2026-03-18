@@ -47,6 +47,12 @@ in
         modifier = mod;
         floating.modifier = mod;
 
+        gaps = {
+          inner = 12;
+          # outer = 6;
+          smartGaps = true;
+        };
+
         startup = [
           # Start `dunst` notification daemon
           {
