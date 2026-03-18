@@ -146,8 +146,9 @@ in
   # Fonts
   fonts.packages = with pkgs; [
     font-awesome
-    nerd-fonts.fira-code
     nerd-fonts.dejavu-sans-mono
+    nerd-fonts.fira-code
+    noto-fonts-cjk-sans # render asian text (chinese/japanese etc)
   ];
 
   programs.nh = {
