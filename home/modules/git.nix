@@ -10,8 +10,11 @@
   programs.git = {
     enable = true;
 
-    signing.key = "FC31B4E54C4CF892";
-    signing.signByDefault = true;
+    signing = {
+      signByDefault = true;
+      key = "FC31B4E54C4CF892";
+      format = "openpgp";
+    };
 
     includes = [
       {
