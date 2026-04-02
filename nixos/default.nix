@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   secrets,
   username,
@@ -131,7 +130,7 @@ in
     jq
     just
     ncdu
-    nodePackages.prettier
+    prettier
     openssl
     pwgen
     shellcheck
