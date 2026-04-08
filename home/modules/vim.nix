@@ -17,6 +17,7 @@
       # Plugin dependencies
       fzf
       ripgrep
+      tree-sitter
 
       # Language Server
       gopls
