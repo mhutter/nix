@@ -37,6 +37,9 @@
     # powerful and straight-forward to use. So I'll bite the bullet and manage
     # it all here.
     users."${username}" = {
+      files = [
+        ".claude.json"
+      ];
       directories = [
         ".cache/BraveSoftware"
         ".cache/deno"
@@ -50,6 +53,7 @@
         ".cache/uv"
         ".cache/wasm-pack"
         ".cargo"
+        ".claude"
         ".config/1Password"
         ".config/BraveSoftware"
         ".config/CTI"

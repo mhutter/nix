@@ -34,6 +34,7 @@
         "1password"
         "1password-cli"
         "citrix-workspace"
+        "claude-code"
         "code"
         "nomachine-client"
         "obsidian"

@@ -127,12 +127,16 @@
       ".netrwhist"
       "*.bak"
       "tmp/"
-      ".vscode/"
+
+      # Local configuration files #
+      #############################
       "*.patch"
-      ".envrc"
-      ".env"
+      ".claude/settings.local.json"
       ".direnv/"
+      ".env"
+      ".envrc"
       ".kubeconfig"
+      ".vscode/"
       "id_rsa"
     ];
   };

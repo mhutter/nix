@@ -34,6 +34,7 @@ in
 
     # CLI apps
     age
+    claude-code
     cookiecutter
     cruft
     gcloud-cli
