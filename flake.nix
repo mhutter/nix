@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -23,6 +28,7 @@
       nixpkgs,
       home-manager,
       impermanence,
+      nix-index-database,
     }:
     let
       # Commonly used variables
@@ -107,6 +113,7 @@
           modules = [
             impermanence.nixosModules.impermanence
             home-manager.nixosModules.home-manager
+            nix-index-database.nixosModules.default
             hostModule
           ];
         };
@@ -122,6 +129,7 @@
 
           modules = [
             home-manager.nixosModules.home-manager
+            nix-index-database.nixosModules.default
             ./hosts/nxzt
           ];
         };
