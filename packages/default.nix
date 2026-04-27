@@ -1,6 +1,7 @@
 self: super:
 let
-  callPackage = super.pkgs.callPackage;
+  inherit (super.pkgs) callPackage;
+
 in
 {
   local = {
