@@ -205,6 +205,7 @@ in
 
   # Disable unused features
   services.speechd.enable = false;
+  programs.nano.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
