@@ -58,9 +58,16 @@
       ];
 
       commonOverrides = final: prev: {
+        # Disable unused features
         libinput = prev.libinput.override {
           wacomSupport = false;
         };
+
+        # Disable broken tests for openldap
+        # see: https://github.com/NixOS/nixpkgs/issues/514113
+        openldap = prev.openldap.overrideAttrs (old: {
+          doCheck = false;
+        });
       };
 
       # Overwrite some settings for nixpkgs
