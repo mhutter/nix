@@ -15,10 +15,7 @@ rec {
     hostname = "rhea";
     port = 22;
   };
-  wg = {
-    endpoint = "";
-    publicKey = "";
-  };
+  wg-quick.interfaces = { };
   dockerRegistryMirror = "";
   customCACertificates = [ ];
   cargoRegistries = { };

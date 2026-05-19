@@ -1,4 +1,4 @@
-{ ... }:
+{ secrets, ... }:
 {
   networking.wireguard.interfaces.rhea0 = {
     ips = [ "10.10.10.2/24" ];
@@ -12,4 +12,5 @@
       }
     ];
   };
+  networking.wg-quick.interfaces = secrets.wg-quick.interfaces;
 }
