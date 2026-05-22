@@ -78,6 +78,7 @@
         ".local/share/backrest"
         ".local/share/direnv"
         ".local/share/helm"
+        ".local/share/lutris"
         ".local/share/nvim"
         ".local/share/remmina"
         ".local/share/zoxide"

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, osConfig, ... }:
 
 {
   imports = [
@@ -18,5 +18,14 @@
   programs = {
     btop.settings.disks_filter = "/ /nix /boot";
     zsh.history.path = "/nix/persist/home/mh/.zsh_history";
+
+    lutris = {
+      enable = true;
+      extraPackages = with pkgs; [
+        libnghttp2
+        winetricks
+      ];
+      steamPackage = osConfig.programs.steam.package;
+    };
   };
 }
