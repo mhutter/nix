@@ -27,16 +27,5 @@
   # };
 
   # Gaming
-  programs.steam = {
-    enable = true;
-  };
-  environment.systemPackages = with pkgs; [
-    (lutris.override {
-      extraLibraries = pkgs: [ ];
-      extraPkgs = pkgs: [
-        libnghttp2
-        winetricks
-      ];
-    })
-  ];
+  programs.steam.enable = true;
 }

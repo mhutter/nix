@@ -1,12 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, osConfig, ... }:
 {
   imports = [
     ../../home
   ];
 
-  home.packages = with pkgs; [
-    (pkgs.writeShellScriptBin "battle.net" ''
-      lutris lutris:rungame/battlenet
-    '')
-  ];
+  home.programs.lutris = {
+    enable = true;
+    extraPackages = with pkgs; [
+      libnghttp2
+      winetricks
+    ];
+    steamPackage = osConfig.programs.steam.package;
+  };
 }
