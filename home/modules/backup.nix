@@ -11,7 +11,7 @@ let
   excludes = builtins.toFile "restic-excludes" ''
     .dropbox-dist
     Dropbox/
-    Downloads/movies/
+    safe/media/
     target/
     node_modules/
     .cache/
