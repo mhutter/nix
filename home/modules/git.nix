@@ -131,7 +131,7 @@
       # Local configuration files #
       #############################
       "*.patch"
-      ".claude/settings.local.json"
+      "**/.claude/settings.local.json"
       ".direnv/"
       ".env"
       ".envrc"
