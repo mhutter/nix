@@ -84,9 +84,6 @@ in
   users.extraGroups.vboxusers.members = [ username ];
   users.groups.libvirtd.members = [ username ];
 
-  # Enable the common /etc/containers configuration module
-  virtualisation.containers.enable = true;
-
   # Printing
   services.printing = {
     enable = true;
