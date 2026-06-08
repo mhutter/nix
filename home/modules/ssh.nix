@@ -13,6 +13,20 @@
 
     enableDefaultConfig = false; # will be deprecated in the future
 
+    settings = {
+      "*" = {
+        AddKeysToAgent = "yes";
+        ControlMaster = "auto";
+        ControlPath = "~/.ssh/%C";
+        ForwardAgent = false;
+      };
+
+      "source.developers.google.com" = {
+        HostKeyAlgorithms = "ecdsa-sha2-nistp256";
+      };
+    }
+    // secrets.sshHosts;
+
     extraConfig = ''
       # Disable unused features
       ForwardX11 no
@@ -31,22 +45,6 @@
     includes = [
       "~/.ssh/local_config"
     ];
-    matchBlocks = {
-      "*" = {
-        addKeysToAgent = "yes";
-        controlMaster = "auto";
-        controlPath = "~/.ssh/%C";
-        forwardAgent = false;
-      };
-    }
-    // secrets.sshHosts
-    // {
-      "source.developers.google.com" = {
-        extraOptions = {
-          "HostKeyAlgorithms" = "ecdsa-sha2-nistp256";
-        };
-      };
-    };
   };
 
   programs.zsh.initContent = ''
