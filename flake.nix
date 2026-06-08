@@ -36,12 +36,12 @@
       username = "mh";
 
       commonUnfreePackages = [
-        # Applications
         "1password"
         "1password-cli"
         "citrix-workspace"
         "claude-code"
         "code"
+        "linuxx64" # dep of citrix-workspace
         "nomachine-client"
         "obsidian"
         "omnissa-horizon-client"
