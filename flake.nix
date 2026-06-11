@@ -53,6 +53,7 @@
         "steam-run"
         "steam-unwrapped"
         "vscode"
+        "webex"
       ];
       allowUnfree = allowed: pkg: builtins.elem (nixpkgs.lib.getName pkg) allowed;
       commonInsecurePackages = [ ];

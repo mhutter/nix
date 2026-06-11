@@ -32,6 +32,7 @@ in
     firefox
     omnissa-horizon-client
     remmina
+    webex
 
     # CLI apps
     age
