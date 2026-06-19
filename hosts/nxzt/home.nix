@@ -4,7 +4,7 @@
     ../../home
   ];
 
-  home.programs.lutris = {
+  programs.lutris = {
     enable = true;
     extraPackages = with pkgs; [
       libnghttp2
