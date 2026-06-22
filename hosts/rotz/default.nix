@@ -27,7 +27,7 @@ in
 
   environment.systemPackages = with pkgs; [
     # Applications
-    citrix_workspace
+    # citrix_workspace
     firefox
     omnissa-horizon-client
     remmina
