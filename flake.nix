@@ -162,6 +162,10 @@
           description = "A plain Nix Flake";
           path = ./templates/default;
         };
+        bun = {
+          description = "A template for Bun development";
+          path = ./templates/bun;
+        };
       };
 
       formatter."${system}" = pkgs.nixfmt;
