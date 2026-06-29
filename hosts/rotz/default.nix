@@ -44,6 +44,7 @@ in
     citrix-workspace
     firefox
     omnissa-horizon-client
+    openmw
     remmina
     webex
 
@@ -138,5 +139,9 @@ in
           $out/share/1password/chrome_crashpad_handler
       '';
     });
+  };
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
   };
 }
