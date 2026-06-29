@@ -85,6 +85,7 @@
         ".omnissa"
         ".rustup"
         ".vscode"
+        ".vscode-shared"
         "Brain"
         "Downloads"
         "Sync"
