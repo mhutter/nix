@@ -132,8 +132,13 @@ in
     ];
   };
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
-  programs.fzf.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+  programs.fzf = {
+    enable = true;
+    historyWidget.command = "";
+  };
   programs.zoxide.enable = true;
 }
