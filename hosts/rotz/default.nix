@@ -45,6 +45,7 @@ in
     kubeconform
     kubeseal
     mgitstatus
+    proton-vpn-cli
     skopeo
 
     # Utilities
