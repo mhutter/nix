@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783525612,
-        "narHash": "sha256-OEFYdbtG6Qy04KGteknnrx15Uo2XXkYVuUvBvFNEn+Q=",
+        "lastModified": 1783550008,
+        "narHash": "sha256-qbbZUk9IG9dLNwCPwdPBs6I5clxwugRpP+1YU+GPK20=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1aac8895fea6fcabc6a0184c63a80fb2f99fd208",
+        "rev": "f4d01c1d87c7c2ec909549165d5a8338f1bd3315",
         "type": "github"
       },
       "original": {
@@ -79,6 +79,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-brave": {
+      "locked": {
+        "lastModified": 1781756789,
+        "narHash": "sha256-rbTugy/cbY0TKNM52qc3S7vza+5qY8nQzu5Jn/mobq8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "278f591c82199a7bd7225da86bed46c3728b4be2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "278f591c82199a7bd7225da86bed46c3728b4be2",
+        "type": "github"
+      }
+    },
     "nixpkgs-citrix-workspace": {
       "locked": {
         "lastModified": 1782291086,
@@ -101,6 +117,7 @@
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-brave": "nixpkgs-brave",
         "nixpkgs-citrix-workspace": "nixpkgs-citrix-workspace"
       }
     }
