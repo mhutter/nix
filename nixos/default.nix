@@ -111,6 +111,7 @@ in
     alacritty
     brave
     obsidian
+    shutter
     spotify
     telegram-desktop
     thunar
@@ -124,7 +125,6 @@ in
     entr
     fd
     file
-    flameshot
     github-cli
     gnumake
     go
