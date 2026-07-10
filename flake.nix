@@ -5,7 +5,6 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-brave.url = "github:NixOS/nixpkgs/278f591c82199a7bd7225da86bed46c3728b4be2";
-    nixpkgs-citrix-workspace.url = "github:mhutter/nixpkgs/citrix-workspace-26.04.0.105";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -29,7 +28,6 @@
       self,
       nixpkgs,
       nixpkgs-brave,
-      nixpkgs-citrix-workspace,
       home-manager,
       impermanence,
       nix-index-database,
@@ -88,16 +86,6 @@
         ];
       };
 
-      citrixPkgs = import nixpkgs-citrix-workspace {
-        inherit system;
-        config.allowUnfreePredicate = allowUnfree commonUnfreePackages;
-        config.permittedInsecurePackages = commonInsecurePackages;
-
-        overlays = [
-          commonOverrides
-        ];
-      };
-
       packages = pkgs.local;
 
       cudaPkgs = import nixpkgs {
@@ -125,7 +113,7 @@
 
       # specialArgs for NixOS
       specialArgs = {
-        inherit username citrixPkgs;
+        inherit username;
         secrets = import ./secrets.nix;
       };
 

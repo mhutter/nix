@@ -1,6 +1,5 @@
 {
   pkgs,
-  citrixPkgs,
   username,
   ...
 }:
@@ -28,7 +27,7 @@ in
 
   environment.systemPackages = with pkgs; [
     # Applications
-    citrixPkgs.citrix-workspace
+    citrix-workspace
     firefox
     omnissa-horizon-client
     remmina

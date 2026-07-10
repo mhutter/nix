@@ -95,30 +95,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-citrix-workspace": {
-      "locked": {
-        "lastModified": 1782291086,
-        "narHash": "sha256-2U5MVS6ptxo86MQmamZkavfNVDtnKkhvB3N6edr3q54=",
-        "owner": "mhutter",
-        "repo": "nixpkgs",
-        "rev": "a7a4716798167eb24b94d9a9a5a7f14f961db2bc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mhutter",
-        "ref": "citrix-workspace-26.04.0.105",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-brave": "nixpkgs-brave",
-        "nixpkgs-citrix-workspace": "nixpkgs-citrix-workspace"
+        "nixpkgs-brave": "nixpkgs-brave"
       }
     }
   },
