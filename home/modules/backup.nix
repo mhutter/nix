@@ -25,7 +25,9 @@ let
     var/lib/cups
     var/lib/docker
     var/lib/libvirt
+    var/lib/wireguard
     var/log
+    nix/persist/root
   '';
 
   resticRepo = "s3://s3.eu-central-003.backblazeb2.com/mhu-restic-${cfg.hostname}";
