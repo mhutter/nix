@@ -40,6 +40,9 @@ let
     }:
     {
       services."${name}" = {
+        Unit = {
+          OnFailure = [ "restic-failure-notify@%n.service" ];
+        };
         Service = {
           Type = "oneshot";
           EnvironmentFile = credentialsFile;
@@ -47,7 +50,10 @@ let
             "RESTIC_REPOSITORY=${resticRepo}"
             "RESTIC_PASSWORD_FILE=${home}/.secrets/restic-password"
           ];
-          ExecStart = builtins.concatStringsSep " " command;
+          # Remove stale locks left behind by interrupted runs
+          ExecStartPre = "${pkgs.restic}/bin/restic unlock";
+          # --retry-lock: wait instead of failing when another job holds the lock
+          ExecStart = builtins.concatStringsSep " " (command ++ [ "--retry-lock=15m" ]);
           Nice = 19;
           IOSchedulingPriority = 7;
         };
@@ -68,33 +74,53 @@ let
     };
 
   resticJobs =
-    pkgs.lib.recursiveUpdate
-      (cron {
-        name = "restic-backup";
-        calendar = "hourly";
-        command = [
-          "${pkgs.restic}/bin/restic backup"
-          "--compression=max"
-          "--exclude-file=${excludes}"
-          "--exclude-caches"
-          "--no-scan"
-          "--one-file-system"
-          "--verbose"
-          "/nix/persist"
-        ];
-      })
-      (cron {
-        name = "restic-cleanup";
-        calendar = "*-*-* 12:30:00";
-        command = [
-          "${pkgs.restic}/bin/restic forget"
-          "--keep-hourly=24"
-          "--keep-daily=7"
-          "--keep-weekly=4"
-          "--keep-monthly=12"
-          "--keep-yearly=10"
-        ];
-      });
+    lib.foldl' lib.recursiveUpdate
+      {
+        # Desktop notification when any restic job fails
+        services."restic-failure-notify@" = {
+          Unit = {
+            Description = "Notify about failed restic job (%i)";
+          };
+          Service = {
+            Type = "oneshot";
+            ExecStart = "${pkgs.libnotify}/bin/notify-send --urgency=critical 'Backup failed' 'Unit %i failed. Logs: journalctl --user -u %i'";
+          };
+        };
+      }
+      [
+        (cron {
+          name = "restic-backup";
+          calendar = "hourly";
+          command = [
+            "${pkgs.restic}/bin/restic backup"
+            "--compression=max"
+            "--exclude-file=${excludes}"
+            "--exclude-caches"
+            "--no-scan"
+            "--one-file-system"
+            "--verbose"
+            "/nix/persist"
+          ];
+        })
+        (cron {
+          name = "restic-cleanup";
+          calendar = "*-*-* 12:30:00";
+          command = [
+            "${pkgs.restic}/bin/restic forget"
+            "--prune"
+            "--keep-hourly=24"
+            "--keep-daily=7"
+            "--keep-weekly=4"
+            "--keep-monthly=12"
+            "--keep-yearly=10"
+          ];
+        })
+        (cron {
+          name = "restic-check";
+          calendar = "Sat *-*-* 13:00:00";
+          command = [ "${pkgs.restic}/bin/restic check" ];
+        })
+      ];
 
 in
 {
