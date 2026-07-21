@@ -44,12 +44,12 @@ let
 
 in
 stdenv.mkDerivation rec {
-  version = "4.2.12";
+  version = "4.3.4";
   pname = "cti";
   src = fetchurl {
     url = "https://wwcom.ch/downloads/cti_${builtins.replaceStrings [ "." ] [ "_" ] version}.deb";
     # use `nix-prefetch-url` to determine new hashes
-    sha256 = "04hwfqray6113ji5ir2gjfr0vy1l1zxjrymcsxsammraqys4cc0w";
+    sha256 = "00a01jnhbdpd310gg2yx4pzx6q6qxkpz4kck7kvx92qnx8s5j4xy";
   };
 
   inherit buildInputs;
