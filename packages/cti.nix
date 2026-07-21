@@ -11,11 +11,13 @@
   dpkg,
   gdk-pixbuf,
   glib,
+  gsettings-desktop-schemas,
   gtk3,
   hidapi,
   libGL,
   libX11,
   libXScrnSaver,
+  libayatana-appindicator,
   libpulseaudio,
   libresample,
   libuuid,
@@ -35,6 +37,8 @@ let
     libGL
     libX11
     libXScrnSaver
+    # dlopen'ed at runtime for the tray icon
+    libayatana-appindicator
     libpulseaudio
     libresample
     libuuid
@@ -72,7 +76,8 @@ stdenv.mkDerivation rec {
     # wrapProgram "$out/opt/pbxcti/pbxcti" \
     # --prefix LD_LIBRARY_PATH : "$out" > "$out/bin/pbxcti"
     makeWrapper "$out/opt/pbxcti/pbxcti"  "$out/bin/pbxcti" \
-      --set LD_LIBRARY_PATH $out:${lib.makeLibraryPath buildInputs}
+      --set LD_LIBRARY_PATH $out:${lib.makeLibraryPath buildInputs} \
+      --prefix XDG_DATA_DIRS : "${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}"
   '';
 
   meta = {
