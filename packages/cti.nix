@@ -75,8 +75,12 @@ stdenv.mkDerivation rec {
     #   --replace "/opt" "$out/opt"
     # wrapProgram "$out/opt/pbxcti/pbxcti" \
     # --prefix LD_LIBRARY_PATH : "$out" > "$out/bin/pbxcti"
+    # Without an explicit latency the app's PulseAudio playback thread stalls
+    # under pipewire-pulse after the initial buffer fill, freezing the whole
+    # pjmedia clock (no RTP in either direction).
     makeWrapper "$out/opt/pbxcti/pbxcti"  "$out/bin/pbxcti" \
       --set LD_LIBRARY_PATH $out:${lib.makeLibraryPath buildInputs} \
+      --set-default PULSE_LATENCY_MSEC 60 \
       --prefix XDG_DATA_DIRS : "${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}"
   '';
 

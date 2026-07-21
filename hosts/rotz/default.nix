@@ -49,6 +49,7 @@ in
 
     # Utilities
     cifs-utils
+    pulseaudio # only for the client tools (pactl, used by i3 volume keys)
     samba
     whois
     wireguard-tools
@@ -57,6 +58,8 @@ in
     local.cti
   ];
   services.udev.packages = [ pkgs.local.cti ];
+  # pbxcti hardcodes /opt/pbxcti paths (ring sounds etc.)
+  systemd.tmpfiles.rules = [ "L+ /opt/pbxcti - - - - ${pkgs.local.cti}/opt/pbxcti" ];
 
   # TODO: Configure WirePlumber rules
   # - Disable internal devices
