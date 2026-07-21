@@ -42,7 +42,6 @@
       ];
       directories = [
         ".cache/BraveSoftware"
-        ".cache/deno"
         ".cache/go-build"
         ".cache/helm"
         ".cache/nix"
@@ -50,8 +49,6 @@
         ".cache/restic"
         ".cache/sccache"
         ".cache/spotify"
-        ".cache/uv"
-        ".cache/wasm-pack"
         ".cargo"
         ".claude"
         ".config/1Password"
@@ -59,7 +56,6 @@
         ".config/CTI"
         ".config/Code"
         ".config/autorandr"
-        ".config/backrest"
         ".config/gcloud"
         ".config/gh"
         ".config/glab-cli"
@@ -72,7 +68,6 @@
         ".docker"
         ".kube"
         ".local/share/atuin"
-        ".local/share/backrest"
         ".local/share/direnv"
         ".local/share/helm"
         ".local/share/nvim"
