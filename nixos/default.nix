@@ -206,6 +206,15 @@ in
     allowOrigin = "*";
   };
 
+  # SilverBullet
+  services.silverbullet = {
+    enable = true;
+    spaceDir = "/home/${username}/Sync/Silverbullet";
+    user = username;
+    group = "users";
+    listenPort = 56789;
+  };
+
   # Disable unused features
   services.speechd.enable = false;
   programs.nano.enable = false;
