@@ -71,7 +71,22 @@
         });
       };
 
-      pkgs-brave = import nixpkgs-brave { inherit system; };
+      # Create an overlay that replaces the given package "pkg" with the version in "from"
+      #
+      # Usage example:
+      #
+      # pkgs = import nixpkgs {
+      #   inherit system;
+      #   overlays = [
+      #     (replacePackage nixpkgs-brave "brave")
+      #   ];
+      # };
+      replacePackage =
+        from: pkg:
+        let
+          pkgs-other = import from { inherit system; };
+        in
+        (final: prev: { "${pkg}" = pkgs-other."${pkg}"; });
 
       # Overwrite some settings for nixpkgs
       pkgs = import nixpkgs {
@@ -82,7 +97,7 @@
         overlays = [
           (import ./packages)
           commonOverrides
-          (final: prev: { brave = pkgs-brave.brave; })
+          (replacePackage nixpkgs-brave "brave")
         ];
       };
 
