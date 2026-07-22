@@ -8,14 +8,27 @@ let
   cfg = config.backup;
   home = config.home.homeDirectory;
 
+  # See https://restic.readthedocs.io/en/stable/040_backup.html#excluding-files
   excludes = builtins.toFile "restic-excludes" ''
+    # SQLite SHM files
+    *.db-shm
+
+    # Dropbox stuff
     .dropbox-dist
     Dropbox/
+
+    # Large files
     safe/media/
+
+    # compilation outputs
     target/
     node_modules/
+
+    # Caches
     .cache/
     .local/share/containers/
+
+    # Potentially unaccessible files
     etc/NetworkManager/system-connections
     etc/ssh/ssh_host_ed25519_key
     etc/ssh/ssh_host_rsa_key
@@ -26,8 +39,10 @@ let
     var/lib/docker
     var/lib/libvirt
     var/lib/wireguard
-    var/log
     nix/persist/root
+
+    # not-so-relevant files
+    var/log
   '';
 
   resticRepo = "s3://s3.eu-central-003.backblazeb2.com/mhu-restic-${cfg.hostname}";
