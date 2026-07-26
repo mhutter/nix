@@ -4,7 +4,6 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-brave.url = "github:NixOS/nixpkgs/278f591c82199a7bd7225da86bed46c3728b4be2";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -27,7 +26,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-brave,
       home-manager,
       impermanence,
       nix-index-database,
@@ -81,7 +79,7 @@
       #     (replacePackage nixpkgs-brave "brave")
       #   ];
       # };
-      replacePackage =
+      _replacePackage =
         from: pkg:
         let
           pkgs-other = import from { inherit system; };
@@ -97,7 +95,6 @@
         overlays = [
           (import ./packages)
           commonOverrides
-          (replacePackage nixpkgs-brave "brave")
         ];
       };
 
