@@ -126,7 +126,7 @@
       # specialArgs for NixOS
       specialArgs = {
         inherit username;
-        secrets = import ./secrets.nix;
+        secrets = import ./secrets.nix { lib = nixpkgs.lib; };
       };
 
       notebookSystem =

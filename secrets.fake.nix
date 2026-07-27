@@ -1,3 +1,4 @@
+{ lib }:
 rec {
   user = {
     name = "";
