@@ -35,6 +35,7 @@ in
 
     # CLI apps
     age
+    ansible
     claude-code
     cookiecutter
     cruft
