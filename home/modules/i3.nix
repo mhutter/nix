@@ -111,6 +111,10 @@ in
           "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
           "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
+          # Display backlight (brightnessctl is installed by nixos/notebook.nix)
+          "XF86MonBrightnessUp" = "exec --no-startup-id brightnessctl set 5%+";
+          "XF86MonBrightnessDown" = "exec --no-startup-id brightnessctl set 5%-";
+
           # use VIM keybindings for focus
           "${mod}+h" = "focus left";
           "${mod}+j" = "focus down";

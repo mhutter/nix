@@ -2,9 +2,13 @@
 { pkgs, username, ... }:
 
 {
-  environment.systemPackages = [ pkgs.arandr ];
+  environment.systemPackages = [
+    pkgs.arandr
+    # Backlight control for the XF86MonBrightness* keys bound in home/modules/i3.nix.
+    # No udev rules needed, it writes brightness through the systemd-logind API.
+    pkgs.brightnessctl
+  ];
 
-  # TODO: for backlight, investigate `acpilight` or `brightnessctl`.
   users.users.${username}.extraGroups = [ "video" ];
 
   services.autorandr = {
