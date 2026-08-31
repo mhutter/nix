@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  secrets,
   ...
 }:
 
@@ -23,6 +24,7 @@ in
 
   networking = {
     hostName = "rotz";
+    hosts = secrets.extraHosts;
   };
 
   environment.systemPackages = with pkgs; [
