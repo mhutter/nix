@@ -18,11 +18,15 @@
       "/var/log"
       {
         mode = "0700";
+        directory = "/root/.ssh";
+      }
+      {
+        mode = "0700";
         directory = "/var/db/sudo/lectured";
       }
       {
         mode = "0700";
-        directory = "/root/.ssh";
+        directory = "/var/lib/tailscale";
       }
     ];
     files = [

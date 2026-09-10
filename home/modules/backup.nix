@@ -32,14 +32,15 @@ let
     etc/NetworkManager/system-connections
     etc/ssh/ssh_host_ed25519_key
     etc/ssh/ssh_host_rsa_key
+    nix/persist/root
     var/db/sudo
     var/lib/AccountsService
     var/lib/bluetooth
     var/lib/cups
     var/lib/docker
     var/lib/libvirt
+    var/lib/tailscale
     var/lib/wireguard
-    nix/persist/root
 
     # not-so-relevant files
     var/log
