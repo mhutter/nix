@@ -35,25 +35,6 @@
       system = "x86_64-linux";
       username = "mh";
 
-      commonUnfreePackages = [
-        "1password"
-        "1password-cli"
-        "citrix-workspace"
-        "claude-code"
-        "code"
-        "linuxx64" # dep of citrix-workspace
-        "nomachine-client"
-        "obsidian"
-        "omnissa-horizon-client"
-        "spotify"
-        "steam"
-        "steam-original"
-        "steam-run"
-        "steam-unwrapped"
-        "vscode"
-        "webex"
-      ];
-      allowUnfree = allowed: pkg: builtins.elem (nixpkgs.lib.getName pkg) allowed;
       commonInsecurePackages = [ ];
 
       commonOverrides = final: prev: {
@@ -89,7 +70,7 @@
       # Overwrite some settings for nixpkgs
       pkgs = import nixpkgs {
         inherit system;
-        config.allowUnfreePredicate = allowUnfree commonUnfreePackages;
+        config.allowUnfree = true;
         config.permittedInsecurePackages = commonInsecurePackages;
 
         overlays = [
@@ -104,22 +85,7 @@
         inherit system;
         config.cudaSupport = true;
         cudaCapabilities = [ "8.9" ];
-        config.allowUnfreePredicate = allowUnfree (
-          commonUnfreePackages
-          ++ [
-            "cuda_cccl"
-            "cuda_cudart"
-            "cuda_nvcc"
-            "cuda_nvrtc"
-            "cudnn"
-            "libcublas"
-            "libcufft"
-            "libcurand"
-            "libcusparse"
-            "libnvjitlink"
-            "nvidia-x11"
-          ]
-        );
+        config.allowUnfree = true;
         overlays = [ commonOverrides ];
       };
 

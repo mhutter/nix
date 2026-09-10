@@ -86,9 +86,14 @@ in
     '';
   };
 
+  # Allow unfree packages for ad-hoc nix commands outside this flake
+  # (nix-shell, nix-env, nix build --impure, ...).
+  xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
+
   home.sessionVariables = {
     BROWSER = "brave";
     DFT_OVERRIDE = "*.snap:YAML";
+    NIXPKGS_ALLOW_UNFREE = "1";
   };
   home.sessionPath = [
     "$HOME/bin"
