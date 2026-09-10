@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   secrets,
   username,
@@ -196,8 +195,11 @@ in
   # List services that you want to enable:
 
   # Enable Tailscale
-  services.tailscale.enable = true;
-  systemd.services.tailscaled.wantedBy = lib.mkForce [ ];
+  services.tailscale = {
+    enable = true;
+    openFirewall = true; # UDP 41641, for direct instead of relayed connections
+    useRoutingFeatures = "client"; # loosens reverse path filtering, needed for exit nodes
+  };
 
   # Some stuff required for desktop environments
   services.gnome.gnome-keyring.enable = true;
@@ -224,11 +226,12 @@ in
   services.speechd.enable = false;
   programs.nano.enable = false;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    # The tailnet only contains our own machines, so trust it wholesale. This is
+    # what makes SSH over Tailscale reachable.
+    trustedInterfaces = [ config.services.tailscale.interfaceName ];
+  };
 
   # Link NixOS configuration
   environment.etc."nixos".source = configPath;
