@@ -21,11 +21,6 @@
         ForwardAgent = false;
       };
 
-      # Desktop, reachable from anywhere over the tailnet (direct on the LAN)
-      nxzt = {
-        HostName = "nxzt.tail8300c0.ts.net";
-      };
-
       "source.developers.google.com" = {
         HostKeyAlgorithms = "ecdsa-sha2-nistp256";
       };
