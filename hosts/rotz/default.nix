@@ -24,7 +24,19 @@ in
 
   networking = {
     hostName = "rotz";
-    hosts = secrets.extraHosts;
+    hosts =
+      let
+        blockedHosts = [
+          # Facebook trackers
+          "www.facebook.com"
+          "connect.facebook.net"
+        ];
+      in
+      secrets.extraHosts
+      // {
+        "0.0.0.0" = blockedHosts;
+        "::" = blockedHosts;
+      };
   };
 
   environment.systemPackages = with pkgs; [
