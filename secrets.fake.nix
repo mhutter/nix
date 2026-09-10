@@ -20,4 +20,8 @@ rec {
   dockerRegistryMirror = "";
   customCACertificates = [ ];
   cargoRegistries = { };
+  wifiHome = {
+    ssid = "";
+    psk = "";
+  };
 }

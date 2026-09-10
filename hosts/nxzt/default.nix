@@ -1,4 +1,9 @@
-{ username, pkgs, ... }:
+{
+  username,
+  pkgs,
+  secrets,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -7,6 +12,28 @@
   home-manager.users.${username} = import ./home.nix;
 
   networking.hostName = "nxzt";
+
+  # nxzt has no wired connectivity. Declare the wifi as a system-owned profile,
+  # so the machine joins the network at boot instead of waiting for a login
+  # session to hand NetworkManager the PSK from a keyring.
+  networking.networkmanager.ensureProfiles.profiles.home = {
+    connection = {
+      id = "home";
+      type = "wifi";
+      autoconnect = true;
+      permissions = ""; # usable by any user, not just the one who created it
+    };
+    wifi = {
+      mode = "infrastructure";
+      ssid = secrets.wifiHome.ssid;
+    };
+    wifi-security = {
+      key-mgmt = "wpa-psk";
+      psk = secrets.wifiHome.psk;
+    };
+    ipv4.method = "auto";
+    ipv6.method = "auto";
+  };
 
   services.openssh = {
     enable = true;
