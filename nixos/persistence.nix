@@ -94,6 +94,10 @@
         "safe"
         {
           mode = "0700";
+          directory = ".config/Claude";
+        }
+        {
+          mode = "0700";
           directory = ".config/obsidian";
         }
         {

@@ -70,12 +70,17 @@ in
     wireguard-tools
 
     # Custom packages
+    local.claude-desktop
     local.cti
     local.drydock
   ];
   services.udev.packages = [ pkgs.local.cti ];
-  # pbxcti hardcodes /opt/pbxcti paths (ring sounds etc.)
-  systemd.tmpfiles.rules = [ "L+ /opt/pbxcti - - - - ${pkgs.local.cti}/opt/pbxcti" ];
+  systemd.tmpfiles.rules = [
+    # pbxcti hardcodes /opt/pbxcti paths (ring sounds etc.)
+    "L+ /opt/pbxcti - - - - ${pkgs.local.cti}/opt/pbxcti"
+    # Claude Desktop's Cowork VM looks for UEFI firmware at a hardcoded path
+    "L+ /usr/share/OVMF - - - - ${pkgs.OVMF.fd}/FV"
+  ];
 
   # TODO: Configure WirePlumber rules
   # - Disable internal devices

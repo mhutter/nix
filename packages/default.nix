@@ -5,6 +5,7 @@ let
 in
 {
   local = {
+    claude-desktop = callPackage ./claude-desktop.nix { };
     cti = callPackage ./cti.nix { };
     drydock = callPackage ./drydock.nix { };
   };
