@@ -5,6 +5,9 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    # tailscale 1.102.4, see https://github.com/NixOS/nixpkgs/pull/562013
+    nixpkgs-tailscale.url = "github:mhutter/nixpkgs/tailscale-1.102.4";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +29,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-tailscale,
       home-manager,
       impermanence,
       nix-index-database,
@@ -60,7 +64,7 @@
       #     (replacePackage nixpkgs-brave "brave")
       #   ];
       # };
-      _replacePackage =
+      replacePackage =
         from: pkg:
         let
           pkgs-other = import from { inherit system; };
@@ -76,6 +80,7 @@
         overlays = [
           (import ./packages)
           commonOverrides
+          (replacePackage nixpkgs-tailscale "tailscale")
         ];
       };
 
