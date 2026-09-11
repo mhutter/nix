@@ -119,6 +119,7 @@ in
 
     # CLI tools
     alsa-utils
+    claude-code
     curl
     dig
     dive
@@ -133,8 +134,8 @@ in
     jq
     just
     ncdu
-    prettier
     openssl
+    prettier
     pwgen
     shellcheck
     unzip
