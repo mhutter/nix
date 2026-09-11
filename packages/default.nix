@@ -6,5 +6,6 @@ in
 {
   local = {
     cti = callPackage ./cti.nix { };
+    drydock = callPackage ./drydock.nix { };
   };
 }

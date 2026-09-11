@@ -71,6 +71,7 @@ in
 
     # Custom packages
     local.cti
+    local.drydock
   ];
   services.udev.packages = [ pkgs.local.cti ];
   # pbxcti hardcodes /opt/pbxcti paths (ring sounds etc.)
