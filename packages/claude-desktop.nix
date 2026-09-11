@@ -144,10 +144,13 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   # Keep the binary next to its resources/ so Electron's process.resourcesPath
-  # still resolves.
+  # still resolves. Chromium cannot infer a keyring backend from i3's
+  # XDG_CURRENT_DESKTOP and would silently fall back to plaintext storage, at
+  # which point Electron's safeStorage refuses to persist the sign-in.
   postFixup = ''
     makeWrapper "$out/lib/claude-desktop/claude-desktop" "$out/bin/claude-desktop" \
       "''${gappsWrapperArgs[@]}" \
+      --add-flags "--password-store=gnome-libsecret" \
       --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeLibs}" \
       --prefix PATH : "${lib.makeBinPath [ qemu_kvm ]}"
   '';
