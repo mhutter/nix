@@ -65,14 +65,12 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "claude-desktop";
-  version = "1.52386.0";
+  # run scripts/update-claude-desktop.sh to update the next 3 attributes
+  version = "1.52386.6";
 
   src = fetchurl {
-    # The URL carries an opaque build id alongside the version, and both change
-    # on every release. Grab the current .deb link from
-    # https://claude.ai/download and use `nix-prefetch-url` for the hash.
-    url = "https://downloads.claude.ai/releases/linux/x64/${finalAttrs.version}/Claude-1003ca8d443708006c167ffbd0f9695343643af1.deb";
-    hash = "sha256-nF0RPqLDHA1PYHXALmGAv0q1PTVza5pJfODoT2LpZUs=";
+    url = "https://downloads.claude.ai/claude-desktop/apt/stable/pool/main/c/claude-desktop/claude-desktop_1.52386.6_amd64.deb";
+    hash = "sha256-LoOnbG7ZGHZxv+gGZPxtWYQBcfSiqB9AhmLIeaZ/Tgo=";
   };
 
   buildInputs = [
