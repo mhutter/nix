@@ -13,13 +13,14 @@ rec {
   };
 
   sshHosts.rhea = {
-    hostname = "rhea";
-    port = 22;
+    Hostname = "rhea";
+    Port = 22;
   };
   wg-quick.interfaces = { };
   dockerRegistryMirror = "";
   customCACertificates = [ ];
   cargoRegistries = { };
+  extraHosts = { };
   wifiHome = {
     ssid = "";
     psk = "";
