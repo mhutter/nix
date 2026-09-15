@@ -7,6 +7,18 @@
 
 {
   home.packages = with pkgs; [ git-crypt ];
+
+  programs.zsh.initContent = ''
+    function git-version-tag() {
+      if [ -z "$1" ]; then
+        echo >&2 "usage: git-version-tag TAG"
+        return 1
+      fi
+      set -x
+      git tag -s "$1" -m "Release $1"
+    }
+  '';
+
   programs.git = {
     enable = true;
 
