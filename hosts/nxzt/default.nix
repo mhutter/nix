@@ -59,15 +59,7 @@
     nvidiaSettings = false;
     open = true;
   };
-
-  # AI
-  # services.ollama = {
-  #   enable = true;
-  #   host = "100.112.141.2";
-  # };
-  # environment.variables = {
-  #   OLLAMA_HOST = "100.112.141.2";
-  # };
+  hardware.nvidia-container-toolkit.enable = true;
 
   # Gaming
   programs.steam.enable = true;
