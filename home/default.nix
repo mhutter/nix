@@ -32,7 +32,9 @@ in
     enable = true;
     defaultCacheTtl = 43200;
     maxCacheTtl = 43200;
-    pinentry.package = pkgs.pinentry-curses;
+    # GUI pinentry: pinentry-curses breaks in non-tty contexts (e.g. Claude Code).
+    # Uses gcr-prompter via D-Bus, provided by services.gnome.gnome-keyring.
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 
   programs.ripgrep.enable = true;
