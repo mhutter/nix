@@ -58,8 +58,10 @@ in
     kubeconform
     kubeseal
     mgitstatus
+    minikube
     proton-vpn-cli
     skopeo
+    trivy
 
     # Utilities
     cifs-utils
