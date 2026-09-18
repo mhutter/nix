@@ -13,6 +13,7 @@
     k = "${pkgs.kubecolor}/bin/kubecolor";
     ka = "k --as=cluster-admin";
     kubens = "k config set-context --current --namespace";
+    kcs = "k create secret --dry-run=client -o yaml";
   };
   programs.zsh.initContent = ''
     # Fix completions for kubecolor aliases
