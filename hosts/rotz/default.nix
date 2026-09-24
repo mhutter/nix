@@ -55,7 +55,6 @@ in
     gcloud-cli
     glab
     gnumake
-    kubeconform
     kubeseal
     mgitstatus
     minikube
