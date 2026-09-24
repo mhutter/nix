@@ -128,7 +128,6 @@ in
     file
     github-cli
     gnumake
-    go
     go-jsonnet
     icdiff
     jq
@@ -139,7 +138,6 @@ in
     pwgen
     shellcheck
     unzip
-    uv
     xclip
     xh
     yamllint

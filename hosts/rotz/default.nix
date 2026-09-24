@@ -56,8 +56,6 @@ in
     glab
     gnumake
     kubeseal
-    mgitstatus
-    minikube
     proton-vpn-cli
     skopeo
     trivy
