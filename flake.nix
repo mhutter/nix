@@ -42,12 +42,6 @@
         libinput = prev.libinput.override {
           wacomSupport = false;
         };
-
-        # Disable broken tests for openldap
-        # see: https://github.com/NixOS/nixpkgs/issues/514113
-        openldap = prev.openldap.overrideAttrs (old: {
-          doCheck = false;
-        });
       };
 
       # Create an overlay that replaces the given package "pkg" with the version in "from"
