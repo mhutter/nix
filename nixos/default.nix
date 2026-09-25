@@ -173,12 +173,11 @@ in
       trusted-users = [ username ];
       substituters = [
         "https://nix-community.cachix.org"
-      ];
-      trusted-substituters = [
-        "ssh://nix-ssh@${rhea.Hostname}:${builtins.toString rhea.Port}"
+        "https://cache.mhnet.app"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "cache.mhnet.app-1:gWRYoyxv4XPxFPfVDgjCi4GkdNVC7oJiwDhAuNqvTjw="
       ];
     };
   };
