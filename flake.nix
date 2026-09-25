@@ -78,7 +78,7 @@
       cudaPkgs = import nixpkgs {
         inherit system;
         config.cudaSupport = true;
-        cudaCapabilities = [ "8.9" ];
+        config.cudaCapabilities = [ "8.9" ];
         config.allowUnfree = true;
         overlays = [ commonOverrides ];
       };
