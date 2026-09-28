@@ -205,12 +205,6 @@ in
 
   services.fwupd.enable = true;
 
-  # Languagetool
-  services.languagetool = {
-    enable = true;
-    allowOrigin = "*";
-  };
-
   # SilverBullet
   services.silverbullet = {
     enable = true;
