@@ -4,6 +4,28 @@
   secrets,
   ...
 }:
+let
+  # aiohttp-client-cache 0.14.3 tests fail with aiohttp >= 3.14 and pytest >= 9.1.
+  # Both are fixed upstream, but unreleased. Drop once nixpkgs ships a newer version.
+  python3 = pkgs.python3.override {
+    self = python3;
+    packageOverrides = pyfinal: pyprev: {
+      aiohttp-client-cache = pyprev.aiohttp-client-cache.overridePythonAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          (pkgs.fetchpatch {
+            url = "https://github.com/requests-cache/aiohttp-client-cache/commit/6fdc8b3f4ed318f0a0b42f8906884b99e7a70d38.patch";
+            hash = "sha256-9WMLLDWvU4tlpeO+1IAxwtmkj8eoMMqCUomk6mxm9Ks=";
+          })
+          (pkgs.fetchpatch {
+            url = "https://github.com/requests-cache/aiohttp-client-cache/commit/db7910effe01650a0ca16af0f528ca01445bebcf.patch";
+            hash = "sha256-YEeiO4h7YySlTE+lqL0tS6l9hmzOnsQAl5uqP3nNGA8=";
+          })
+        ];
+      });
+    };
+  };
+  instawow = pkgs.instawow.override { inherit python3; };
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -63,4 +85,5 @@
 
   # Gaming
   programs.steam.enable = true;
+  environment.systemPackages = [ instawow ];
 }
