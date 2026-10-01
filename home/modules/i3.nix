@@ -39,6 +39,18 @@ in
       indicator = "";
       childBorder = "";
 
+      # dmenu_run, but without commands we never want to launch from the menu
+      menuHidden = [
+        "shutdown"
+        "halt"
+      ];
+      menu = pkgs.writeShellScript "dmenu_run_filtered" ''
+        ${pkgs.dmenu}/bin/dmenu_path \
+          | ${pkgs.gnugrep}/bin/grep -vxF ${lib.concatMapStringsSep " " (c: "-e ${c}") menuHidden} \
+          | ${pkgs.dmenu}/bin/dmenu "$@" \
+          | ''${SHELL:-/bin/sh} &
+      '';
+
     in
     {
       enable = true;
@@ -46,6 +58,7 @@ in
         inherit fonts;
         modifier = mod;
         floating.modifier = mod;
+        menu = "${menu}";
 
         gaps = {
           inner = 12;
