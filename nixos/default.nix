@@ -137,11 +137,12 @@ in
     prettier
     pwgen
     shellcheck
-    unzip
     xclip
     xh
     yamllint
     yq-go
+    zip
+    unzip
   ];
 
   # Fonts
