@@ -166,6 +166,8 @@ in
     };
     settings = {
       auto-optimise-store = true;
+      # Default is 16, too much for slow links
+      max-substitution-jobs = 4;
 
       experimental-features = [
         "nix-command"
