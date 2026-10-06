@@ -5,16 +5,16 @@
 }:
 buildGo127Module (finalAttrs: {
   pname = "drydock";
-  version = "0.2.10";
+  version = "0.3.3";
 
   src = fetchFromGitHub {
     owner = "sholdee";
     repo = "drydock";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-f2v1Nmhhb86GMtVOpuR0jDldBVXLHjOiQYQC/0JfuLc=";
+    hash = "sha256-OTLOfsIujXbq3KNN6M7DMtfVxqCw/V2qbCnhIEBs/hY=";
   };
 
-  vendorHash = "sha256-5OKVgNjX7wtqXXz7XeRxbvLQ8lbbwZmEhumVdZO6Lec=";
+  vendorHash = "sha256-JaUvz2O3tj8BEp1xKrBF6zmsd1FE/PEASYAWrFgzYuw=";
 
   subPackages = [ "cmd/drydock" ];
 
