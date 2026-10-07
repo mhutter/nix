@@ -8,5 +8,6 @@ in
     claude-desktop = callPackage ./claude-desktop.nix { };
     cti = callPackage ./cti.nix { };
     drydock = callPackage ./drydock.nix { };
+    ink-md = callPackage ./ink-md.nix { };
   };
 }

@@ -71,6 +71,7 @@ in
     local.claude-desktop
     local.cti
     local.drydock
+    local.ink-md
   ];
   services.udev.packages = [ pkgs.local.cti ];
   systemd.tmpfiles.rules = [
