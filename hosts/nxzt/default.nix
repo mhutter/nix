@@ -48,6 +48,7 @@ in
     wifi = {
       mode = "infrastructure";
       ssid = secrets.wifiHome.ssid;
+      band = "a"; # "a" = 5 GHz only; "bg" = 2.4 GHz only
     };
     wifi-security = {
       key-mgmt = "wpa-psk";
