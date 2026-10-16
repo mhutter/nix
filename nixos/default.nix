@@ -10,7 +10,6 @@ let
   homeDir = config.users.users.${username}.home;
   configDir = ".config/nix";
   configPath = "${homeDir}/${configDir}";
-  rhea = secrets.sshHosts.rhea;
 
 in
 {
@@ -175,11 +174,9 @@ in
       ];
       trusted-users = [ username ];
       substituters = [
-        "https://nix-community.cachix.org"
         "https://cache.mhnet.app"
       ];
       trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "cache.mhnet.app-1:gWRYoyxv4XPxFPfVDgjCi4GkdNVC7oJiwDhAuNqvTjw="
       ];
     };
