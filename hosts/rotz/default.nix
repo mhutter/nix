@@ -94,7 +94,7 @@ in
   ];
   environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
 
-  # Virtualisation
+  ### Virtualisation - libvirtd
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu = {
     package = pkgs.qemu_kvm;
@@ -108,6 +108,9 @@ in
   # Allow user to manage VMs
   users.extraGroups.vboxusers.members = [ username ];
   users.groups.libvirtd.members = [ username ];
+
+  ## Virtualisation - VirtualBox
+  virtualisation.virtualbox.host.enable = true;
 
   # Printing
   services.printing = {
