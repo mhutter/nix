@@ -27,6 +27,7 @@ let
     # Caches
     .cache/
     .local/share/containers/
+    .local/share/Steam/
 
     # Potentially unaccessible files
     etc/NetworkManager/system-connections
