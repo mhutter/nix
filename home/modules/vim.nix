@@ -32,6 +32,8 @@
       nil
       nixfmt
       # typescript-language-server
+      # For HTML formatting
+      vscode-langservers-extracted
 
       # rust-analyzer is installed via rustup
       # prettier is in default.nix
