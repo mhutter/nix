@@ -58,6 +58,7 @@ in
     kubeseal
     proton-vpn-cli
     skopeo
+    sqlx-cli
     trivy
 
     # Utilities
