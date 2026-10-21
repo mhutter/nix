@@ -50,6 +50,16 @@ in
   # Workaroud for Shokz sending shutdown signals
   services.logind.settings.Login.HandlePowerKey = "ignore";
 
+  # The Shokz headset adjusts its own volume in hardware, but also sends
+  # XF86Audio* keys, which i3 would apply to the default sink as well.
+  services.xserver.inputClassSections = [
+    ''
+      Identifier "Ignore Shokz media keys"
+      MatchProduct "Shokz"
+      Option "Ignore" "on"
+    ''
+  ];
+
   # Enable sound.
   # hardware.pulseaudio.enable = true;
   # OR
