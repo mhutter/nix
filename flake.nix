@@ -42,6 +42,16 @@
         libinput = prev.libinput.override {
           wacomSupport = false;
         };
+
+        # Fix VirtualBox modules missing *.ko.cer files
+        # TODO: Remove once https://github.com/NixOS/nixpkgs/pull/575381 is merged
+        linuxPackages = prev.linuxPackages.extend (
+          kfinal: kprev: {
+            virtualbox = kprev.virtualbox.overrideAttrs (old: {
+              makeFlags = kprev.kernelModuleMakeFlags ++ old.makeFlags ++ [ "VBOX_ALLOW_MODULE_SIGNING=1" ];
+            });
+          }
+        );
       };
 
       # Create an overlay that replaces the given package "pkg" with the version in "from"
