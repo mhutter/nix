@@ -43,7 +43,16 @@ in
     enable = true;
     overrideDevices = false;
     overrideFolders = false;
-    settings.options.urAccepted = -1;
+    # LAN-only: no relays, global discovery, NAT traversal or STUN.
+    # Peers find each other via local discovery.
+    settings.options = {
+      urAccepted = -1;
+      relaysEnabled = false;
+      globalAnnounceEnabled = false;
+      natEnabled = false;
+      crashReportingEnabled = false;
+      stunKeepaliveStartS = 0;
+    };
   };
 
   # The home.packages option allows you to install Nix packages into your
