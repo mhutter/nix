@@ -126,5 +126,17 @@ in
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ username ];
+    # Fix SIGTRAP on launch
+    # https://github.com/NixOS/nixpkgs/issues/576668
+    # source: https://github.com/NixOS/nixpkgs/pull/576689#issuecomment-6403331077
+    # Fix PR: https://github.com/NixOS/nixpkgs/pull/579025
+    package = pkgs._1password-gui.overrideAttrs (old: {
+      postFixup = (old.postFixup or "") + ''
+        patchelf \
+          --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+          --set-rpath "$(patchelf --print-rpath $out/share/1password/1password)" \
+          $out/share/1password/chrome_crashpad_handler
+      '';
+    });
   };
 }
