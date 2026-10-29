@@ -79,29 +79,12 @@
         "type": "github"
       }
     },
-    "nixpkgs-instawow": {
-      "locked": {
-        "lastModified": 1792583865,
-        "narHash": "sha256-DxbZheIgEpslYu3DRvYYSsh3LhBRqvlUY9kihQ3XAgM=",
-        "owner": "mhutter",
-        "repo": "nixpkgs",
-        "rev": "6c90fba760f78c79ba5bbf1c6f437816c003c810",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mhutter",
-        "ref": "instawow-7.2.4",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-instawow": "nixpkgs-instawow"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

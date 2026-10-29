@@ -5,9 +5,6 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # TODO: Remove once instawow 7.2.4 is in nixpkgs-unstable
-    nixpkgs-instawow.url = "github:mhutter/nixpkgs/instawow-7.2.4";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +26,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-instawow,
       home-manager,
       impermanence,
       nix-index-database,
@@ -68,7 +64,7 @@
       #     (replacePackage nixpkgs-brave "brave")
       #   ];
       # };
-      replacePackage =
+      _replacePackage =
         from: pkg:
         let
           pkgs-other = import from { inherit system; };
@@ -94,10 +90,7 @@
         config.cudaSupport = true;
         config.cudaCapabilities = [ "8.9" ];
         config.allowUnfree = true;
-        overlays = [
-          commonOverrides
-          (replacePackage nixpkgs-instawow "instawow")
-        ];
+        overlays = [ commonOverrides ];
       };
 
       # specialArgs for NixOS
