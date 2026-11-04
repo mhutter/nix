@@ -79,12 +79,29 @@
         "type": "github"
       }
     },
+    "nixpkgs-temp": {
+      "locked": {
+        "lastModified": 1793777214,
+        "narHash": "sha256-WyBuzuIrtcPrAR6/a7hbMHIWu7Y5VEIMd0tc6LIKPSY=",
+        "owner": "muscaln",
+        "repo": "nixpkgs",
+        "rev": "51d55402f8e69966003fd94d6ae0313f1e249a0a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "muscaln",
+        "ref": "omnissa",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-temp": "nixpkgs-temp"
       }
     }
   },

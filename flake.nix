@@ -5,6 +5,8 @@
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    nixpkgs-omnissa.url = "github:muscaln/nixpkgs/omnissa";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +28,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-omnissa,
       home-manager,
       impermanence,
       nix-index-database,
@@ -64,10 +67,13 @@
       #     (replacePackage nixpkgs-brave "brave")
       #   ];
       # };
-      _replacePackage =
+      replacePackage =
         from: pkg:
         let
-          pkgs-other = import from { inherit system; };
+          pkgs-other = import from {
+            inherit system;
+            config.allowUnfree = true;
+          };
         in
         (final: prev: { "${pkg}" = pkgs-other."${pkg}"; });
 
@@ -80,6 +86,7 @@
         overlays = [
           (import ./packages)
           commonOverrides
+          (replacePackage nixpkgs-omnissa "omnissa-horizon-client")
         ];
       };
 
