@@ -102,7 +102,7 @@ in
   xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
 
   home.sessionVariables = {
-    BROWSER = "brave";
+    BROWSER = "${pkgs.brave-origin}/bin/brave-origin";
     DFT_OVERRIDE = "*.snap:YAML";
     NIXPKGS_ALLOW_UNFREE = "1";
   };
