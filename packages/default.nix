@@ -4,7 +4,7 @@ let
 
 in
 {
-  local = {
+  local = (callPackage ./brave { }) // {
     claude-desktop = callPackage ./claude-desktop.nix { };
     cti = callPackage ./cti.nix { };
     drydock = callPackage ./drydock.nix { };

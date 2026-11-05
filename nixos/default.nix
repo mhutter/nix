@@ -118,7 +118,7 @@ in
 
     # Applications
     alacritty
-    brave-origin
+    local.brave-origin
     obsidian
     shutter
     spotify
