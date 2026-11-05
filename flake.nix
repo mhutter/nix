@@ -40,12 +40,16 @@
 
       commonInsecurePackages = [ ];
 
-      commonOverrides = final: prev: {
-        # Disable unused features
-        libinput = prev.libinput.override {
-          wacomSupport = false;
+      commonOverrides =
+        final: prev:
+        # Local packages
+        (import ./packages final prev)
+        // {
+          # Disable unused features
+          libinput = prev.libinput.override {
+            wacomSupport = false;
+          };
         };
-      };
 
       # Create an overlay that replaces the given package "pkg" with the version in "from"
       #
@@ -74,7 +78,6 @@
         config.permittedInsecurePackages = commonInsecurePackages;
 
         overlays = [
-          (import ./packages)
           commonOverrides
           (replacePackage nixpkgs-omnissa "omnissa-horizon-client")
         ];
