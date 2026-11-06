@@ -63,6 +63,9 @@
   hardware.nvidia-container-toolkit.enable = true;
 
   # Gaming
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
   environment.systemPackages = with pkgs; [ instawow ];
 }
