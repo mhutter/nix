@@ -82,6 +82,10 @@ in
     # Claude Desktop's Cowork VM looks for UEFI firmware at a hardcoded path
     "L+ /usr/share/OVMF - - - - ${pkgs.OVMF.fd}/FV"
   ];
+  # Claude Desktop downloads its own (generic-linux) claude-code binary into
+  # ~/.config/Claude/claude-code and execs it directly; the path is not
+  # configurable in release builds.
+  programs.nix-ld.enable = true;
 
   # TODO: Configure WirePlumber rules
   # - Disable internal devices
