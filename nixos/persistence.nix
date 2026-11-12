@@ -82,6 +82,7 @@
         ".local/state/nvim"
         ".local/state/syncthing"
         ".local/state/wireplumber"
+        ".m2"
         ".nx/config"
         ".omnissa"
         ".rustup"
