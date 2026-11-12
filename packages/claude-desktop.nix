@@ -56,7 +56,7 @@ let
     krb5
     libnotify
     libpulseaudio
-    # screen sharing
+    # screen sharing (Chromium dlopens it; claude-native links it directly)
     pipewire
     # Electron safeStorage
     libsecret
@@ -66,11 +66,11 @@ in
 stdenv.mkDerivation (finalAttrs: {
   pname = "claude-desktop";
   # run scripts/update-claude-desktop.sh to update the next 3 attributes
-  version = "2.2553.1";
+  version = "5.1231.2";
 
   src = fetchurl {
-    url = "https://downloads.claude.ai/claude-desktop/apt/stable/pool/main/c/claude-desktop/claude-desktop_2.2553.1_amd64.deb";
-    hash = "sha256-ZwD92E53prjJORLC9p610eQPqZvNnTf0OPgJ7ypv5vg=";
+    url = "https://downloads.claude.ai/claude-desktop/apt/stable/pool/main/c/claude-desktop/claude-desktop_5.1231.2_amd64.deb";
+    hash = "sha256-600Wya/wppY2bYhyj3T6VRNr58/ePB/jWvQGK0WVW28=";
   };
 
   buildInputs = [
@@ -100,6 +100,8 @@ stdenv.mkDerivation (finalAttrs: {
     nspr
     nss
     pango
+    # linked by resources/app.asar.unpacked/node_modules/@ant/claude-native
+    pipewire
     systemdLibs
 
     # for the bundled resources/virtiofsd
