@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./modules/docker.nix
+    ./modules/steam.nix
   ];
 
   boot.loader.systemd-boot = {

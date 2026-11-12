@@ -53,7 +53,7 @@
   ];
 
   # Graphics
-  hardware.graphics.enable = true;
+  # hardware.graphics.enable already in nixos/default.nix
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
@@ -63,9 +63,5 @@
   hardware.nvidia-container-toolkit.enable = true;
 
   # Gaming
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
   environment.systemPackages = with pkgs; [ instawow ];
 }
