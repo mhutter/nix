@@ -66,11 +66,11 @@ in
 stdenv.mkDerivation (finalAttrs: {
   pname = "claude-desktop";
   # run scripts/update-claude-desktop.sh to update the next 3 attributes
-  version = "5.11492.0";
+  version = "5.11492.2";
 
   src = fetchurl {
-    url = "https://downloads.claude.ai/claude-desktop/apt/stable/pool/main/c/claude-desktop/claude-desktop_5.11492.0_amd64.deb";
-    hash = "sha256-nFz11MiyNWd5o93n3t/hwwGnIjlxWXGYIT2BX+jM+lU=";
+    url = "https://downloads.claude.ai/claude-desktop/apt/stable/pool/main/c/claude-desktop/claude-desktop_5.11492.2_amd64.deb";
+    hash = "sha256-0QlE+lZjuZdADPZsXHc4/WrPZU+KrqyluZTrFHqms18=";
   };
 
   buildInputs = [
